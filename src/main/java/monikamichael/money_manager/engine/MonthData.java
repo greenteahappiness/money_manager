@@ -4,21 +4,21 @@ import java.util.List;
 
 // All currency values in gr (grosze)
 public class MonthData {
-    int walletBegin;
-    int walletEnd;
-    int accountBegin;
-    int accountEnd;
-    int payPalBegin;
-    int payPalEnd;
-    int afterPreviousMonth;
-    int salary;
+    public int walletBegin;
+    public int walletEnd;
+    public int accountBegin;
+    public int accountEnd;
+    public int payPalBegin;
+    public int payPalEnd;
+    public int afterPreviousMonth;
+    public int salary;
 
-    List<Entry> ownExpenses;
-    List<Entry> periodicExpenses;
-    List<Entry> otherExpenses;
-    List<Entry> outOfBudgetExpenses;
-    List<Entry> debts;
-    List<Entry> transfersFromSavings;
+    public List<Entry> ownExpenses;
+    public List<Entry> periodicExpenses;
+    public List<Entry> otherExpenses;
+    public List<Entry> outOfBudgetExpenses;
+    public List<Entry> debts;
+    public List<Entry> transfersFromSavings;
 
     public int balance() {
         int result = 0;
