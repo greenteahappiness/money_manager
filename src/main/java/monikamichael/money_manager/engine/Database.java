@@ -32,22 +32,25 @@ public class Database {
         return connection != null;
     }
 
-    private Statement createStatement() {
-        Statement stmt = null;
-        try {
-            stmt = connection.createStatement();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("database: Unable to create tables");
-        }
-        return stmt;
-    }
-
     private void executeSqlUpdate(String sql) {
-        Statement stmt = createStatement();
         try {
+            Statement stmt = connection.createStatement();
             stmt.executeUpdate(sql);
             stmt.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("database: Unable to execute SQL statement");
+        }
+    }
+
+    public void executeSqlQuery(String sql, SqlQueryClient client) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            client.onStatementReady(statement);
+            ResultSet resultSet = statement.executeQuery();
+            client.onResult(resultSet);
+            resultSet.close();
+            statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("database: Unable to execute SQL statement");
