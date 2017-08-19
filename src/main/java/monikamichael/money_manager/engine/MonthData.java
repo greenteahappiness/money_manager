@@ -3,6 +3,7 @@ package monikamichael.money_manager.engine;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 // All currency values in gr (grosze)
@@ -22,6 +23,31 @@ public class MonthData {
     public List<Entry> outOfBudgetExpenses;
     public List<Entry> debts;
     public List<Entry> transfersFromSavings;
+
+    private static List<Entry> retrieveListOfEntries(Database db,
+                                                     final int year, final int month,
+                                                     final String tableName) {
+        final List<Entry> result = new LinkedList<Entry>();
+        // TODO Prevent SQL injection with tableName
+        db.executeSqlQuery("SELECT * FROM " + tableName + " WHERE YEAR = ? AND MONTH = ?", new SqlQueryClient() {
+            @Override
+            public void onStatementReady(PreparedStatement statement) throws SQLException {
+                statement.setInt(1, year);
+                statement.setInt(2, month);
+            }
+
+            @Override
+            public void onResult(ResultSet resultSet) throws SQLException {
+                while (resultSet.next()) {
+                    Entry entry = new Entry();
+                    entry.description = resultSet.getString("DESCRIPTION");
+                    entry.value = resultSet.getInt("VALUE");
+                    result.add(entry);
+                }
+            }
+        });
+        return result;
+    }
 
     public static MonthData retrieveForMonth(Database db, final int year, final int month) {
         final MonthData result = new MonthData();
@@ -66,7 +92,12 @@ public class MonthData {
             }
         });
 
-        // TODO Retrieve other fields, those which are lists
+        result.ownExpenses = retrieveListOfEntries(db, year, month, "OWN_EXPENSES");
+        result.periodicExpenses = retrieveListOfEntries(db, year, month, "PERIODIC_EXPENSES");
+        result.otherExpenses = retrieveListOfEntries(db, year, month, "OTHER_EXPENSES");
+        result.outOfBudgetExpenses = retrieveListOfEntries(db, year, month, "OOB_EXPENSES");
+        result.debts = retrieveListOfEntries(db, year, month, "DEBTS");
+        result.transfersFromSavings = retrieveListOfEntries(db, year, month, "TRANSFERS");
 
         return result;
     }
