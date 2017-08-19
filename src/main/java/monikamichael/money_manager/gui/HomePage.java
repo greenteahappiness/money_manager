@@ -21,6 +21,13 @@ public class HomePage extends AbstractPage {
     }
 
     protected void connectButtons() {
+        goals.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button arg0) {
+                GoalsPage goalsPage = new GoalsPage();
+                goalsPage.show();
+            }
+        });
         monthlyReport.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
