@@ -8,11 +8,13 @@ import java.text.ParseException;
 
 public class GoalsPage extends AbstractPage {
     Button addGoalButton;
+    Button cancel;
     Button exit;
 
     protected void initializeStructures() throws FileNotFoundException, ParseException {
         this.currentWindow = (Window) builder.getObject("goals_page");
         addGoalButton = (Button) builder.getObject("add_goal");
+        cancel = (Button) builder.getObject("cancel_goals");
         exit = (Button) builder.getObject("exit_goals");
     }
     protected void connectButtons() {
@@ -23,7 +25,12 @@ public class GoalsPage extends AbstractPage {
                 addGoalsPage.show();
             }
         });
-
+        cancel.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button arg0) {
+                currentWindow.destroy();
+            }
+        });
         exit.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {

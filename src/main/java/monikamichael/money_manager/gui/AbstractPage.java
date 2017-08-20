@@ -29,6 +29,7 @@ public abstract class AbstractPage {
     public void close() {
         currentWindow.destroy();
     }
+
     protected abstract void initializeStructures() throws FileNotFoundException, ParseException;
     protected abstract void connectButtons();
 }

@@ -4,16 +4,13 @@ import java.util.Date;
 
 public class Goal {
     private String name;
-    private String category;
-
     private Date dueDate;
 
     private int price;
     private int collectedMoney;
 
-    public Goal(String name, String category, Date dueDate, int price) {
+    public Goal(String name, Date dueDate, int price) {
         this.name = name;
-        this.category = category;
         this.dueDate = dueDate;
         this.price = price;
 
@@ -25,7 +22,7 @@ public class Goal {
     public Date getDueDate() {
         return dueDate;
     }
-    public void transferMoneyForGoal(float money) {
+    public void transferMoneyForGoal(int money) {
         collectedMoney += money;
     }
     public float getInfoAboutAlreadyCollectedMoney() {

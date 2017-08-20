@@ -103,6 +103,13 @@ public class Database {
                 " MONTH       INTEGER NOT NULL," +
                 " VALUE       INTEGER NOT NULL," +
                 " DESCRIPTION TEXT)");
+
+        executeSqlUpdate("CREATE TABLE IF NOT EXISTS GOALS " +
+                "(NAME              TEXT," +
+                " PRICE             INTEGER NOT NULL," +
+                " DUE_DATE          TEXT," +
+                " COLLECTED_MONEY   INTEGER NOT NULL," +
+                " PRIMARY KEY (NAME))");
     }
 
     // Test program
