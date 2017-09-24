@@ -1,8 +1,13 @@
 package monikamichael.money_manager.engine;
 
+import monikamichael.money_manager.gui.Main;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 
 public class Database {
+    protected Logger logger = LoggerFactory.getLogger(Database.class);
     public static final String filename = "accounts.sqlite";
     private Connection connection = null;
 
@@ -11,11 +16,11 @@ public class Database {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection("jdbc:sqlite:" + filename);
         } catch (Exception e) {
-            System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+            logger.error(e.getClass().getName() + ": " + e.getMessage());
             connection = null;
             throw new RuntimeException("database: Unable to connect to " + filename);
         }
-        System.out.println("Opened database successfully");
+        logger.info("Opened database successfully");
         return isConnected();
     }
 
