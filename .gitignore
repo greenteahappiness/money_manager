@@ -3,3 +3,4 @@
 target/
 src/main/resources/gui.glade~
 accounts.sqlite
+.money_manager
