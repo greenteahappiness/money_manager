@@ -1,12 +1,13 @@
 package monikamichael.money_manager.gui;
 
+import monikamichael.money_manager.engine.Database;
 import monikamichael.money_manager.engine.Goal;
+import monikamichael.money_manager.engine.GoalsHandler;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.Entry;
 import org.gnome.gtk.Window;
 
 import java.io.FileNotFoundException;
-import java.io.InterruptedIOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,6 +30,13 @@ public class AddGoalsPage extends AbstractPage {
     int price;
     Date date;
 
+    GoalsHandler goalsHandler = new GoalsHandler();
+    Database db;
+
+    public AddGoalsPage(Database db) {
+        this.db = db;
+    }
+
     protected void initializeStructures() throws FileNotFoundException, ParseException {
         this.currentWindow = (Window) builder.getObject("add_goal_page");
 
@@ -46,7 +54,8 @@ public class AddGoalsPage extends AbstractPage {
             public void onClicked(Button arg0) {
                 retrieveEntryParameters();
                 convertParameters();
-                Goal goal = new Goal(enteredName, date, price);
+                Goal goal  = createGoal();
+                goalsHandler.insertGoalToDatabase(db, goal);
             }
         });
         cancel.connect(new Button.Clicked() {
@@ -55,6 +64,15 @@ public class AddGoalsPage extends AbstractPage {
                 currentWindow.destroy();
             }
         });
+    }
+    private Goal createGoal() {
+        Goal goal = new Goal();
+
+        goal.setName(enteredName);
+        goal.setPrice(price);
+        goal.setDueDate(new java.sql.Date(date.getTime()));
+
+        return goal;
     }
     private void retrieveEntryParameters() {
         enteredName = nameEntry.getText();

@@ -1,9 +1,11 @@
 package monikamichael.money_manager.gui;
 
+import monikamichael.money_manager.engine.Database;
 import org.gnome.gtk.Builder;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.Window;
 
+import javax.xml.crypto.Data;
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 

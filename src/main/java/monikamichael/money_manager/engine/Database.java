@@ -1,6 +1,5 @@
 package monikamichael.money_manager.engine;
 
-import monikamichael.money_manager.gui.Main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,6 +60,17 @@ public class Database {
             throw new RuntimeException("database: Unable to execute SQL statement");
         }
     }
+    public void executeSqlInsert(String sql, SqlQueryClient client) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            client.onStatementReady(statement);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("database: Unable to execute SQL statement");
+        }
+
+    }
 
     public void createTables() {
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS MONTHS " +
@@ -112,7 +122,7 @@ public class Database {
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS GOALS " +
                 "(NAME              TEXT," +
                 " PRICE             INTEGER NOT NULL," +
-                " DUE_DATE          TEXT," +
+                " DUE_DATE          DATE," +
                 " COLLECTED_MONEY   INTEGER NOT NULL," +
                 " PRIMARY KEY (NAME))");
     }
