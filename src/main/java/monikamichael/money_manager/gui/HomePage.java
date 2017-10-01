@@ -2,6 +2,7 @@ package monikamichael.money_manager.gui;
 
 import monikamichael.money_manager.engine.Database;
 import monikamichael.money_manager.engine.Goal;
+import monikamichael.money_manager.engine.MonthData;
 import org.gnome.gtk.Builder;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.Window;
@@ -13,6 +14,7 @@ public class HomePage extends AbstractPage {
 
     Button monthlyReport;
     Button goals;
+    Button newData;
     Button exit;
 
     Database db;
@@ -21,6 +23,7 @@ public class HomePage extends AbstractPage {
         this.currentWindow = (Window) builder.getObject("homepage");
         monthlyReport = (Button) builder.getObject("monthly_report");
         goals = (Button) builder.getObject("goals");
+        newData = (Button) builder.getObject("new_data");
         exit = (Button) builder.getObject("exit");
 
         db = new Database();
@@ -35,6 +38,18 @@ public class HomePage extends AbstractPage {
             public void onClicked(Button arg0) {
                 GoalsPage goalsPage = new GoalsPage(db);
                 goalsPage.show();
+            }
+        });
+        newData.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button arg0) {
+                EnterMonthDataPage enterMonthDataPage = new EnterMonthDataPage(new EnterMonthDataCallback() {
+                    @Override
+                    public void onDataAvailable(MonthData data) {
+                        System.out.println("Data returned:" + data.toString());
+                    }
+                });
+                enterMonthDataPage.show();
             }
         });
         monthlyReport.connect(new Button.Clicked() {
