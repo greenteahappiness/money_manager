@@ -124,6 +124,11 @@ public class MonthData {
     }
 
     private static void printListOfEntries(StringBuilder builder, List<Entry> entries) {
+        if (entries == null) {
+            builder.append("(empty)\n");
+            return;
+        }
+
         for (Entry entry : entries)
             builder.append(entry.description + ": " + Currency.toString(entry.value) + "\n");
     }
