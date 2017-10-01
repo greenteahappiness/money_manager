@@ -122,4 +122,43 @@ public class MonthData {
         result -= balance();
         return result;
     }
+
+    private static void printListOfEntries(StringBuilder builder, List<Entry> entries) {
+        for (Entry entry : entries)
+            builder.append(entry.description + ": " + Currency.toString(entry.value) + "\n");
+    }
+
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("March 2017:");
+        builder.append("\nwallet at the beginning: " + Currency.toString(walletBegin));
+        builder.append("\nwallet at end: " + Currency.toString(walletEnd));
+        builder.append("\naccount at the beginning: " + Currency.toString(accountBegin));
+        builder.append("\naccount at end: " + Currency.toString(accountEnd));
+        builder.append("\nPayPal at the beginning: " + Currency.toString(payPalBegin));
+        builder.append("\nPayPal at end: " + Currency.toString(payPalEnd));
+        builder.append("\nafter previous month: " + Currency.toString(afterPreviousMonth));
+        builder.append("\nsalary: " + Currency.toString(salary));
+        builder.append("\n");
+
+        builder.append("Own expenses:\n");
+        printListOfEntries(builder, ownExpenses);
+
+        builder.append("Periodic expenses:\n");
+        printListOfEntries(builder, periodicExpenses);
+
+        builder.append("Other expenses:\n");
+        printListOfEntries(builder, otherExpenses);
+
+        builder.append("Out of budget expenses:\n");
+        printListOfEntries(builder, outOfBudgetExpenses);
+
+        builder.append("Debts:\n");
+        printListOfEntries(builder, debts);
+
+        builder.append("Transfers from savings:\n");
+        printListOfEntries(builder, transfersFromSavings);
+
+        return builder.toString();
+    }
 }
