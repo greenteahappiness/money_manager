@@ -510,16 +510,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="create_database">
-            <property name="label" translatable="yes">Create database</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">2</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
           <placeholder/>
