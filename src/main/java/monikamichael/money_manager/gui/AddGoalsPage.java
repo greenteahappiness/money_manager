@@ -3,9 +3,7 @@ package monikamichael.money_manager.gui;
 import monikamichael.money_manager.engine.Database;
 import monikamichael.money_manager.engine.Goal;
 import monikamichael.money_manager.engine.GoalsHandler;
-import org.gnome.gtk.Button;
-import org.gnome.gtk.Entry;
-import org.gnome.gtk.Window;
+import org.gnome.gtk.*;
 
 import java.io.FileNotFoundException;
 import java.text.DateFormat;
@@ -17,6 +15,7 @@ import java.util.Locale;
 public class AddGoalsPage extends AbstractPage {
 
     Button add;
+    Button preview;
     Button cancel;
 
     Entry nameEntry;
@@ -26,6 +25,9 @@ public class AddGoalsPage extends AbstractPage {
     String enteredName;
     String enteredPrice;
     String enteredDate;
+
+    FileChooserButton chooseImagePanel;
+    Image goalImage;
 
     int price;
     Date date;
@@ -41,11 +43,14 @@ public class AddGoalsPage extends AbstractPage {
         this.currentWindow = (Window) builder.getObject("add_goal_page");
 
         add = (Button) builder.getObject("add_goal_button");
+        preview = (Button) builder.getObject("preview_image");
         cancel = (Button) builder.getObject("cancel_button");
 
         nameEntry = (Entry) builder.getObject("name_entry");
         priceEntry = (Entry) builder.getObject("price_entry");
         dateEntry = (Entry) builder.getObject("due_date");
+        goalImage = (Image) builder.getObject("goal_image");
+        chooseImagePanel = (FileChooserButton) builder.getObject("image_chooser");
 
     }
     protected void connectButtons() {
@@ -58,6 +63,14 @@ public class AddGoalsPage extends AbstractPage {
                 goalsHandler.insertGoalToDatabase(db, goal);
             }
         });
+        preview.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button arg0) {
+               String filename = chooseImagePanel.getFilename();
+               goalImage.setImage(filename);
+            }
+        });
+
         cancel.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
