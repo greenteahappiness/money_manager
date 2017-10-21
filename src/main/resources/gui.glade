@@ -4,7 +4,13 @@
   <requires lib="gtk+" version="3.12"/>
   <object class="GtkWindow" id="add_goal_page">
     <property name="can_focus">False</property>
+    <property name="margin_left">8</property>
+    <property name="margin_right">8</property>
+    <property name="margin_top">8</property>
+    <property name="margin_bottom">8</property>
     <property name="title" translatable="yes">Add goal</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
     <child>
       <object class="GtkGrid" id="grid5">
         <property name="visible">True</property>
@@ -486,18 +492,6 @@
         <property name="row_homogeneous">True</property>
         <property name="column_homogeneous">True</property>
         <child>
-          <object class="GtkButton" id="exit_goals">
-            <property name="label" translatable="yes">Exit</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">2</property>
-            <property name="top_attach">1</property>
-          </packing>
-        </child>
-        <child>
           <object class="GtkButton" id="add_goal">
             <property name="label" translatable="yes">Add new goal</property>
             <property name="visible">True</property>
@@ -522,10 +516,16 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
-        </child>
-        <child>
-          <placeholder/>
+          <object class="GtkButton" id="show_goals">
+            <property name="label" translatable="yes">Show goals</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">0</property>
+          </packing>
         </child>
         <child>
           <placeholder/>
