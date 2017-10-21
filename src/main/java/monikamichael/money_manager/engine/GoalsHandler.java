@@ -42,28 +42,34 @@ public class GoalsHandler {
     }
 
     public void insertGoalToDatabase(Database db, Goal goal) {
-        final String name = goal.getName();
-        final int price = goal.getPrice();
-        final Date dueDate = goal.getDueDate();
-        final int collectedMoney = goal.getCollectedMoney();
+        if (db == null || goal == null) {
+            throw new NullPointerException("One of provided arguments is null");
+        }
+        try {
+            final String name = goal.getName();
+            final int price = goal.getPrice();
+            final Date dueDate = goal.getDueDate();
+            final int collectedMoney = goal.getCollectedMoney();
 
-        db.executeSqlInsert("INSERT INTO GOALS " +
-                "VALUES (?, ?, ?, ?)", new SqlQueryClient() {
-            @Override
-            public void onStatementReady(PreparedStatement statement) throws SQLException {
-                statement.setString(1, name);
-                statement.setInt(2, price);
-                statement.setDate(3, dueDate);
-                statement.setInt(4, collectedMoney);
-            }
+            db.executeSqlInsert("INSERT INTO GOALS " +
+                    "VALUES (?, ?, ?, ?)", new SqlQueryClient() {
+                @Override
+                public void onStatementReady(PreparedStatement statement) throws SQLException {
+                    statement.setString(1, name);
+                    statement.setInt(2, price);
+                    statement.setDate(3, dueDate);
+                    statement.setInt(4, collectedMoney);
+                }
 
-            @Override
-            public void onResult(ResultSet resultSet) throws SQLException {
-                //do nothing
-            }
-        });
-        logger.info("Goal added to database");
-
+                @Override
+                public void onResult(ResultSet resultSet) throws SQLException {
+                    //do nothing
+                }
+            });
+            logger.info("Goal added to database");
+        } catch (NullPointerException e) {
+            throw new NullPointerException("One or more of goal's attributes is null");
+        }
 
     }
 }
