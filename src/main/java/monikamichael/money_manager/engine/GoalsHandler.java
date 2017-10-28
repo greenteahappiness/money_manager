@@ -11,15 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GoalsHandler {
-    protected Logger logger = LoggerFactory.getLogger(GoalsHandler.class);
 
+    protected Logger logger = LoggerFactory.getLogger(GoalsHandler.class);
     public List<Goal> goals = new ArrayList<Goal>();
 
-    public void retrieveListOfGoals(Database db, String tableName, final Date dueDate) {
-        db.executeSqlQuery("SELECT * FROM " + tableName + " WHERE DUE_DATE < ?", new SqlQueryClient() {
+    public void loadListOfGoals(Database db) {
+        db.executeSqlQuery("SELECT * FROM GOALS", new SqlQueryClient() {
             @Override
             public void onStatementReady(PreparedStatement statement) throws SQLException {
-                statement.setDate(1, dueDate);
             }
 
             @Override
@@ -71,5 +70,13 @@ public class GoalsHandler {
             throw new NullPointerException("One or more of goal's attributes is null");
         }
 
+    }
+
+    public int getNumberOfGoals() {
+        return goals.size();
+    }
+
+    public Goal getNthGoalFromDatabase(int i) {
+        return goals.get(i-1);
     }
 }
