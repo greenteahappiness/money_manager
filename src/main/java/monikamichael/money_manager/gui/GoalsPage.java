@@ -13,7 +13,6 @@ public class GoalsPage extends AbstractPage {
     Button showGoals;
     Button cancel;
 
-    GoalsHandler goalsHandler = new GoalsHandler();
     Database db;
 
     public GoalsPage(Database db) {
