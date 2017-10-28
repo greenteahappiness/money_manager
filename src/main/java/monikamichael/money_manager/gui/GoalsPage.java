@@ -9,11 +9,12 @@ import java.io.FileNotFoundException;
 import java.text.ParseException;
 
 public class GoalsPage extends AbstractPage {
-    Button addGoalButton;
-    Button showGoals;
-    Button cancel;
 
-    Database db;
+    private Button addGoalButton;
+    private Button showGoals;
+    private Button cancel;
+
+    private Database db;
 
     public GoalsPage(Database db) {
         this.db = db;

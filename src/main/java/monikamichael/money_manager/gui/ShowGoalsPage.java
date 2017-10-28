@@ -63,7 +63,7 @@ public class ShowGoalsPage extends AbstractPage {
     }
     private void setGoalLabels(Goal goal) {
         int price = goal.getPrice();
-        float alreadySaved = goal.getInfoAboutAlreadyCollectedMoney();
+        float alreadySaved = goal.getAlreadySavedMoney();
         String name = goal.getName();
 
         this.price.setLabel("Price: " + String.valueOf(price));

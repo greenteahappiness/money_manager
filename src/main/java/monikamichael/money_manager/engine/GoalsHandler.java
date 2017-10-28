@@ -13,7 +13,7 @@ import java.util.List;
 public class GoalsHandler {
 
     protected Logger logger = LoggerFactory.getLogger(GoalsHandler.class);
-    public List<Goal> goals = new ArrayList<Goal>();
+    private List<Goal> goals = new ArrayList<Goal>();
 
     public void loadListOfGoals(Database db) {
         db.executeSqlQuery("SELECT * FROM GOALS", new SqlQueryClient() {

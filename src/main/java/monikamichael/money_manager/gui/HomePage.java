@@ -12,12 +12,12 @@ import java.text.ParseException;
 
 public class HomePage extends AbstractPage {
 
-    Button monthlyReport;
-    Button goals;
-    Button newData;
-    Button exit;
+    private Button monthlyReport;
+    private Button goals;
+    private Button newData;
+    private Button exit;
 
-    Database db;
+    private Database db;
 
     protected void initializeStructures() throws FileNotFoundException, ParseException {
         this.currentWindow = (Window) builder.getObject("homepage");

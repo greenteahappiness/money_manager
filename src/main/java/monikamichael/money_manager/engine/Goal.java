@@ -36,7 +36,7 @@ public class Goal {
     public void transferMoneyForGoal(int money) {
         collectedMoney += money;
     }
-    public float getInfoAboutAlreadyCollectedMoney() {
+    public float getAlreadySavedMoney() {
         return collectedMoney;
     }
 

@@ -4,8 +4,8 @@ import org.gnome.gtk.Button;
 import org.gnome.gtk.Window;
 
 public class MonthlyReportPage extends AbstractPage {
-    Button previous;
-    Button exit;
+    private Button previous;
+    private Button exit;
 
     MonthlyReportPage() {
         super();

@@ -14,26 +14,26 @@ import java.util.Locale;
 
 public class AddGoalsPage extends AbstractPage {
 
-    Button add;
-    Button preview;
-    Button cancel;
+    private Button add;
+    private Button preview;
+    private Button cancel;
 
-    Entry nameEntry;
-    Entry priceEntry;
-    Entry dateEntry;
+    private Entry nameEntry;
+    private Entry priceEntry;
+    private Entry dateEntry;
 
-    String enteredName;
-    String enteredPrice;
-    String enteredDate;
+    private String enteredName;
+    private String enteredPrice;
+    private String enteredDate;
 
-    FileChooserButton chooseImagePanel;
-    Image goalImage;
+    private FileChooserButton chooseImagePanel;
+    private Image goalImage;
 
-    int price;
-    Date date;
+    private int price;
+    private Date date;
 
-    GoalsHandler goalsHandler = new GoalsHandler();
-    Database db;
+    private GoalsHandler goalsHandler = new GoalsHandler();
+    private Database db;
 
     public AddGoalsPage(Database db) {
         this.db = db;
@@ -101,4 +101,5 @@ public class AddGoalsPage extends AbstractPage {
             e.printStackTrace();
         }
     }
+
 }
