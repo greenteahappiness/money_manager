@@ -10,12 +10,12 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GoalsHandler {
+public class WishlistHandler {
 
-    protected Logger logger = LoggerFactory.getLogger(GoalsHandler.class);
-    private List<Goal> goals = new ArrayList<Goal>();
+    protected Logger logger = LoggerFactory.getLogger(WishlistHandler.class);
+    private List<Wish> wishes = new ArrayList<Wish>();
 
-    public void loadListOfGoals(Database db) {
+    public void loadListOfWishes(Database db) {
         db.executeSqlQuery("SELECT * FROM GOALS", new SqlQueryClient() {
             @Override
             public void onStatementReady(PreparedStatement statement) throws SQLException {
@@ -25,30 +25,30 @@ public class GoalsHandler {
             public void onResult(ResultSet resultSet) throws SQLException {
                 int counter = 0;
                 while (resultSet.next()) {
-                    Goal goal = new Goal();
+                    Wish wish = new Wish();
 
-                    goal.setName(resultSet.getString("NAME"));
-                    goal.setPrice(resultSet.getInt("PRICE"));
-                    goal.setDueDate(resultSet.getDate("DUE_DATE"));
+                    wish.setName(resultSet.getString("NAME"));
+                    wish.setPrice(resultSet.getInt("PRICE"));
+                    wish.setDueDate(resultSet.getDate("DUE_DATE"));
 
-                    goals.add(goal);
+                    wishes.add(wish);
                     counter += 1;
                 }
-                logger.info(counter + " goals retrieved from database");
+                logger.info(counter + " wishes retrieved from database");
 
             }
         });
     }
 
-    public void insertGoalToDatabase(Database db, Goal goal) {
-        if (db == null || goal == null) {
+    public void insertWishToDatabase(Database db, Wish wish) {
+        if (db == null || wish == null) {
             throw new NullPointerException("One of provided arguments is null");
         }
         try {
-            final String name = goal.getName();
-            final int price = goal.getPrice();
-            final Date dueDate = goal.getDueDate();
-            final int collectedMoney = goal.getCollectedMoney();
+            final String name = wish.getName();
+            final int price = wish.getPrice();
+            final Date dueDate = wish.getDueDate();
+            final int collectedMoney = wish.getCollectedMoney();
 
             db.executeSqlInsert("INSERT INTO GOALS " +
                     "VALUES (?, ?, ?, ?)", new SqlQueryClient() {
@@ -65,18 +65,18 @@ public class GoalsHandler {
                     //do nothing
                 }
             });
-            logger.info("Goal added to database");
+            logger.info("Wish added to database");
         } catch (NullPointerException e) {
-            throw new NullPointerException("One or more of goal's attributes is null");
+            throw new NullPointerException("One or more of wish's attributes is null");
         }
 
     }
 
-    public int getNumberOfGoals() {
-        return goals.size();
+    public int getNumberOfWishes() {
+        return wishes.size();
     }
 
-    public Goal getNthGoalFromDatabase(int i) {
-        return goals.get(i-1);
+    public Wish getNthWishFromDatabase(int i) {
+        return wishes.get(i-1);
     }
 }

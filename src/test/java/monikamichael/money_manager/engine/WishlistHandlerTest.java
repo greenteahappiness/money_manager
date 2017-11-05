@@ -8,37 +8,37 @@ import java.text.SimpleDateFormat;
 
 import static org.mockito.Mockito.mock;
 
-public class GoalsHandlerTest {
+public class WishlistHandlerTest {
 
-    GoalsHandler goalsHandler = new GoalsHandler();
+    WishlistHandler wishlistHandler = new WishlistHandler();
     Database db = mock(Database.class);
 
     @Test(expected = NullPointerException.class)
     public void throwsExceptionIfDatabaseIsNull() {
         Database db = null;
-        goalsHandler.insertGoalToDatabase(db, new Goal());
+        wishlistHandler.insertWishToDatabase(db, new Wish());
     }
 
     @Test(expected = NullPointerException.class)
     public void throwsExceptionIfGoalIsNull() {
-        Goal goal = null;
-        GoalsHandler goalsHandler = new GoalsHandler();
-        goalsHandler.insertGoalToDatabase(db, goal);
+        Wish wish = null;
+        WishlistHandler wishlistHandler = new WishlistHandler();
+        wishlistHandler.insertWishToDatabase(db, wish);
     }
     @Test(expected = NullPointerException.class)
     public void throwsExceptionIfGoalAttributeIsNull() {
-        GoalsHandler goalsHandler = new GoalsHandler();
-        Goal goal = mock(Goal.class);
-        goalsHandler.insertGoalToDatabase(db, goal);
+        WishlistHandler wishlistHandler = new WishlistHandler();
+        Wish wish = mock(Wish.class);
+        wishlistHandler.insertWishToDatabase(db, wish);
     }
 
     @Test
     public void testCreateSqlInsertQuery() throws ParseException {
-        Goal goal = new Goal();
-        goal.setName("Goal nr 1");
-        goal.setPrice(4590);
+        Wish wish = new Wish();
+        wish.setName("Wish nr 1");
+        wish.setPrice(4590);
         DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
-        goal.setDueDate(new java.sql.Date(df.parse("28-10-2018").getTime()));
+        wish.setDueDate(new java.sql.Date(df.parse("28-10-2018").getTime()));
 
         //Mockito.verify(db, Mockito.times(1)).executeSqlInsert();
     }

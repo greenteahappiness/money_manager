@@ -2,14 +2,14 @@ package monikamichael.money_manager.engine;
 
 import java.sql.Date;
 
-public class Goal {
+public class Wish {
     private String name;
     private Date dueDate;
 
     private int price;
     private int collectedMoney;
 
-    public Goal() {
+    public Wish() {
         this.collectedMoney = 0;
     }
     public void setName(String name) {
@@ -33,7 +33,7 @@ public class Goal {
     public int getCollectedMoney() {
         return collectedMoney;
     }
-    public void transferMoneyForGoal(int money) {
+    public void transferMoneyForWish(int money) {
         collectedMoney += money;
     }
     public float getAlreadySavedMoney() {

@@ -1,8 +1,8 @@
 package monikamichael.money_manager.gui;
 
 import monikamichael.money_manager.engine.Database;
-import monikamichael.money_manager.engine.Goal;
-import monikamichael.money_manager.engine.GoalsHandler;
+import monikamichael.money_manager.engine.Wish;
+import monikamichael.money_manager.engine.WishlistHandler;
 import org.gnome.gtk.*;
 
 import java.io.FileNotFoundException;
@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class AddGoalsPage extends AbstractPage {
+public class AddWishesPage extends AbstractPage {
 
     private Button add;
     private Button preview;
@@ -27,15 +27,15 @@ public class AddGoalsPage extends AbstractPage {
     private String enteredDate;
 
     private FileChooserButton chooseImagePanel;
-    private Image goalImage;
+    private Image wishImage;
 
     private int price;
     private Date date;
 
-    private GoalsHandler goalsHandler = new GoalsHandler();
+    private WishlistHandler wishlistHandler = new WishlistHandler();
     private Database db;
 
-    public AddGoalsPage(Database db) {
+    public AddWishesPage(Database db) {
         this.db = db;
     }
 
@@ -49,7 +49,7 @@ public class AddGoalsPage extends AbstractPage {
         nameEntry = (Entry) builder.getObject("name_entry");
         priceEntry = (Entry) builder.getObject("price_entry");
         dateEntry = (Entry) builder.getObject("due_date");
-        goalImage = (Image) builder.getObject("goal_image");
+        wishImage = (Image) builder.getObject("goal_image");
         chooseImagePanel = (FileChooserButton) builder.getObject("image_chooser");
 
     }
@@ -59,15 +59,15 @@ public class AddGoalsPage extends AbstractPage {
             public void onClicked(Button arg0) {
                 retrieveEntryParameters();
                 convertParameters();
-                Goal goal  = createGoal();
-                goalsHandler.insertGoalToDatabase(db, goal);
+                Wish wish = createWish();
+                wishlistHandler.insertWishToDatabase(db, wish);
             }
         });
         preview.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
                String filename = chooseImagePanel.getFilename();
-               goalImage.setImage(filename);
+               wishImage.setImage(filename);
             }
         });
 
@@ -78,14 +78,14 @@ public class AddGoalsPage extends AbstractPage {
             }
         });
     }
-    private Goal createGoal() {
-        Goal goal = new Goal();
+    private Wish createWish() {
+        Wish wish = new Wish();
 
-        goal.setName(enteredName);
-        goal.setPrice(price);
-        goal.setDueDate(new java.sql.Date(date.getTime()));
+        wish.setName(enteredName);
+        wish.setPrice(price);
+        wish.setDueDate(new java.sql.Date(date.getTime()));
 
-        return goal;
+        return wish;
     }
     private void retrieveEntryParameters() {
         enteredName = nameEntry.getText();
