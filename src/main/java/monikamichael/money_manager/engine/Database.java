@@ -119,7 +119,7 @@ public class Database {
                 " VALUE       INTEGER NOT NULL," +
                 " DESCRIPTION TEXT)");
 
-        executeSqlUpdate("CREATE TABLE IF NOT EXISTS GOALS " +
+        executeSqlUpdate("CREATE TABLE IF NOT EXISTS wishes " +
                 "(NAME              TEXT," +
                 " PRICE             INTEGER NOT NULL," +
                 " DUE_DATE          DATE," +

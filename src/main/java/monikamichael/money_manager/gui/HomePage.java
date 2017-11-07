@@ -20,7 +20,7 @@ public class HomePage extends AbstractPage {
     protected void initializeStructures() throws FileNotFoundException, ParseException {
         this.currentWindow = (Window) builder.getObject("homepage");
         monthlyReport = (Button) builder.getObject("monthly_report");
-        wishes = (Button) builder.getObject("goals");
+        wishes = (Button) builder.getObject("wishes");
         newData = (Button) builder.getObject("new_data");
         exit = (Button) builder.getObject("exit");
 

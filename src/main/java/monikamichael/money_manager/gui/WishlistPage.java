@@ -20,10 +20,10 @@ public class WishlistPage extends AbstractPage {
     }
 
     protected void initializeStructures() throws FileNotFoundException, ParseException {
-        this.currentWindow = (Window) builder.getObject("goals_page");
-        addWishButton = (Button) builder.getObject("add_goal");
-        showWishes = (Button) builder.getObject("show_goals");
-        cancel = (Button) builder.getObject("cancel_goals");
+        this.currentWindow = (Window) builder.getObject("wishes_page");
+        addWishButton = (Button) builder.getObject("add_wishes");
+        showWishes = (Button) builder.getObject("show_wishes");
+        cancel = (Button) builder.getObject("cancel_wishes");
     }
 
     protected void connectButtons() {

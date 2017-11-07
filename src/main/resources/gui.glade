@@ -2,7 +2,7 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
-  <object class="GtkWindow" id="add_goal_page">
+  <object class="GtkWindow" id="add_wish_page">
     <property name="can_focus">False</property>
     <property name="margin_left">8</property>
     <property name="margin_right">8</property>
@@ -93,7 +93,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="add_goal_button">
+                  <object class="GtkButton" id="add_wish_button">
                     <property name="label" translatable="yes">Add</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
@@ -105,7 +105,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="goal_name_label">
+                  <object class="GtkLabel" id="wish_name_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Nazwa:</property>
@@ -116,7 +116,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="goal_price_label">
+                  <object class="GtkLabel" id="wish_price_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Cena:</property>
@@ -127,7 +127,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="goal_due_date_label">
+                  <object class="GtkLabel" id="wish_due_date_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Termin zakupu:</property>
@@ -138,7 +138,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="goal_photo_label">
+                  <object class="GtkLabel" id="wish_photo_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Zdjęcie:</property>
@@ -167,7 +167,7 @@
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkLabel" id="goal_label">
+              <object class="GtkLabel" id="wish_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="ypad">7</property>
@@ -180,7 +180,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkImage" id="goal_image">
+              <object class="GtkImage" id="wish_image">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="xpad">5</property>
@@ -480,59 +480,6 @@
       </object>
     </child>
   </object>
-  <object class="GtkWindow" id="goals_page">
-    <property name="can_focus">False</property>
-    <property name="title" translatable="yes">Goals</property>
-    <child>
-      <object class="GtkGrid" id="grid3">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="row_spacing">4</property>
-        <property name="column_spacing">4</property>
-        <property name="row_homogeneous">True</property>
-        <property name="column_homogeneous">True</property>
-        <child>
-          <object class="GtkButton" id="add_goal">
-            <property name="label" translatable="yes">Add new wish</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">0</property>
-            <property name="top_attach">0</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="cancel_goals">
-            <property name="label" translatable="yes">Cancel</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="show_goals">
-            <property name="label" translatable="yes">Show goals</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-          </object>
-          <packing>
-            <property name="left_attach">1</property>
-            <property name="top_attach">0</property>
-          </packing>
-        </child>
-        <child>
-          <placeholder/>
-        </child>
-      </object>
-    </child>
-  </object>
   <object class="GtkWindow" id="homepage">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Money Manager</property>
@@ -557,8 +504,8 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="goals">
-            <property name="label" translatable="yes">Goals</property>
+          <object class="GtkButton" id="wishes">
+            <property name="label" translatable="yes">Wishes</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -676,7 +623,7 @@
       </object>
     </child>
   </object>
-  <object class="GtkWindow" id="show_goals_page">
+  <object class="GtkWindow" id="show_wishes_page">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Show goals</property>
     <child>
@@ -696,7 +643,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="goal_name">
+          <object class="GtkLabel" id="wish_name">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
           </object>
@@ -706,8 +653,8 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="show_goals_back">
-            <property name="label" translatable="yes">Wstecz</property>
+          <object class="GtkButton" id="show_wish_back">
+            <property name="label" translatable="yes">Back</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -724,7 +671,7 @@
             <property name="orientation">vertical</property>
             <property name="homogeneous">True</property>
             <child>
-              <object class="GtkLabel" id="goal_price">
+              <object class="GtkLabel" id="wish_price">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
               </object>
@@ -735,7 +682,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="goal_already_saved">
+              <object class="GtkLabel" id="wish_already_saved">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
               </object>
@@ -746,7 +693,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="goal_due_date">
+              <object class="GtkLabel" id="wish_due_date">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
               </object>
@@ -763,7 +710,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="previous_goal">
+          <object class="GtkButton" id="previous_wish">
             <property name="label">gtk-go-back</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -777,7 +724,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="next_goal">
+          <object class="GtkButton" id="next_wish">
             <property name="label">gtk-go-forward</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -791,10 +738,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkLabel" id="goals_number_label">
+          <object class="GtkLabel" id="wishes_number_label">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="label" translatable="yes">Goals number:</property>
+            <property name="label" translatable="yes">Wishes number:</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -803,6 +750,59 @@
         </child>
         <child>
           <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </object>
+  <object class="GtkWindow" id="wishes_page">
+    <property name="can_focus">False</property>
+    <property name="title" translatable="yes">Goals</property>
+    <child>
+      <object class="GtkGrid" id="grid3">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="row_spacing">4</property>
+        <property name="column_spacing">4</property>
+        <property name="row_homogeneous">True</property>
+        <property name="column_homogeneous">True</property>
+        <child>
+          <object class="GtkButton" id="add_wishes">
+            <property name="label" translatable="yes">Add new wish</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="cancel_wishes">
+            <property name="label" translatable="yes">Cancel</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="show_wishes">
+            <property name="label" translatable="yes">Show wishes</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">0</property>
+          </packing>
         </child>
         <child>
           <placeholder/>

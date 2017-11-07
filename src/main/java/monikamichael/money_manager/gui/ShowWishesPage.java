@@ -28,14 +28,14 @@ public class ShowWishesPage extends AbstractPage {
         this.db = db;
         wishlistHandler.loadListOfWishes(db);
         numberOfWishes = wishlistHandler.getNumberOfWishes();
-        wishesNumberLabel.setLabel("Goals number: " + numberOfWishes);
+        wishesNumberLabel.setLabel("wishes number: " + numberOfWishes);
     }
 
     protected void connectButtons() {
         nextWish.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
-                if (isnextWish()) {
+                if (isNextWish()) {
                     currentWishNum += 1;
                     Wish nextWish = wishlistHandler.getNthWishFromDatabase(currentWishNum);
                     setWishLabels(nextWish);
@@ -71,7 +71,7 @@ public class ShowWishesPage extends AbstractPage {
         this.name.setLabel("Name: " + name);
     }
 
-    private boolean isnextWish() {
+    private boolean isNextWish() {
         return currentWishNum + 1 <= numberOfWishes;
     }
     private boolean isPreviousWish() {
@@ -79,14 +79,14 @@ public class ShowWishesPage extends AbstractPage {
     }
 
     protected void initializeStructures() {
-        this.currentWindow = (Window) builder.getObject("show_goals_page");
-        nextWish = (Button) builder.getObject("next_goal");
-        previous = (Button) builder.getObject("show_goals_back");
-        previousWish = (Button) builder.getObject("previous_goal");
-        wishesNumberLabel = (Label) builder.getObject("goals_number_label");
-        price = (Label) builder.getObject("goal_price");
-        alreadySavedLabel= (Label) builder.getObject("goal_already_saved");
-        name = (Label) builder.getObject("goal_name");
+        this.currentWindow = (Window) builder.getObject("show_wishes_page");
+        nextWish = (Button) builder.getObject("next_wish");
+        previous = (Button) builder.getObject("show_wish_back");
+        previousWish = (Button) builder.getObject("previous_wish");
+        wishesNumberLabel = (Label) builder.getObject("wishes_number_label");
+        price = (Label) builder.getObject("wish_price");
+        alreadySavedLabel= (Label) builder.getObject("wish_already_saved");
+        name = (Label) builder.getObject("wish_name");
 
     }
 }

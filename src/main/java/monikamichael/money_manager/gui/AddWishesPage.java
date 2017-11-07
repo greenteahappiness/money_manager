@@ -40,16 +40,16 @@ public class AddWishesPage extends AbstractPage {
     }
 
     protected void initializeStructures() throws FileNotFoundException, ParseException {
-        this.currentWindow = (Window) builder.getObject("add_goal_page");
+        this.currentWindow = (Window) builder.getObject("add_wish_page");
 
-        add = (Button) builder.getObject("add_goal_button");
+        add = (Button) builder.getObject("add_wish_button");
         preview = (Button) builder.getObject("preview_image");
         cancel = (Button) builder.getObject("cancel_button");
 
         nameEntry = (Entry) builder.getObject("name_entry");
         priceEntry = (Entry) builder.getObject("price_entry");
         dateEntry = (Entry) builder.getObject("due_date");
-        wishImage = (Image) builder.getObject("goal_image");
+        wishImage = (Image) builder.getObject("wish_image");
         chooseImagePanel = (FileChooserButton) builder.getObject("image_chooser");
 
     }

@@ -16,7 +16,7 @@ public class WishlistHandler {
     private List<Wish> wishes = new ArrayList<Wish>();
 
     public void loadListOfWishes(Database db) {
-        db.executeSqlQuery("SELECT * FROM GOALS", new SqlQueryClient() {
+        db.executeSqlQuery("SELECT * FROM wishes", new SqlQueryClient() {
             @Override
             public void onStatementReady(PreparedStatement statement) throws SQLException {
             }
@@ -50,7 +50,7 @@ public class WishlistHandler {
             final Date dueDate = wish.getDueDate();
             final int collectedMoney = wish.getCollectedMoney();
 
-            db.executeSqlInsert("INSERT INTO GOALS " +
+            db.executeSqlInsert("INSERT INTO wishes " +
                     "VALUES (?, ?, ?, ?)", new SqlQueryClient() {
                 @Override
                 public void onStatementReady(PreparedStatement statement) throws SQLException {

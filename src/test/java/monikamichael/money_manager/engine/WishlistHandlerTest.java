@@ -20,13 +20,13 @@ public class WishlistHandlerTest {
     }
 
     @Test(expected = NullPointerException.class)
-    public void throwsExceptionIfGoalIsNull() {
+    public void throwsExceptionIfWishIsNull() {
         Wish wish = null;
         WishlistHandler wishlistHandler = new WishlistHandler();
         wishlistHandler.insertWishToDatabase(db, wish);
     }
     @Test(expected = NullPointerException.class)
-    public void throwsExceptionIfGoalAttributeIsNull() {
+    public void throwsExceptionIfWishAttributeIsNull() {
         WishlistHandler wishlistHandler = new WishlistHandler();
         Wish wish = mock(Wish.class);
         wishlistHandler.insertWishToDatabase(db, wish);
