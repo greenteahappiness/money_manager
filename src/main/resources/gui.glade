@@ -62,7 +62,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="overwrite_mode">True</property>
-                    <property name="placeholder_text" translatable="yes">Due date:</property>
+                    <property name="placeholder_text" translatable="yes">MMMM d, yyyy</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>

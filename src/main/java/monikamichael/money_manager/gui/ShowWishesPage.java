@@ -27,9 +27,7 @@ public class ShowWishesPage extends AbstractPage {
 
     public ShowWishesPage(Database db) {
         this.db = db;
-        wishlistHandler.loadListOfWishes(db);
-        numberOfWishes = wishlistHandler.getNumberOfWishes();
-        wishesNumberLabel.setLabel("wishes number: " + numberOfWishes);
+        refreshData();
     }
 
     protected void connectButtons() {
@@ -38,6 +36,7 @@ public class ShowWishesPage extends AbstractPage {
             public void onClicked(Button arg0) {
                 Wish currentWish = wishlistHandler.getNthWishFromDatabase(currentWishNum);
                 wishlistHandler.deleteWishFromDatabase(db, currentWish);
+                refreshData();
             }
         });
         nextWish.connect(new Button.Clicked() {
@@ -86,6 +85,11 @@ public class ShowWishesPage extends AbstractPage {
         return currentWishNum - 1 > 0;
     }
 
+    private void refreshData() {
+        wishlistHandler.loadListOfWishes(db);
+        numberOfWishes = wishlistHandler.getNumberOfWishes();
+        wishesNumberLabel.setLabel("Wishes number: " + numberOfWishes);
+    }
     protected void initializeStructures() {
         this.currentWindow = (Window) builder.getObject("show_wishes_page");
         deleteWish = (Button) builder.getObject("delete_wish_button");

@@ -13,7 +13,7 @@ import java.util.List;
 public class WishlistHandler {
 
     protected Logger logger = LoggerFactory.getLogger(WishlistHandler.class);
-    private List<Wish> wishes = new ArrayList<Wish>();
+    private List<Wish> wishes;
 
     public void loadListOfWishes(Database db) {
         db.executeSqlQuery("SELECT * FROM WISHES", new SqlQueryClient() {
@@ -23,6 +23,7 @@ public class WishlistHandler {
 
             @Override
             public void onResult(ResultSet resultSet) throws SQLException {
+                wishes = new ArrayList<Wish>();
                 int counter = 0;
                 while (resultSet.next()) {
                     Wish wish = new Wish();
