@@ -9,6 +9,7 @@ import org.gnome.gtk.Window;
 
 public class ShowWishesPage extends AbstractPage {
 
+    private Button deleteWish;
     private Button nextWish;
     private Button previous;
     private Button previousWish;
@@ -32,6 +33,13 @@ public class ShowWishesPage extends AbstractPage {
     }
 
     protected void connectButtons() {
+        deleteWish.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button arg0) {
+                Wish currentWish = wishlistHandler.getNthWishFromDatabase(currentWishNum);
+                wishlistHandler.deleteWishFromDatabase(db, currentWish);
+            }
+        });
         nextWish.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
@@ -80,6 +88,7 @@ public class ShowWishesPage extends AbstractPage {
 
     protected void initializeStructures() {
         this.currentWindow = (Window) builder.getObject("show_wishes_page");
+        deleteWish = (Button) builder.getObject("delete_wish_button");
         nextWish = (Button) builder.getObject("next_wish");
         previous = (Button) builder.getObject("show_wish_back");
         previousWish = (Button) builder.getObject("previous_wish");

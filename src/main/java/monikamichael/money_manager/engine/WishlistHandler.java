@@ -71,6 +71,29 @@ public class WishlistHandler {
         }
 
     }
+    public void deleteWishFromDatabase(Database db, Wish wish) {
+        if (db == null || wish == null) {
+            throw new NullPointerException("One of provided arguments is null");
+        }
+        try {
+            final String name = wish.getName();
+
+            db.executeSqlDelete("DELETE FROM WISHES WHERE NAME = ?", new SqlQueryClient() {
+                @Override
+                public void onStatementReady(PreparedStatement statement) throws SQLException {
+                    statement.setString(1, name);
+                }
+
+                @Override
+                public void onResult(ResultSet resultSet) throws SQLException {
+                }
+            });
+            logger.info("Wish deleted from database");
+        } catch (NullPointerException e) {
+            throw new NullPointerException("One or more of wish's attributes is null");
+        }
+
+    }
 
     public int getNumberOfWishes() {
         return wishes.size();

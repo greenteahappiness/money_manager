@@ -72,6 +72,19 @@ public class Database {
 
     }
 
+    public void executeSqlDelete(String sql, SqlQueryClient client) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            client.onStatementReady(statement);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("database: Unable to execute SQL statement");
+        }
+
+    }
+
+
     public void createTables() {
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS MONTHS " +
                 "(YEAR        INTEGER NOT NULL," +
