@@ -156,7 +156,6 @@ public class MonthData {
 
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("March 2017:");
         builder.append("\nwallet at the beginning: " + Currency.toString(walletBegin));
         builder.append("\nwallet at end: " + Currency.toString(walletEnd));
         builder.append("\naccount at the beginning: " + Currency.toString(accountBegin));
