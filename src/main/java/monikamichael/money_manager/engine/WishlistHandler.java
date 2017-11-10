@@ -95,6 +95,21 @@ public class WishlistHandler {
         }
 
     }
+    public void deleteAllWishesFromDatabase(Database db) {
+        if (db == null) {
+            throw new NullPointerException("One of provided arguments is null");
+        }
+        db.executeSqlDelete("DELETE FROM WISHES", new SqlQueryClient() {
+            @Override
+            public void onStatementReady(PreparedStatement statement) throws SQLException {
+            }
+
+            @Override
+            public void onResult(ResultSet resultSet) throws SQLException {
+            }
+        });
+        logger.info("Wishes deleted from database");
+    }
 
     public int getNumberOfWishes() {
         return wishes.size();

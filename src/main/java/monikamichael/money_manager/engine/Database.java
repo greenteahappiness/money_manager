@@ -7,8 +7,12 @@ import java.sql.*;
 
 public class Database {
     protected Logger logger = LoggerFactory.getLogger(Database.class);
-    public static final String filename = "accounts.sqlite";
+    public String filename;
     private Connection connection = null;
+
+    public Database(String filename) {
+        this.filename = filename;
+    }
 
     public boolean connect() {
         try {
@@ -142,7 +146,7 @@ public class Database {
 
     // Test program
     public static void main(String args[]) {
-        Database db = new Database();
+        Database db = new Database("accounts.sqlite");
         if (db.connect()) {
             db.createTables();
             db.disconnect();

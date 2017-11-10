@@ -24,7 +24,7 @@ public class HomePage extends AbstractPage {
         newData = (Button) builder.getObject("new_data");
         exit = (Button) builder.getObject("exit");
 
-        db = new Database();
+        db = new Database("accounts.sqlite");
         if (db.connect()) {
             db.createTables();
         }
