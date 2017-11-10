@@ -2,15 +2,16 @@ package monikamichael.money_manager.gui;
 
 import monikamichael.money_manager.engine.Currency;
 import monikamichael.money_manager.engine.MonthData;
-import org.gnome.gtk.Button;
-import org.gnome.gtk.Entry;
-import org.gnome.gtk.Window;
+import org.gnome.gtk.*;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 
 public class EnterMonthDataPage extends AbstractPage {
     private EnterMonthDataCallback callback;
+
+    private Entry yearEntry;
+    private ComboBoxText monthComboBox;
 
     private Button applyButton;
     private Button cancelButton;
@@ -28,8 +29,28 @@ public class EnterMonthDataPage extends AbstractPage {
     protected void initializeStructures() throws FileNotFoundException, ParseException {
         this.currentWindow = (Window) builder.getObject("enter_month_data_page");
 
+        yearEntry = (Entry) builder.getObject("year_entry");
+
+        // There is a bug in Java Gtk, which disallows me to just put ComboBoxText widget in Glade and load it with
+        // monthComboBox = (ComboBoxText) builder.getObject("month_combobox");
+        monthComboBox = new ComboBoxText();
+        monthComboBox.appendText("styczeń");
+        monthComboBox.appendText("luty");
+        monthComboBox.appendText("marzec");
+        monthComboBox.appendText("kwiecień");
+        monthComboBox.appendText("maj");
+        monthComboBox.appendText("czerwiec");
+        monthComboBox.appendText("lipiec");
+        monthComboBox.appendText("sierpień");
+        monthComboBox.appendText("wrzesień");
+        monthComboBox.appendText("październik");
+        monthComboBox.appendText("listopad");
+        monthComboBox.appendText("grudzień");
+        ((Box) builder.getObject("box4")).add(monthComboBox);
+
         applyButton = (Button) builder.getObject("enter_month_ok");
         cancelButton = (Button) builder.getObject("enter_month_cancel");
+
         walletEndEntry = (Entry) builder.getObject("wallet_end_entry");
         accountEndEntry = (Entry) builder.getObject("account_end_entry");
         paypalEndEntry = (Entry) builder.getObject("paypal_end_entry");
@@ -41,7 +62,9 @@ public class EnterMonthDataPage extends AbstractPage {
         applyButton.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
-                callback.onDataAvailable(getMonthData());
+                callback.onDataAvailable(getMonthData(),
+                        Integer.parseInt(yearEntry.getText()),
+                        getMonth());
                 currentWindow.destroy();
             }
         });
@@ -51,6 +74,10 @@ public class EnterMonthDataPage extends AbstractPage {
                 currentWindow.destroy();
             }
         });
+    }
+
+    public int getMonth() {
+        return 1 + monthComboBox.getActive();
     }
 
     public MonthData getMonthData() {

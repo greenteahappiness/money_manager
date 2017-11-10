@@ -253,29 +253,7 @@
             <property name="halign">center</property>
             <property name="spacing">8</property>
             <child>
-              <object class="GtkComboBoxText" id="month_combobox">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <items>
-                  <item translatable="yes">styczeń</item>
-                  <item translatable="yes">luty</item>
-                  <item translatable="yes">marzec</item>
-                  <item translatable="yes">kwiecień</item>
-                  <item translatable="yes">maj</item>
-                  <item translatable="yes">czerwiec</item>
-                  <item translatable="yes">lipiec</item>
-                  <item translatable="yes">sierpień</item>
-                  <item translatable="yes">wrzesień</item>
-                  <item translatable="yes">październik</item>
-                  <item translatable="yes">listopad</item>
-                  <item translatable="yes">grudzień</item>
-                </items>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
+              <placeholder/>
             </child>
             <child>
               <object class="GtkEntry" id="year_entry">

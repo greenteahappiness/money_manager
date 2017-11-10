@@ -2,10 +2,15 @@ package monikamichael.money_manager.gui;
 
 import monikamichael.money_manager.engine.Database;
 import monikamichael.money_manager.engine.MonthData;
+import monikamichael.money_manager.engine.SqlQueryClient;
+import org.gnome.gtk.Builder;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.Window;
 
 import java.io.FileNotFoundException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 
 public class HomePage extends AbstractPage {
@@ -43,8 +48,8 @@ public class HomePage extends AbstractPage {
             public void onClicked(Button arg0) {
                 EnterMonthDataPage enterMonthDataPage = new EnterMonthDataPage(new EnterMonthDataCallback() {
                     @Override
-                    public void onDataAvailable(MonthData data) {
-                        System.out.println("Data returned:" + data.toString());
+                    public void onDataAvailable(MonthData data, int year, int month) {
+                        data.insertToDatabase(db, year, month);
                     }
                 });
                 enterMonthDataPage.show();

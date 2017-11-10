@@ -102,6 +102,27 @@ public class MonthData {
         return result;
     }
 
+    public void insertToDatabase(Database db, final int year, final int month) {
+        db.executeSqlInsert("INSERT INTO MONTHS " +
+                            "(YEAR, MONTH, WALLET_END, ACCOUNT_END, PAYPAL_END, AFTER_PREV, SALARY) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?)", new SqlQueryClient() {
+            @Override
+            public void onStatementReady(PreparedStatement statement) throws SQLException {
+                statement.setInt(1, year);
+                statement.setInt(2, month);
+                statement.setInt(3, walletEnd);
+                statement.setInt(4, accountEnd);
+                statement.setInt(5, payPalEnd);
+                statement.setInt(6, afterPreviousMonth);
+                statement.setInt(7, salary);
+            }
+
+            @Override
+            public void onResult(ResultSet resultSet) throws SQLException {
+            }
+        });
+    }
+
     public int balance() {
         int result = 0;
         result += walletEnd - walletBegin;
