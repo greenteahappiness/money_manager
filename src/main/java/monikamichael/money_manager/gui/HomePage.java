@@ -58,7 +58,7 @@ public class HomePage extends AbstractPage {
         monthlyReport.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
-                MonthlyReportPage monthlyReportPage = new MonthlyReportPage();
+                MonthlyReportPage monthlyReportPage = new MonthlyReportPage(db);
                 monthlyReportPage.show();
             }
         });

@@ -581,7 +581,16 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkButton" id="all_months_report">
+            <property name="label" translatable="yes">All months report</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">1</property>
+          </packing>
         </child>
         <child>
           <placeholder/>
