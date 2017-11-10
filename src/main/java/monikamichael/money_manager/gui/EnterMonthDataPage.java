@@ -1,6 +1,7 @@
 package monikamichael.money_manager.gui;
 
 import monikamichael.money_manager.engine.Currency;
+import monikamichael.money_manager.engine.Month;
 import monikamichael.money_manager.engine.MonthData;
 import org.gnome.gtk.*;
 
@@ -34,18 +35,8 @@ public class EnterMonthDataPage extends AbstractPage {
         // There is a bug in Java Gtk, which disallows me to just put ComboBoxText widget in Glade and load it with
         // monthComboBox = (ComboBoxText) builder.getObject("month_combobox");
         monthComboBox = new ComboBoxText();
-        monthComboBox.appendText("styczeń");
-        monthComboBox.appendText("luty");
-        monthComboBox.appendText("marzec");
-        monthComboBox.appendText("kwiecień");
-        monthComboBox.appendText("maj");
-        monthComboBox.appendText("czerwiec");
-        monthComboBox.appendText("lipiec");
-        monthComboBox.appendText("sierpień");
-        monthComboBox.appendText("wrzesień");
-        monthComboBox.appendText("październik");
-        monthComboBox.appendText("listopad");
-        monthComboBox.appendText("grudzień");
+        for (int i = 1; i <= 12; ++i)
+            monthComboBox.appendText(Month.fromInt(i));
         ((Box) builder.getObject("box4")).add(monthComboBox);
 
         applyButton = (Button) builder.getObject("enter_month_ok");
