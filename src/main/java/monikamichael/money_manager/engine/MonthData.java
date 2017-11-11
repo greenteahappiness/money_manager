@@ -123,11 +123,17 @@ public class MonthData {
         });
     }
 
+    public int totalBegin() {
+        return accountBegin + walletBegin + payPalBegin;
+    }
+
+    public int totalEnd() {
+        return accountEnd + walletEnd + payPalEnd;
+    }
+
     public int balance() {
         int result = 0;
-        result += walletEnd - walletBegin;
-        result += accountEnd - accountBegin;
-        result += payPalEnd - payPalBegin;
+        result += totalEnd() - totalBegin();
         result -= Entry.sum(transfersFromSavings);
         result += Entry.sum(outOfBudgetExpenses);
         result += afterPreviousMonth;
