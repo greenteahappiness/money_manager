@@ -4,31 +4,31 @@ public class Month {
     public static String fromInt(int i) {
         switch (i) {
             case 1:
-                return "styczeń";
+                return "January";
             case 2:
-                return "luty";
+                return "February";
             case 3:
-                return "marzec";
+                return "March";
             case 4:
-                return "kwiecień";
+                return "April";
             case 5:
-                return "maj";
+                return "May";
             case 6:
-                return "czerwiec";
+                return "June";
             case 7:
-                return "lipiec";
+                return "July";
             case 8:
-                return "sierpień";
+                return "August";
             case 9:
-                return "wrzesień";
+                return "September";
             case 10:
-                return "październik";
+                return "October";
             case 11:
-                return "listopad";
+                return "November";
             case 12:
-                return "grudzień";
+                return "December";
             default:
-                return "(nieznany)";
+                return "(unknown)";
         }
     }
 }
