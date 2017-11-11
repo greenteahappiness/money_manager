@@ -10,6 +10,7 @@ public class ReportGenerator {
         writer.println("<html>");
         writer.println("  <head>");
         writer.println("    <title>Financial report</title>");
+        writer.println("    <link rel=\"stylesheet\" type=\"text/css\" href=\"src/main/resources/main.css\">");
         writer.println("  </head>");
         writer.println("  <body>");
         writer.println("    <h1>Financial report</h1>");
@@ -29,10 +30,9 @@ public class ReportGenerator {
                     int month = resultSet.getInt("MONTH");
                     MonthData data = MonthData.retrieveForMonth(db, year, month);
 
-                    writer.println("<p>");
-                    writer.println("<h2>" + Month.fromInt(month) + " " + year + "</h2>");
+                    writer.println("<h2 class=\"month-header\">" + Month.fromInt(month) + " " + year + "</h2>");
 
-                    writer.println("<table>");
+                    writer.println("<p><table class=\"month-data\">");
 
                     writer.println("  <tr>");
                     writer.println("    <th>account</th>");
@@ -69,42 +69,40 @@ public class ReportGenerator {
                     writer.println("    <td>" + Currency.toString(data.totalEnd() - data.totalBegin()) + "</td>");
                     writer.println("  </tr>");
 
-                    writer.println("</table>");
+                    writer.println("</table></p>");
 
-                    writer.println("After previous month: " + Currency.toString(data.afterPreviousMonth) + "<br>");
-                    writer.println("Salary: " + Currency.toString(data.salary) + "<br>");
+                    writer.println("<p>After previous month: " + Currency.toString(data.afterPreviousMonth) + "<br>");
+                    writer.println("Salary: " + Currency.toString(data.salary) + "<br></p>");
 
-                    writer.println("Own expenses:<br><ul>");
+                    writer.println("<p>Own expenses:<br><ul class=\"entries-list\">");
                     for (Entry entry : data.ownExpenses)
                         writer.println("<li>" + Currency.toString(entry.value) + ": " + entry.description + "</li>");
-                    writer.println("</ul>");
+                    writer.println("</ul></p>");
 
-                    writer.println("Periodic expenses:<br><ul>");
+                    writer.println("<p>Periodic expenses:<br><ul class=\"entries-list\">");
                     for (Entry entry : data.periodicExpenses)
                         writer.println("<li>" + Currency.toString(entry.value) + ": " + entry.description + "</li>");
-                    writer.println("</ul>");
+                    writer.println("</ul></p>");
 
-                    writer.println("Other expenses:<br><ul>");
+                    writer.println("<p>Other expenses:<br><ul class=\"entries-list\">");
                     for (Entry entry : data.otherExpenses)
                         writer.println("<li>" + Currency.toString(entry.value) + ": " + entry.description + "</li>");
-                    writer.println("</ul>");
+                    writer.println("</ul></p>");
 
-                    writer.println("Out-of-budget expenses:<br><ul>");
+                    writer.println("<p>Out-of-budget expenses:<br><ul class=\"entries-list\">");
                     for (Entry entry : data.outOfBudgetExpenses)
                         writer.println("<li>" + Currency.toString(entry.value) + ": " + entry.description + "</li>");
-                    writer.println("</ul>");
+                    writer.println("</ul></p>");
 
-                    writer.println("Debts:<br><ul>");
+                    writer.println("<p>Debts:<br><ul class=\"entries-list\">");
                     for (Entry entry : data.debts)
                         writer.println("<li>" + Currency.toString(entry.value) + ": " + entry.description + "</li>");
-                    writer.println("</ul>");
+                    writer.println("</ul></p>");
 
-                    writer.println("Transfers from savings:<br><ul>");
+                    writer.println("<p>Transfers from savings:<br><ul class=\"entries-list\">");
                     for (Entry entry : data.transfersFromSavings)
                         writer.println("<li>" + Currency.toString(entry.value) + ": " + entry.description + "</li>");
-                    writer.println("</ul>");
-
-                    writer.println("</p>");
+                    writer.println("</ul></p>");
                 }
             }
         });
