@@ -33,53 +33,48 @@ public class ReportGenerator {
                     writer.println("<h3 class=\"month-header\">" + Month.fromInt(month) + " " + year + "</h3>");
 
                     writer.println("<p><table class=\"container\">");
-                    //writeTableHeader(writer, new String[]{"account", " beginning", "end", "balance"});
-                    writer.println("<thead>");
-                    writer.println("  <tr>");
-                    writer.println("    <th>account</th>");
-                    writer.println("    <th>beginning</th>");
-                    writer.println("    <th>end</th>");
-                    writer.println("    <th>balance</th>");
-                    writer.println("  </tr>");
-                    writer.println("<thead>");
 
-                    writer.println("  <tr>");
-                    writer.println("    <td>main</th>");
-                    writer.println("    <td>" + Currency.toString(data.accountBegin) + "</td>");
-                    writer.println("    <td>" + Currency.toString(data.accountEnd) + "</td>");
-                    writer.println("    <td>" + Currency.toString(data.accountEnd - data.accountBegin) + "</td>");
-                    writer.println("  </tr>");
+                    writeTableHeader(writer, new String[]{"account", " beginning", "end", "balance"});
+                    writeTableRow(writer, new String[] {
+                            "main",
+                            Currency.toString(data.accountBegin),
+                            Currency.toString(data.accountEnd),
+                            Currency.toString(data.accountEnd - data.accountBegin)
+                    });
 
-                    writer.println("  <tr>");
-                    writer.println("    <td>wallet</th>");
-                    writer.println("    <td>" + Currency.toString(data.walletBegin) + "</td>");
-                    writer.println("    <td>" + Currency.toString(data.walletEnd) + "</td>");
-                    writer.println("    <td>" + Currency.toString(data.walletEnd - data.walletBegin) + "</td>");
-                    writer.println("  </tr>");
+                    writeTableRow(writer, new String[] {
+                            "wallet",
+                            Currency.toString(data.walletBegin),
+                            Currency.toString(data.walletEnd),
+                            Currency.toString(data.walletEnd - data.walletBegin)
+                    });
 
-                    writer.println("  <tr>");
-                    writer.println("    <td>PayPal</th>");
-                    writer.println("    <td>" + Currency.toString(data.payPalBegin) + "</td>");
-                    writer.println("    <td>" + Currency.toString(data.payPalEnd) + "</td>");
-                    writer.println("    <td>" + Currency.toString(data.payPalEnd - data.payPalBegin) + "</td>");
-                    writer.println("  </tr>");
+                    writeTableRow(writer, new String[] {
+                            "PayPal",
+                            Currency.toString(data.payPalBegin),
+                            Currency.toString(data.payPalEnd),
+                            Currency.toString(data.payPalEnd - data.payPalBegin)
+                    });
 
-                    writer.println("  <tr>");
-                    writer.println("    <td>TOTAL</th>");
-                    writer.println("    <td>" + Currency.toString(data.totalBegin()) + "</td>");
-                    writer.println("    <td>" + Currency.toString(data.totalEnd()) + "</td>");
-                    writer.println("    <td>" + Currency.toString(data.totalEnd() - data.totalBegin()) + "</td>");
-                    writer.println("  </tr>");
+                    writeTableRow(writer, new String[] {
+                            "TOTAL",
+                            Currency.toString(data.totalBegin()),
+                            Currency.toString(data.totalEnd()),
+                            Currency.toString(data.totalEnd() - data.totalBegin())
+                    });
 
                     writer.println("</table></p>");
 
                     writer.println("<p><table class=\"container\">");
-                    writer.println("<tr>");
-                    writer.println("<p><td><b>After previous month</b></td><td>" + Currency.toString(data.afterPreviousMonth) + "</td><br>");
-                    writer.println("</td></tr>");
-                    writer.println("<tr>");
-                    writer.println("<td><b>Salary</b></td><td>" + Currency.toString(data.salary) + "</td></p>");
-                    writer.println("<tr>");
+
+                    writeTableRow(writer, new String[] {
+                            "After previous month", Currency.toString(data.afterPreviousMonth)
+                    });
+                    writeTableRow(writer, new String[] {
+                            "Salary", Currency.toString(data.salary)
+                    });
+
+                    //TODO: extract it to new method + think of way to display it
                     writer.println("<p><td><b>Own expenses</b></td><ul class=\"entries-list\">");
                     for (Entry entry : data.ownExpenses)
                         writer.println("<td><li>" + Currency.toString(entry.value) + ": " + entry.description + "</li></td>");
@@ -139,5 +134,12 @@ public class ReportGenerator {
         writer.println("<thead>");
     }
 
+    private static void writeTableRow(PrintWriter writer, String[] cells) {
+        writer.println("  <tr>");
+        for (String cell : cells) {
+            writer.println("<td>" + cell + "</td>");
+        }
+        writer.println("  </tr>");
+    }
 
 }
