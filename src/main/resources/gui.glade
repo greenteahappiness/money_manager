@@ -2,6 +2,125 @@
 <!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.12"/>
+  <object class="GtkWindow" id="add_entry_page">
+    <property name="can_focus">False</property>
+    <property name="margin_top">8</property>
+    <property name="margin_bottom">8</property>
+    <property name="title" translatable="yes">Add wish</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <child>
+      <object class="GtkBox" id="box8">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <property name="homogeneous">True</property>
+        <child>
+          <object class="GtkGrid" id="grid9">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="row_spacing">4</property>
+            <property name="column_spacing">4</property>
+            <child>
+              <object class="GtkButton" id="add_entry_button">
+                <property name="label" translatable="yes">Add</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="yalign">0.50999999046325684</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="quit_adding_entries_button">
+                <property name="label" translatable="yes">Quit</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="entry_value_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">Value:</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="value_entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="overwrite_mode">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="entry_description_label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="label" translatable="yes">Description:</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="description_entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="overwrite_mode">True</property>
+                <property name="progress_fraction">0.02</property>
+                <property name="progress_pulse_step">0.12</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="add_entry_year_entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="text" translatable="yes">2017</property>
+                <property name="placeholder_text" translatable="yes">year</property>
+                <property name="input_purpose">digits</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
   <object class="GtkWindow" id="add_wish_page">
     <property name="can_focus">False</property>
     <property name="margin_left">8</property>
@@ -494,7 +613,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="new_data">
+          <object class="GtkButton" id="new_month_data">
             <property name="label" translatable="yes">New data</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
@@ -518,19 +637,67 @@
           </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkButton" id="new_own_expense">
+            <property name="label" translatable="yes">New own expense</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">0</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkButton" id="new_out_of_budget_expense">
+            <property name="label" translatable="yes">New
+out of budget
+expense</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">0</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkButton" id="new_other_expense">
+            <property name="label" translatable="yes">New other expense</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">2</property>
+            <property name="top_attach">0</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkButton" id="new_debt">
+            <property name="label" translatable="yes">New debt</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">0</property>
+            <property name="top_attach">2</property>
+          </packing>
         </child>
         <child>
-          <placeholder/>
+          <object class="GtkButton" id="new_transfer_from_savings">
+            <property name="label" translatable="yes">New transfer
+from savings</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+          </object>
+          <packing>
+            <property name="left_attach">1</property>
+            <property name="top_attach">2</property>
+          </packing>
         </child>
       </object>
     </child>
