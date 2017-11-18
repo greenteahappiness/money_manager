@@ -16,6 +16,6 @@ public class Currency {
 
         int zl = value / 100;
         int gr = value % 100;
-        return String.format("%d,%02d zł", zl, gr);
+        return String.format("%s%d,%02d zł", sign, zl, gr);
     }
 }
