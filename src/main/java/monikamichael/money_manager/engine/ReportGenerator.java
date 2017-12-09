@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ReportGenerator {
     public static void forAllMonths(final Database db, final PrintWriter writer) {
@@ -75,57 +76,14 @@ public class ReportGenerator {
                             "Salary", Currency.toString(data.salary)
                     });
 
-                    //TODO: extract it to new method + think of way to display it
-                    writer.println("<tr><p><td>\n" +
-                            "<input class=\"toggle\" id=\"toggle" + Month.fromInt(month)  +  "\" type=\"checkbox\">\n" +
-                            "<label for=\"toggle" + Month.fromInt(month) + "\"><b>Own expenses</b></label>\n" +
-                            "<div class=\"expand\">\n" +
-                            "    <section>\n" +
-                            "<p><table class=\"container\">\n");
-                    for (Entry entry : data.ownExpenses) {
-                        writer.println("<tr>" +
-                                "<td>" + entry.description + "</td>" +
-                                "<td>" + Currency.toString(entry.value) + "</td>" +
-                                "</tr>");
-                    }
-                    writer.println("</table></p> </section> </div> </td> </p> </tr>");
 
-                    writer.println();
+                    writeExpandingList(writer, month, data.ownExpenses, "Own Expenses");
+                    writeExpandingList(writer, month, data.periodicExpenses, "Periodic Expenses");
+                    writeExpandingList(writer, month, data.otherExpenses, "Other Expenses");
+                    writeExpandingList(writer, month, data.outOfBudgetExpenses, "Out-of-budget expense");
+                    writeExpandingList(writer, month, data.debts, "Debts");
+                    writeExpandingList(writer, month, data.transfersFromSavings, "Transfers from savings");
 
-                    writer.println("<tr>");
-                    writer.println("<p><td><b>Periodic expenses</b></td><ul class=\"entries-list\">");
-                    for (Entry entry : data.periodicExpenses)
-                        writer.println("<td><li>" + Currency.toString(entry.value) + ": " + entry.description + "</td></li>");
-                    writer.println("</ul></p>");
-                    writer.println("</tr>");
-
-                    writer.println("<tr>");
-                    writer.println("<p><td><b>Other expenses</b></td</b><ul class=\"entries-list\">");
-                    for (Entry entry : data.otherExpenses)
-                        writer.println("<td><li>" + Currency.toString(entry.value) + ": " + entry.description + "</td></li>");
-                    writer.println("</ul></p>");
-                    writer.println("</tr>");
-
-                    writer.println("<tr>");
-                    writer.println("<p><td><b>Out-of-budget expenses</b></td><ul class=\"entries-list\">");
-                    for (Entry entry : data.outOfBudgetExpenses)
-                        writer.println("<td><li>" + Currency.toString(entry.value) + ": " + entry.description + "</td></li>");
-                    writer.println("</ul></p>");
-                    writer.println("</tr>");
-
-                    writer.println("<tr>");
-                    writer.println("<p><td><b>Debts</b></td><ul class=\"entries-list\">");
-                    for (Entry entry : data.debts)
-                        writer.println("<td><li>" + Currency.toString(entry.value) + ": " + entry.description + "</td></li>");
-                    writer.println("</ul></p>");
-                    writer.println("</tr>");
-
-                    writer.println("<tr>");
-                    writer.println("<p><td><b>Transfers from savings</b></td><ul class=\"entries-list\">");
-                    for (Entry entry : data.transfersFromSavings)
-                        writer.println("<td><li>" + Currency.toString(entry.value) + ": " + entry.description + "</td></li>");
-                    writer.println("</ul></p>");
-                    writer.println("</tr>");
                     writer.println("</table></p>");
                 }
             }
@@ -151,6 +109,22 @@ public class ReportGenerator {
             writer.println("<td>" + cell + "</td>");
         }
         writer.println("  </tr>");
+    }
+
+    private static  void writeExpandingList(PrintWriter writer, int month, List<Entry> data, String uniqueId) {
+        writer.println("<tr><p><td>" +
+                "<input class=\"toggle\" id=\"toggle" + uniqueId + Month.fromInt(month)  +  "\" type=\"checkbox\">" +
+                "<label for=\"toggle" + uniqueId + Month.fromInt(month) + "\"><b>"+uniqueId +"</b></label>" +
+                "<div class=\"expand\">" +
+                "    <section>" +
+                "<p><table class=\"container\">");
+        for (Entry entry : data) {
+            writer.println("<tr>" +
+                    "<td>" + entry.description + "</td>" +
+                    "<td>" + Currency.toString(entry.value) + "</td>" +
+                    "</tr>");
+        }
+        writer.println("</table></p> </section></div></td></p></tr>");
     }
 
 }
