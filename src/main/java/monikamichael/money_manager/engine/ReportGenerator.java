@@ -197,6 +197,7 @@ public class ReportGenerator {
             writer.println("<tr>" +
                     "<td>" + entry.description + "</td>" +
                     "<td>" + Currency.toString(entry.value) + "</td>" +
+                    "<td>" + entry.category + "</td>" +
                     "</tr>");
         }
         writer.println("</table></p> </section></div></td></p></tr>");

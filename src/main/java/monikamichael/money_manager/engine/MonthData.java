@@ -42,6 +42,7 @@ public class MonthData {
                     Entry entry = new Entry();
                     entry.description = resultSet.getString("DESCRIPTION");
                     entry.value = resultSet.getInt("VALUE");
+                    entry.category = resultSet.getString("CATEGORY");
                     result.add(entry);
                 }
             }

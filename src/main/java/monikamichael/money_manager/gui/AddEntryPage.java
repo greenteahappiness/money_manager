@@ -3,10 +3,7 @@ package monikamichael.money_manager.gui;
 import monikamichael.money_manager.engine.Currency;
 import monikamichael.money_manager.engine.Entry;
 import monikamichael.money_manager.engine.Month;
-import org.gnome.gtk.Button;
-import org.gnome.gtk.ComboBoxText;
-import org.gnome.gtk.Grid;
-import org.gnome.gtk.Window;
+import org.gnome.gtk.*;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
@@ -16,6 +13,7 @@ public class AddEntryPage extends AbstractPage {
 
     private org.gnome.gtk.Entry yearEntry;
     private ComboBoxText monthComboBox;
+    private ComboBoxText categoryComboBox;
 
     private Button addButton;
     private Button quitButton;
@@ -40,6 +38,12 @@ public class AddEntryPage extends AbstractPage {
             monthComboBox.appendText(Month.fromInt(i));
         ((Grid) builder.getObject("grid9")).add(monthComboBox);
 
+        String[] categories = {"Clothes", "Cosmetics", "Hobby and books", "Dates and meetings"};
+        categoryComboBox = new ComboBoxText();
+        for (String c : categories)
+            categoryComboBox.appendText(c);
+        ((Box) builder.getObject("box6")).add(categoryComboBox);
+
         addButton = (Button) builder.getObject("add_entry_button");
         quitButton = (Button) builder.getObject("quit_adding_entries_button");
 
@@ -51,7 +55,7 @@ public class AddEntryPage extends AbstractPage {
         addButton.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
-                Entry entry = new Entry(descriptionEntry.getText(), Currency.parseString(valueEntry.getText()));
+                Entry entry = new Entry(descriptionEntry.getText(), Currency.parseString(valueEntry.getText()), categoryComboBox.getActiveText());
                 callback.onDataAvailable(
                         Integer.parseInt(yearEntry.getText()),
                         getMonth(),

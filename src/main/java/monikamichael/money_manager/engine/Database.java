@@ -104,37 +104,43 @@ public class Database {
                 "(YEAR        INTEGER NOT NULL," +
                 " MONTH       INTEGER NOT NULL," +
                 " VALUE       INTEGER NOT NULL," +
-                " DESCRIPTION TEXT)");
+                " DESCRIPTION TEXT," +
+                " CATEGORY    TEXT)");
 
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS PERIODIC_EXPENSES " +
                 "(YEAR        INTEGER NOT NULL," +
                 " MONTH       INTEGER NOT NULL," +
                 " VALUE       INTEGER NOT NULL," +
-                " DESCRIPTION TEXT)");
+                " DESCRIPTION TEXT," +
+                " CATEGORY    TEXT)");
 
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS OTHER_EXPENSES " +
                 "(YEAR        INTEGER NOT NULL," +
                 " MONTH       INTEGER NOT NULL," +
                 " VALUE       INTEGER NOT NULL," +
-                " DESCRIPTION TEXT)");
+                " DESCRIPTION TEXT," +
+                " CATEGORY    TEXT)");
 
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS OOB_EXPENSES " +
                 "(YEAR        INTEGER NOT NULL," +
                 " MONTH       INTEGER NOT NULL," +
                 " VALUE       INTEGER NOT NULL," +
-                " DESCRIPTION TEXT)");
+                " DESCRIPTION TEXT," +
+                " CATEGORY    TEXT)");
 
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS DEBTS " +
                 "(YEAR        INTEGER NOT NULL," +
                 " MONTH       INTEGER NOT NULL," +
                 " VALUE       INTEGER NOT NULL," +
-                " DESCRIPTION TEXT)");
+                " DESCRIPTION TEXT," +
+                " CATEGORY    TEXT)");
 
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS TRANSFERS " +
                 "(YEAR        INTEGER NOT NULL," +
                 " MONTH       INTEGER NOT NULL," +
                 " VALUE       INTEGER NOT NULL," +
-                " DESCRIPTION TEXT)");
+                " DESCRIPTION TEXT," +
+                " CATEGORY    TEXT)");
 
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS WISHES " +
                 "(NAME              TEXT," +
