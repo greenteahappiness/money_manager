@@ -31,6 +31,7 @@ public class WishlistHandler {
                     wish.setName(resultSet.getString("NAME"));
                     wish.setPrice(resultSet.getInt("PRICE"));
                     wish.setDueDate(resultSet.getDate("DUE_DATE"));
+                    wish.setCollectedMoney(resultSet.getInt("COLLECTED_MONEY"));
 
                     wishes.add(wish);
                     counter += 1;
@@ -111,6 +112,37 @@ public class WishlistHandler {
         logger.info("Wishes deleted from database");
     }
 
+    public void updateWishDataInDatabase(Database db, Wish wish) {
+        if (db == null || wish == null) {
+            throw new NullPointerException("One of provided arguments is null");
+        }
+        try {
+            final String name = wish.getName();
+            final int price = wish.getPrice();
+            final Date dueDate = wish.getDueDate();
+            final int collectedMoney = wish.getCollectedMoney();
+
+            db.executeSqlQuery(
+                    "UPDATE WISHES SET NAME = ?, PRICE = ?, DUE_DATE = ?, COLLECTED_MONEY = ? WHERE NAME = ?",
+                    new SqlQueryClient() {
+                @Override
+                public void onStatementReady(PreparedStatement statement) throws SQLException {
+                    statement.setString(1, name);
+                    statement.setInt(2, price);
+                    statement.setDate(3, dueDate);
+                    statement.setInt(4, collectedMoney);
+                    statement.setString(5, name);
+                }
+
+                @Override
+                public void onResult(ResultSet resultSet) throws SQLException {
+                }
+            });
+            logger.info("Wish " + name + "updated in database");
+        } catch (NullPointerException e) {
+            throw new NullPointerException("One or more of wish's attributes is null");
+        }
+    }
     public int getNumberOfWishes() {
         return wishes.size();
     }

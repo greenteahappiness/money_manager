@@ -4,6 +4,7 @@ import monikamichael.money_manager.engine.Database;
 import monikamichael.money_manager.engine.Wish;
 import monikamichael.money_manager.engine.WishlistHandler;
 import org.gnome.gtk.Button;
+import org.gnome.gtk.Entry;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.Window;
 
@@ -13,11 +14,14 @@ public class ShowWishesPage extends AbstractPage {
     private Button nextWish;
     private Button previous;
     private Button previousWish;
+    private Button transferMoney;
 
     private Label wishesNumberLabel;
     private Label alreadySavedLabel;
     private Label price;
     private Label name;
+
+    private Entry moneyToTransferEntry;
 
     private int numberOfWishes;
     private int currentWishNum = 0;
@@ -31,6 +35,16 @@ public class ShowWishesPage extends AbstractPage {
     }
 
     protected void connectButtons() {
+        transferMoney.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button arg0) {
+                int money = Integer.parseInt(moneyToTransferEntry.getText());
+                Wish currentWish = wishlistHandler.getNthWishFromDatabase(currentWishNum);
+                currentWish.transferMoneyForWish(money);
+                alreadySavedLabel.setLabel("Already saved: " + String.valueOf(currentWish.getAlreadySavedMoney()));
+                wishlistHandler.updateWishDataInDatabase(db, currentWish);
+            }
+        });
         deleteWish.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
@@ -92,6 +106,7 @@ public class ShowWishesPage extends AbstractPage {
     }
     protected void initializeStructures() {
         this.currentWindow = (Window) builder.getObject("show_wishes_page");
+        transferMoney = (Button) builder.getObject("transfer_button");
         deleteWish = (Button) builder.getObject("delete_wish_button");
         nextWish = (Button) builder.getObject("next_wish");
         previous = (Button) builder.getObject("show_wish_back");
@@ -100,6 +115,7 @@ public class ShowWishesPage extends AbstractPage {
         price = (Label) builder.getObject("wish_price");
         alreadySavedLabel= (Label) builder.getObject("wish_already_saved");
         name = (Label) builder.getObject("wish_name");
+        moneyToTransferEntry = (Entry) builder.getObject("wish_money_entry");
 
     }
 }

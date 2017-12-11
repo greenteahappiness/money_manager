@@ -33,6 +33,9 @@ public class Wish {
     public int getCollectedMoney() {
         return collectedMoney;
     }
+    public void setCollectedMoney(int cm) {
+        this.collectedMoney = cm;
+    }
     public void transferMoneyForWish(int money) {
         collectedMoney += money;
     }
