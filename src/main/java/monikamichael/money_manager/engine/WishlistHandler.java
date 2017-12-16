@@ -122,7 +122,7 @@ public class WishlistHandler {
             final Date dueDate = wish.getDueDate();
             final int collectedMoney = wish.getCollectedMoney();
 
-            db.executeSqlQuery(
+            db.executeSqlInsert(
                     "UPDATE WISHES SET NAME = ?, PRICE = ?, DUE_DATE = ?, COLLECTED_MONEY = ? WHERE NAME = ?",
                     new SqlQueryClient() {
                 @Override
