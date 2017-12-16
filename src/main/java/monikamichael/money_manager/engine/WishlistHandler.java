@@ -138,7 +138,7 @@ public class WishlistHandler {
                 public void onResult(ResultSet resultSet) throws SQLException {
                 }
             });
-            logger.info("Wish " + name + "updated in database");
+            logger.info("Wish " + name + " updated in database");
         } catch (NullPointerException e) {
             throw new NullPointerException("One or more of wish's attributes is null");
         }
@@ -148,6 +148,6 @@ public class WishlistHandler {
     }
 
     public Wish getNthWishFromDatabase(int i) {
-        return wishes.get(i-1);
+        return wishes.get(i - 1);
     }
 }

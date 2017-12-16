@@ -32,19 +32,34 @@ public class ShowWishesPage extends AbstractPage {
     public ShowWishesPage(Database db) {
         this.db = db;
         refreshData();
+        showFirstWishIfExists();
+    }
+
+    private void showFirstWishIfExists() {
+        if (numberOfWishes > 0) {
+            currentWishNum = 1;
+            Wish nextWish = wishlistHandler.getNthWishFromDatabase(currentWishNum);
+            setWishLabels(nextWish);
+        }
     }
 
     protected void connectButtons() {
+
         transferMoney.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
-                int money = Integer.parseInt(moneyToTransferEntry.getText());
-                Wish currentWish = wishlistHandler.getNthWishFromDatabase(currentWishNum);
-                currentWish.transferMoneyForWish(money);
-                alreadySavedLabel.setLabel("Already saved: " + String.valueOf(currentWish.getAlreadySavedMoney()));
-                wishlistHandler.updateWishDataInDatabase(db, currentWish);
+                if (moneyToTransferEntry.getText() != null && !moneyToTransferEntry.getText().isEmpty()) {
+                    int money = Integer.parseInt(moneyToTransferEntry.getText());
+                    Wish currentWish = wishlistHandler.getNthWishFromDatabase(currentWishNum);
+                    currentWish.transferMoneyForWish(money);
+                    alreadySavedLabel.setLabel("Already saved: " + String.valueOf(currentWish.getAlreadySavedMoney()));
+                    wishlistHandler.updateWishDataInDatabase(db, currentWish);
+                } else {
+                    throw new IllegalArgumentException("Money to transfer was not chosen");
+                }
             }
         });
+
         deleteWish.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
@@ -53,6 +68,7 @@ public class ShowWishesPage extends AbstractPage {
                 refreshData();
             }
         });
+
         nextWish.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
@@ -63,6 +79,7 @@ public class ShowWishesPage extends AbstractPage {
                 }
             }
         });
+
         previousWish.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
@@ -82,6 +99,7 @@ public class ShowWishesPage extends AbstractPage {
         });
 
     }
+
     private void setWishLabels(Wish wish) {
         int price = wish.getPrice();
         float alreadySaved = wish.getAlreadySavedMoney();
@@ -95,6 +113,7 @@ public class ShowWishesPage extends AbstractPage {
     private boolean isNextWish() {
         return currentWishNum + 1 <= numberOfWishes;
     }
+
     private boolean isPreviousWish() {
         return currentWishNum - 1 > 0;
     }
@@ -104,6 +123,7 @@ public class ShowWishesPage extends AbstractPage {
         numberOfWishes = wishlistHandler.getNumberOfWishes();
         wishesNumberLabel.setLabel("Wishes number: " + numberOfWishes);
     }
+
     protected void initializeStructures() {
         this.currentWindow = (Window) builder.getObject("show_wishes_page");
         transferMoney = (Button) builder.getObject("transfer_button");
@@ -113,7 +133,7 @@ public class ShowWishesPage extends AbstractPage {
         previousWish = (Button) builder.getObject("previous_wish");
         wishesNumberLabel = (Label) builder.getObject("wishes_number_label");
         price = (Label) builder.getObject("wish_price");
-        alreadySavedLabel= (Label) builder.getObject("wish_already_saved");
+        alreadySavedLabel = (Label) builder.getObject("wish_already_saved");
         name = (Label) builder.getObject("wish_name");
         moneyToTransferEntry = (Entry) builder.getObject("wish_money_entry");
 
