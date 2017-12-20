@@ -142,6 +142,14 @@ public class MonthData {
         return result;
     }
 
+    public static int balanceEntries(List<Entry> entries) {
+        int result = 0;
+        for (Entry entry : entries) {
+            result = entry.value;
+        }
+        return result;
+    }
+
     public int foodExpenses() {
         int result = salary;
         result -= Entry.sum(ownExpenses);
