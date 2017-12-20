@@ -6,3 +6,4 @@ accounts.sqlite
 .money_manager
 test.sqlite
 all_months_report.html
+one_month_report.html
