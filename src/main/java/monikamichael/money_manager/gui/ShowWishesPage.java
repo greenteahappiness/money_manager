@@ -63,9 +63,11 @@ public class ShowWishesPage extends AbstractPage {
         deleteWish.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
-                Wish currentWish = wishlistHandler.getNthWishFromDatabase(currentWishNum);
-                wishlistHandler.deleteWishFromDatabase(db, currentWish);
-                refreshData();
+                if (numberOfWishes > 0) {
+                    Wish currentWish = wishlistHandler.getNthWishFromDatabase(currentWishNum);
+                    wishlistHandler.deleteWishFromDatabase(db, currentWish);
+                    refreshData();
+                }
             }
         });
 
