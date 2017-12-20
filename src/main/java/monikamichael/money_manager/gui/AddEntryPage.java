@@ -14,6 +14,7 @@ public class AddEntryPage extends AbstractPage {
     private org.gnome.gtk.Entry yearEntry;
     private ComboBoxText monthComboBox;
     private ComboBoxText categoryComboBox;
+    private ComboBoxText expenseTypeComboBox;
 
     private Button addButton;
     private Button quitButton;
@@ -44,6 +45,13 @@ public class AddEntryPage extends AbstractPage {
             categoryComboBox.appendText(c);
         ((Box) builder.getObject("box6")).add(categoryComboBox);
 
+        String[] entriesTypes = {"Own_Expenses", "Periodic_Expenses", "Other_Expenses",
+                "OOBexpenses", "Debts", "Transfers"};
+        expenseTypeComboBox = new ComboBoxText();
+        for (String t : entriesTypes)
+            expenseTypeComboBox.appendText(t);
+        ((Box) builder.getObject("box9")).add(expenseTypeComboBox);
+
         addButton = (Button) builder.getObject("add_entry_button");
         quitButton = (Button) builder.getObject("quit_adding_entries_button");
 
@@ -55,7 +63,9 @@ public class AddEntryPage extends AbstractPage {
         addButton.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
-                Entry entry = new Entry(descriptionEntry.getText(), Currency.parseString(valueEntry.getText()), categoryComboBox.getActiveText());
+                System.out.println(expenseTypeComboBox.getActiveText());
+                Entry entry = new Entry(descriptionEntry.getText(), Currency.parseString(valueEntry.getText()),
+                        categoryComboBox.getActiveText(), expenseTypeComboBox.getActiveText());
                 callback.onDataAvailable(
                         Integer.parseInt(yearEntry.getText()),
                         getMonth(),

@@ -8,6 +8,7 @@ import java.util.List;
 // An entry is a financial entry in tables.
 // It is a pair (description, value, category).
 public class Entry {
+    public String entryType;
     public String description;
     public String category;
     public int value;
@@ -15,10 +16,11 @@ public class Entry {
     public Entry() {
     }
 
-    public Entry(String description, int value, String category) {
+    public Entry(String description, int value, String category, String entryType) {
         this.description = description;
         this.value = value;
         this.category = category;
+        this.entryType = entryType;
     }
 
     public static int sum(List<Entry> entries) {

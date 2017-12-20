@@ -19,6 +19,7 @@ public class HomePage extends AbstractPage {
     private Button newOtherExpense;
     private Button newDebt;
     private Button newTransferFromSavings;
+    private Button newExpense;
     private Button exit;
 
     private Database db;
@@ -28,11 +29,12 @@ public class HomePage extends AbstractPage {
         monthlyReport = (Button) builder.getObject("monthly_report");
         wishes = (Button) builder.getObject("wishes");
         newMonthData = (Button) builder.getObject("new_month_data");
-        newOwnExpense = (Button) builder.getObject("new_own_expense");
-        newOutOfBudgetExpense = (Button) builder.getObject("new_out_of_budget_expense");
-        newOtherExpense = (Button) builder.getObject("new_other_expense");
-        newDebt = (Button) builder.getObject("new_debt");
-        newTransferFromSavings = (Button) builder.getObject("new_transfer_from_savings");
+//        newOwnExpense = (Button) builder.getObject("new_own_expense");
+//        newOutOfBudgetExpense = (Button) builder.getObject("new_out_of_budget_expense");
+//        newOtherExpense = (Button) builder.getObject("new_other_expense");
+//        newDebt = (Button) builder.getObject("new_debt");
+//        newTransferFromSavings = (Button) builder.getObject("new_transfer_from_savings");
+        newExpense = (Button) builder.getObject("new_expense");
         exit = (Button) builder.getObject("exit");
 
         db = new Database("accounts.sqlite");
@@ -61,63 +63,75 @@ public class HomePage extends AbstractPage {
                 enterMonthDataPage.show();
             }
         });
-        newOwnExpense.connect(new Button.Clicked() {
+//        newOwnExpense.connect(new Button.Clicked() {
+//            @Override
+//            public void onClicked(Button arg0) {
+//                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
+//                    @Override
+//                    public void onDataAvailable(int year, int month, Entry entry) {
+//                        entry.insertToTable(db, "OWN_EXPENSES", year, month);
+//                    }
+//                }, "New own expense");
+//                addEntryPage.show();
+//            }
+//        });
+//        newOutOfBudgetExpense.connect(new Button.Clicked() {
+//            @Override
+//            public void onClicked(Button arg0) {
+//                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
+//                    @Override
+//                    public void onDataAvailable(int year, int month, Entry entry) {
+//                        entry.insertToTable(db, "OOB_EXPENSES", year, month);
+//                    }
+//                }, "New out of budget expense");
+//                addEntryPage.show();
+//            }
+//        });
+//        newOtherExpense.connect(new Button.Clicked() {
+//            @Override
+//            public void onClicked(Button arg0) {
+//                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
+//                    @Override
+//                    public void onDataAvailable(int year, int month, Entry entry) {
+//                        entry.insertToTable(db, "OTHER_EXPENSES", year, month);
+//                    }
+//                }, "New other expense");
+//                addEntryPage.show();
+//            }
+//        });
+//        newDebt.connect(new Button.Clicked() {
+//            @Override
+//            public void onClicked(Button arg0) {
+//                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
+//                    @Override
+//                    public void onDataAvailable(int year, int month, Entry entry) {
+//                        entry.insertToTable(db, "DEBTS", year, month);
+//                    }
+//                }, "New debt");
+//                addEntryPage.show();
+//            }
+//        });
+//        newTransferFromSavings.connect(new Button.Clicked() {
+//            @Override
+//            public void onClicked(Button arg0) {
+//                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
+//                    @Override
+//                    public void onDataAvailable(int year, int month, Entry entry) {
+//                        entry.insertToTable(db, "TRANSFERS", year, month);
+//                    }
+//                }, "New transfer");
+//                addEntryPage.show();
+//            }
+//        });
+        newExpense.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
                 AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
                     @Override
                     public void onDataAvailable(int year, int month, Entry entry) {
-                        entry.insertToTable(db, "OWN_EXPENSES", year, month);
+                        entry.insertToTable(db, entry.entryType.toUpperCase(), year, month);
                     }
-                }, "New own expense");
-                addEntryPage.show();
-            }
-        });
-        newOutOfBudgetExpense.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button arg0) {
-                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
-                    @Override
-                    public void onDataAvailable(int year, int month, Entry entry) {
-                        entry.insertToTable(db, "OOB_EXPENSES", year, month);
-                    }
-                }, "New out of budget expense");
-                addEntryPage.show();
-            }
-        });
-        newOtherExpense.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button arg0) {
-                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
-                    @Override
-                    public void onDataAvailable(int year, int month, Entry entry) {
-                        entry.insertToTable(db, "OTHER_EXPENSES", year, month);
-                    }
-                }, "New other expense");
-                addEntryPage.show();
-            }
-        });
-        newDebt.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button arg0) {
-                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
-                    @Override
-                    public void onDataAvailable(int year, int month, Entry entry) {
-                        entry.insertToTable(db, "DEBTS", year, month);
-                    }
-                }, "New debt");
-                addEntryPage.show();
-            }
-        });
-        newTransferFromSavings.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button arg0) {
-                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
-                    @Override
-                    public void onDataAvailable(int year, int month, Entry entry) {
-                        entry.insertToTable(db, "TRANSFERS", year, month);
-                    }
-                }, "New transfer");
+                }, "New expense");
                 addEntryPage.show();
             }
         });
