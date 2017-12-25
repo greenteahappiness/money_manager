@@ -8,17 +8,13 @@ import org.gnome.gtk.Window;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
+import java.util.List;
 
 public class HomePage extends AbstractPage {
 
     private Button monthlyReport;
     private Button wishes;
     private Button newMonthData;
-    private Button newOwnExpense;
-    private Button newOutOfBudgetExpense;
-    private Button newOtherExpense;
-    private Button newDebt;
-    private Button newTransferFromSavings;
     private Button newExpense;
     private Button exit;
 
@@ -29,11 +25,6 @@ public class HomePage extends AbstractPage {
         monthlyReport = (Button) builder.getObject("monthly_report");
         wishes = (Button) builder.getObject("wishes");
         newMonthData = (Button) builder.getObject("new_month_data");
-//        newOwnExpense = (Button) builder.getObject("new_own_expense");
-//        newOutOfBudgetExpense = (Button) builder.getObject("new_out_of_budget_expense");
-//        newOtherExpense = (Button) builder.getObject("new_other_expense");
-//        newDebt = (Button) builder.getObject("new_debt");
-//        newTransferFromSavings = (Button) builder.getObject("new_transfer_from_savings");
         newExpense = (Button) builder.getObject("new_expense");
         exit = (Button) builder.getObject("exit");
 
@@ -56,73 +47,17 @@ public class HomePage extends AbstractPage {
             public void onClicked(Button arg0) {
                 EnterMonthDataPage enterMonthDataPage = new EnterMonthDataPage(new EnterMonthDataCallback() {
                     @Override
-                    public void onDataAvailable(MonthData data, int year, int month) {
+                    public void onDataAvailable(MonthData data, int year, int month, boolean shouldRewritePeriodic) {
                         data.insertToDatabase(db, year, month);
+                        if (shouldRewritePeriodic) {
+                            rewritePeriodicExpensesFromLastMonth(year, month);
+                        }
                     }
                 });
                 enterMonthDataPage.show();
             }
         });
-//        newOwnExpense.connect(new Button.Clicked() {
-//            @Override
-//            public void onClicked(Button arg0) {
-//                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
-//                    @Override
-//                    public void onDataAvailable(int year, int month, Entry entry) {
-//                        entry.insertToTable(db, "OWN_EXPENSES", year, month);
-//                    }
-//                }, "New own expense");
-//                addEntryPage.show();
-//            }
-//        });
-//        newOutOfBudgetExpense.connect(new Button.Clicked() {
-//            @Override
-//            public void onClicked(Button arg0) {
-//                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
-//                    @Override
-//                    public void onDataAvailable(int year, int month, Entry entry) {
-//                        entry.insertToTable(db, "OOB_EXPENSES", year, month);
-//                    }
-//                }, "New out of budget expense");
-//                addEntryPage.show();
-//            }
-//        });
-//        newOtherExpense.connect(new Button.Clicked() {
-//            @Override
-//            public void onClicked(Button arg0) {
-//                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
-//                    @Override
-//                    public void onDataAvailable(int year, int month, Entry entry) {
-//                        entry.insertToTable(db, "OTHER_EXPENSES", year, month);
-//                    }
-//                }, "New other expense");
-//                addEntryPage.show();
-//            }
-//        });
-//        newDebt.connect(new Button.Clicked() {
-//            @Override
-//            public void onClicked(Button arg0) {
-//                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
-//                    @Override
-//                    public void onDataAvailable(int year, int month, Entry entry) {
-//                        entry.insertToTable(db, "DEBTS", year, month);
-//                    }
-//                }, "New debt");
-//                addEntryPage.show();
-//            }
-//        });
-//        newTransferFromSavings.connect(new Button.Clicked() {
-//            @Override
-//            public void onClicked(Button arg0) {
-//                AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
-//                    @Override
-//                    public void onDataAvailable(int year, int month, Entry entry) {
-//                        entry.insertToTable(db, "TRANSFERS", year, month);
-//                    }
-//                }, "New transfer");
-//                addEntryPage.show();
-//            }
-//        });
+
         newExpense.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
@@ -135,6 +70,7 @@ public class HomePage extends AbstractPage {
                 addEntryPage.show();
             }
         });
+
         monthlyReport.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
@@ -149,5 +85,15 @@ public class HomePage extends AbstractPage {
                 System.exit(0);
             }
         });
+    }
+
+    private void rewritePeriodicExpensesFromLastMonth(int year, int month) {
+        int lastMonth = month - 1;
+        List<Entry> periodicExpensesLastMonth = MonthData.retrieveListOfEntries(
+                db, year, lastMonth, "PERIODIC_EXPENSES");
+
+        for (Entry entry : periodicExpensesLastMonth) {
+            entry.insertToTable(db, "PERIODIC_EXPENSES", year, month);
+        }
     }
 }

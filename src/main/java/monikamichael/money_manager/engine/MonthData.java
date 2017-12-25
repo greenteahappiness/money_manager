@@ -24,7 +24,7 @@ public class MonthData {
     public List<Entry> debts;
     public List<Entry> transfersFromSavings;
 
-    private static List<Entry> retrieveListOfEntries(Database db,
+    public static List<Entry> retrieveListOfEntries(Database db,
                                                      final int year, final int month,
                                                      final String tableName) {
         final List<Entry> result = new LinkedList<Entry>();
@@ -145,7 +145,7 @@ public class MonthData {
     public static int balanceEntries(List<Entry> entries) {
         int result = 0;
         for (Entry entry : entries) {
-            result = entry.value;
+            result += entry.value;
         }
         return result;
     }

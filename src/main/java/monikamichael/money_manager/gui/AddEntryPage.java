@@ -2,6 +2,7 @@ package monikamichael.money_manager.gui;
 
 import monikamichael.money_manager.engine.Currency;
 import monikamichael.money_manager.engine.Entry;
+import monikamichael.money_manager.engine.EntryBuilder;
 import monikamichael.money_manager.engine.Month;
 import org.gnome.gtk.*;
 
@@ -32,25 +33,9 @@ public class AddEntryPage extends AbstractPage {
 
         yearEntry = (org.gnome.gtk.Entry) builder.getObject("add_entry_year_entry");
 
-        // There is a bug in Java Gtk, which disallows me to just put ComboBoxText widget in Glade and load it with
-        // monthComboBox = (ComboBoxText) builder.getObject("month_combobox");
-        monthComboBox = new ComboBoxText();
-        for (int i = 1; i <= 12; ++i)
-            monthComboBox.appendText(Month.fromInt(i));
-        ((Grid) builder.getObject("grid9")).add(monthComboBox);
-
-        String[] categories = {"Clothes", "Cosmetics", "Hobby and books", "Dates and meetings"};
-        categoryComboBox = new ComboBoxText();
-        for (String c : categories)
-            categoryComboBox.appendText(c);
-        ((Box) builder.getObject("box6")).add(categoryComboBox);
-
-        String[] entriesTypes = {"Own_Expenses", "Periodic_Expenses", "Other_Expenses",
-                "OOBexpenses", "Debts", "Transfers"};
-        expenseTypeComboBox = new ComboBoxText();
-        for (String t : entriesTypes)
-            expenseTypeComboBox.appendText(t);
-        ((Box) builder.getObject("box9")).add(expenseTypeComboBox);
+        createMonthComboBox();
+        createCategoryComboBox();
+        createEntryTypeComboBox();
 
         addButton = (Button) builder.getObject("add_entry_button");
         quitButton = (Button) builder.getObject("quit_adding_entries_button");
@@ -63,18 +48,22 @@ public class AddEntryPage extends AbstractPage {
         addButton.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
-                System.out.println(expenseTypeComboBox.getActiveText());
-                Entry entry = new Entry(descriptionEntry.getText(), Currency.parseString(valueEntry.getText()),
-                        categoryComboBox.getActiveText(), expenseTypeComboBox.getActiveText());
+                Entry entry = EntryBuilder.entry()
+                        .withDescription(descriptionEntry.getText())
+                        .withCategory(categoryComboBox.getActiveText())
+                        .withEntryType(expenseTypeComboBox.getActiveText())
+                        .withValue(Currency.parseString(valueEntry.getText()))
+                        .build();
+
                 callback.onDataAvailable(
                         Integer.parseInt(yearEntry.getText()),
                         getMonth(),
                         entry);
-                descriptionEntry.setText("");
-                valueEntry.setText("");
-                descriptionEntry.grabFocus();
+
+                clearEntryBoxes();
             }
         });
+
         quitButton.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
@@ -83,7 +72,40 @@ public class AddEntryPage extends AbstractPage {
         });
     }
 
+    private void clearEntryBoxes() {
+        descriptionEntry.setText("");
+        valueEntry.setText("");
+        descriptionEntry.grabFocus();
+    }
+
     public int getMonth() {
         return 1 + monthComboBox.getActive();
+    }
+
+    private void createEntryTypeComboBox() {
+        String[] entriesTypes = {"Own_Expenses", "Periodic_Expenses", "Other_Expenses",
+                "OOBexpenses", "Debts", "Transfers"};
+        expenseTypeComboBox = new ComboBoxText();
+        for (String t : entriesTypes)
+            expenseTypeComboBox.appendText(t);
+        ((Box) builder.getObject("box9")).add(expenseTypeComboBox);
+    }
+
+    private void createMonthComboBox() {
+        // There is a bug in Java Gtk, which disallows me to just put ComboBoxText widget in Glade and load it with
+        // monthComboBox = (ComboBoxText) builder.getObject("month_combobox");
+        monthComboBox = new ComboBoxText();
+        for (int i = 1; i <= 12; ++i)
+            monthComboBox.appendText(Month.fromInt(i));
+        ((Grid) builder.getObject("grid9")).add(monthComboBox);
+    }
+
+    private void createCategoryComboBox() {
+        String[] categories = new String[]{"Clothes", "Cosmetics", "Hobby and books", "Dates and meetings"};
+        categoryComboBox = new ComboBoxText();
+        for (String c : categories) {
+            categoryComboBox.appendText(c);
+        }
+        ((Box) builder.getObject("box6")).add(categoryComboBox);
     }
 }

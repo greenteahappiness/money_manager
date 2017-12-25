@@ -23,6 +23,8 @@ public class EnterMonthDataPage extends AbstractPage {
     private Entry afterPrevEntry;
     private Entry salaryEntry;
 
+    private CheckButton rewritePeriodicCheckbox;
+
     public EnterMonthDataPage(EnterMonthDataCallback callback) {
         this.callback = callback;
     }
@@ -47,6 +49,8 @@ public class EnterMonthDataPage extends AbstractPage {
         paypalEndEntry = (Entry) builder.getObject("paypal_end_entry");
         afterPrevEntry = (Entry) builder.getObject("after_prev_entry");
         salaryEntry = (Entry) builder.getObject("salary_entry");
+
+        rewritePeriodicCheckbox = (CheckButton) builder.getObject("rewrite_periodic_checkbox");
     }
 
     protected void connectButtons() {
@@ -55,7 +59,7 @@ public class EnterMonthDataPage extends AbstractPage {
             public void onClicked(Button arg0) {
                 callback.onDataAvailable(getMonthData(),
                         Integer.parseInt(yearEntry.getText()),
-                        getMonth());
+                        getMonth(), rewritePeriodicCheckbox.getActive());
                 currentWindow.destroy();
             }
         });

@@ -16,11 +16,11 @@ public class Entry {
     public Entry() {
     }
 
-    public Entry(String description, int value, String category, String entryType) {
-        this.description = description;
-        this.value = value;
-        this.category = category;
-        this.entryType = entryType;
+    public Entry(EntryBuilder entryBuilder) {
+        this.description = entryBuilder.description;
+        this.category = entryBuilder.category;
+        this.entryType = entryBuilder.entryType;
+        this.value = entryBuilder.value;
     }
 
     public static int sum(List<Entry> entries) {
