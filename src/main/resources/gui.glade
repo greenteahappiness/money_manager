@@ -560,8 +560,8 @@
           </packing>
         </child>
         <child>
-          <object class="GtkCheckButton" id="rewrite_periodic_checkbox">
-            <property name="label" translatable="yes">Rewrite periodic expenses from last month</property>
+          <object class="GtkCheckButton" id="copy_periodic_checkbox">
+            <property name="label" translatable="yes">Copy periodic expenses from last month</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">False</property>
