@@ -66,6 +66,12 @@ public class ReportGenerator {
         writeTableRow(writer, new String[] {
                 "<b>Salary</b>", Currency.toString(data.salary)
         });
+        writeTableRow(writer, new String[] {
+                "<b>Food expenses</b>", Currency.toString(data.foodExpenses())
+        });
+        writeTableRow(writer, new String[] {
+                "<b>Balance</b>", Currency.toString(data.balance())
+        });
 
 
         writeExpandingList(writer, month, data.ownExpenses, "Own Expenses");
@@ -149,6 +155,12 @@ public class ReportGenerator {
                     });
                     writeTableRow(writer, new String[] {
                             "<b>Salary</b>", Currency.toString(data.salary)
+                    });
+                    writeTableRow(writer, new String[] {
+                            "<b>Food expenses</b>", Currency.toString(data.foodExpenses())
+                    });
+                    writeTableRow(writer, new String[] {
+                            "<b>Balance</b>", Currency.toString(data.balance())
                     });
 
 
