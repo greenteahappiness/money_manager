@@ -38,7 +38,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="hexpand">True</property>
-                <property name="overwrite_mode">True</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
@@ -61,7 +60,6 @@
               <object class="GtkEntry" id="description_entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="overwrite_mode">True</property>
                 <property name="progress_fraction">0.02</property>
                 <property name="progress_pulse_step">0.12</property>
               </object>
