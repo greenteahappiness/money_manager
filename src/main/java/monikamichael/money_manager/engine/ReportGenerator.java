@@ -111,9 +111,25 @@ public class ReportGenerator {
 
             @Override
             public void onResult(ResultSet resultSet) throws SQLException {
+                boolean first = true;
                 while (resultSet.next()) {
                     int year = resultSet.getInt("YEAR");
                     int month = resultSet.getInt("MONTH");
+
+                    if (first) {
+                        // Also print information about the next month (first not included in the database)
+                        int nextMonthYear = year;
+                        int nextMonthMonth = month + 1;
+                        if (nextMonthMonth > 12) {
+                            nextMonthMonth = 1;
+                            ++nextMonthYear;
+                        }
+                        MonthData data = MonthData.retrieveForMonth(db, nextMonthYear, nextMonthMonth);
+                        writeMonthData(writer, nextMonthYear, nextMonthMonth, data);
+
+                        first = false;
+                    }
+
                     MonthData data = MonthData.retrieveForMonth(db, year, month);
                     writeMonthData(writer, year, month, data);
                 }
