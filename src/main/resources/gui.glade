@@ -9,6 +9,7 @@
     <property name="title" translatable="yes">Add wish</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
+    <property name="icon_name">accessories-text-editor</property>
     <child>
       <object class="GtkBox" id="box8">
         <property name="visible">True</property>
@@ -156,6 +157,7 @@
     <property name="title" translatable="yes">Add wish</property>
     <property name="resizable">False</property>
     <property name="modal">True</property>
+    <property name="icon_name">accessories-text-editor</property>
     <child>
       <object class="GtkGrid" id="grid5">
         <property name="visible">True</property>
@@ -622,6 +624,7 @@
   <object class="GtkWindow" id="homepage">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Money Manager</property>
+    <property name="icon_name">applications-office</property>
     <child>
       <object class="GtkGrid" id="grid1">
         <property name="visible">True</property>
@@ -708,6 +711,7 @@
   <object class="GtkWindow" id="monthly_report_page">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Monthly report</property>
+    <property name="icon_name">printer</property>
     <child>
       <object class="GtkGrid" id="grid2">
         <property name="visible">True</property>
@@ -800,6 +804,7 @@
   <object class="GtkWindow" id="show_wishes_page">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Show goals</property>
+    <property name="icon_name">face-smile</property>
     <child>
       <object class="GtkGrid" id="grid7">
         <property name="visible">True</property>
@@ -975,6 +980,7 @@
   <object class="GtkWindow" id="wishes_page">
     <property name="can_focus">False</property>
     <property name="title" translatable="yes">Goals</property>
+    <property name="icon_name">face-smile</property>
     <child>
       <object class="GtkGrid" id="grid3">
         <property name="visible">True</property>
