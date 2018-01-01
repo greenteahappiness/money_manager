@@ -1,5 +1,8 @@
 package monikamichael.money_manager.engine;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,6 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class MonthHandler {
+    protected static Logger logger = LoggerFactory.getLogger(MonthHandler.class);
 
     public static List<Entry> retrieveListOfEntries(Database db,
                                                     final int year, final int month,
@@ -107,5 +111,23 @@ public class MonthHandler {
             public void onResult(ResultSet resultSet) throws SQLException {
             }
         });
+    }
+
+    public static void closeMonth(Database db, final int year, final int month) {
+        db.executeSqlInsert(
+                "UPDATE MONTHS SET CLOSED = ? WHERE YEAR = ? AND MONTH = ?",
+                new SqlQueryClient() {
+                    @Override
+                    public void onStatementReady(PreparedStatement statement) throws SQLException {
+                        statement.setBoolean(1, true);
+                        statement.setInt(2, year);
+                        statement.setInt(3, month);
+                    }
+
+                    @Override
+                    public void onResult(ResultSet resultSet) throws SQLException {
+                    }
+                });
+        logger.info(Month.fromInt(month) + " " + year + " closed successfully");
     }
 }

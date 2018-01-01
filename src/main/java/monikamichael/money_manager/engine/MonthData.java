@@ -12,7 +12,6 @@ import java.util.List;
 
 // All currency values in gr (grosze)
 public class MonthData {
-    protected static Logger logger = LoggerFactory.getLogger(MonthData.class);
 
     public int walletBegin;
     public int walletEnd;
@@ -30,24 +29,6 @@ public class MonthData {
     public List<Entry> outOfBudgetExpenses;
     public List<Entry> debts;
     public List<Entry> transfersFromSavings;
-
-    public static void closeMonth(Database db, final int year, final int month) {
-        db.executeSqlInsert(
-                "UPDATE MONTHS SET CLOSED = ? WHERE YEAR = ? AND MONTH = ?",
-                new SqlQueryClient() {
-                    @Override
-                    public void onStatementReady(PreparedStatement statement) throws SQLException {
-                        statement.setBoolean(1, true);
-                        statement.setInt(2, year);
-                        statement.setInt(3, month);
-                    }
-
-                    @Override
-                    public void onResult(ResultSet resultSet) throws SQLException {
-                    }
-                });
-        logger.info(Month.fromInt(month) + " " + year + " closed successfully");
-    }
 
     public int totalBegin() {
         return accountBegin + walletBegin + payPalBegin;
