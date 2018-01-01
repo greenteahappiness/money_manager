@@ -50,7 +50,7 @@ public class EnteredMonthsPage extends AbstractPage {
             @Override
             public void onClicked(Button arg0) {
                 int month = Month.toInt(openMonthsComboBox.getActiveText());
-                MonthData.closeMonth(db, 2017, month);
+                MonthHandler.closeMonth(db, 2017, month);
             }
         });
 
