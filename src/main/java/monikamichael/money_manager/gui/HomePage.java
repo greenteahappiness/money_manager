@@ -3,6 +3,7 @@ package monikamichael.money_manager.gui;
 import monikamichael.money_manager.engine.Database;
 import monikamichael.money_manager.engine.Entry;
 import monikamichael.money_manager.engine.MonthData;
+import monikamichael.money_manager.engine.MonthHandler;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.Window;
 
@@ -50,7 +51,7 @@ public class HomePage extends AbstractPage {
                 EnterMonthDataPage enterMonthDataPage = new EnterMonthDataPage(new EnterMonthDataCallback() {
                     @Override
                     public void onDataAvailable(MonthData data, int year, int month, boolean shouldCopyPeriodic) {
-                        data.insertToDatabase(db, year, month);
+                        MonthHandler.insertToDatabase(db, data, year, month);
                         if (shouldCopyPeriodic) {
                             copyPeriodicExpensesFromLastMonth(year, month);
                         }
@@ -100,7 +101,7 @@ public class HomePage extends AbstractPage {
 
     private void copyPeriodicExpensesFromLastMonth(int year, int month) {
         int lastMonth = month - 1;
-        List<Entry> periodicExpensesLastMonth = MonthData.retrieveListOfEntries(
+        List<Entry> periodicExpensesLastMonth = MonthHandler.retrieveListOfEntries(
                 db, year, lastMonth, "PERIODIC_EXPENSES");
 
         for (Entry entry : periodicExpensesLastMonth) {
