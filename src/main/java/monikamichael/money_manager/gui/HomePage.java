@@ -16,6 +16,7 @@ public class HomePage extends AbstractPage {
     private Button wishes;
     private Button newMonthData;
     private Button newExpense;
+    private Button enteredMonths;
     private Button exit;
 
     private Database db;
@@ -26,6 +27,7 @@ public class HomePage extends AbstractPage {
         wishes = (Button) builder.getObject("wishes");
         newMonthData = (Button) builder.getObject("new_month_data");
         newExpense = (Button) builder.getObject("new_expense");
+        enteredMonths = (Button) builder.getObject("entered_months_button");
         exit = (Button) builder.getObject("exit");
 
         db = new Database("accounts.sqlite");
@@ -76,6 +78,15 @@ public class HomePage extends AbstractPage {
             public void onClicked(Button arg0) {
                 MonthlyReportPage monthlyReportPage = new MonthlyReportPage(db);
                 monthlyReportPage.show();
+            }
+        });
+
+        enteredMonths.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button arg0) {
+                EnteredMonthsPage enteredMonthsPage = new EnteredMonthsPage(db);
+                enteredMonthsPage.process();
+                enteredMonthsPage.show();
             }
         });
 

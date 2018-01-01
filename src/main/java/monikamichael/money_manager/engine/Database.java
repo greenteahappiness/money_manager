@@ -98,6 +98,7 @@ public class Database {
                 " PAYPAL_END  INTEGER NOT NULL," +
                 " AFTER_PREV  INTEGER NOT NULL," +
                 " SALARY      INTEGER NOT NULL," +
+                " CLOSED      BOOLEAN DEFAULT FALSE," +
                 " PRIMARY KEY (YEAR, MONTH))");
 
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS OWN_EXPENSES " +

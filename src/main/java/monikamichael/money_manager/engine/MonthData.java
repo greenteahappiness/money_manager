@@ -16,6 +16,7 @@ public class MonthData {
     public int payPalEnd;
     public int afterPreviousMonth;
     public int salary;
+    public boolean isClosed;
 
     public List<Entry> ownExpenses;
     public List<Entry> periodicExpenses;
@@ -67,6 +68,7 @@ public class MonthData {
                     result.payPalEnd = resultSet.getInt("PAYPAL_END");
                     result.afterPreviousMonth = resultSet.getInt("AFTER_PREV");
                     result.salary = resultSet.getInt("SALARY");
+                    result.isClosed = resultSet.getBoolean("CLOSED");
                 }
             }
         });
