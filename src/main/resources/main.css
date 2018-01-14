@@ -160,14 +160,19 @@ label::before {
   margin-right: 3px;
 }
 .expand {
-  height: 0px;
+  /*height: 0px;*/
+  /*max-height: 200px;*/
+  display: none;
   overflow: hidden;
-  transition: height 0.5s;
+  transition:max-height 0.5s;
   color: #FFF;
 }
 
 .toggle:checked ~ .expand {
-  height: 200px;
+  /*height: 200px;*/
+  /*max-height: 200px;*/
+  display:block;
+  overflow:auto;
 }
 
 .toggle ~ label::before {
