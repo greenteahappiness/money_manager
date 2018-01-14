@@ -1,5 +1,6 @@
 package monikamichael.money_manager.engine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // All currency values in gr (grosze)
@@ -22,6 +23,16 @@ public class MonthData {
     public List<Entry> debts;
     public List<Entry> transfersFromSavings;
 
+    public List<Entry> getAllEntries() {
+        List<Entry> result = new ArrayList<>();
+        result.addAll(ownExpenses);
+        result.addAll(periodicExpenses);
+        result.addAll(otherExpenses);
+        result.addAll(outOfBudgetExpenses);
+        result.addAll(debts);
+        result.addAll(transfersFromSavings);
+        return result;
+    }
 
     public boolean isClosed() {
         return isClosed;
@@ -49,6 +60,16 @@ public class MonthData {
         int result = 0;
         for (Entry entry : entries) {
             result += entry.value;
+        }
+        return result;
+    }
+
+    public static int balanceCategory(List<Entry> entries, String category) {
+        int result = 0;
+        for (Entry entry : entries) {
+            if (entry.category.equals(category)) {
+                result += entry.value;
+            }
         }
         return result;
     }

@@ -101,7 +101,7 @@ public class AddEntryPage extends AbstractPage {
     }
 
     private void createCategoryComboBox() {
-        String[] categories = new String[]{"Clothes", "Cosmetics", "Hobby and books", "Dates and meetings"};
+        String[] categories = new String[]{"Clothes", "Cosmetics", "Hobby and books", "Dates and meetings", "Other"};
         categoryComboBox = new ComboBoxText();
         for (String c : categories) {
             categoryComboBox.appendText(c);

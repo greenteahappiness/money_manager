@@ -68,21 +68,19 @@ public class ReportGenerator {
 
         writer.println("</table></p>");
         
+        writer.println("<p><table class=\"container\">");
+        writeTableHeader(writer, new String[]{"", "Clothes", "Cosmetics",
+                "Hobby and books", "Dates and meetings", "Other"});
+        writeTableRow(writer, new String[] {
+                "TOTAL",
+                Currency.toString(MonthData.balanceCategory(data.getAllEntries(), "Clothes")),
+                Currency.toString(MonthData.balanceCategory(data.getAllEntries(), "Cosmetics")),
+                Currency.toString(MonthData.balanceCategory(data.getAllEntries(), "Hobby and books")),
+                Currency.toString(MonthData.balanceCategory(data.getAllEntries(), "Dates and meetings")),
+                Currency.toString(MonthData.balanceCategory(data.getAllEntries(), "Other")),
 
-        //TODO:refactor this code to show balance of spendings on clothes, cosmetics etc.
-//        writer.println("<p><table class=\"container\">");
-//        writeTableHeader(writer, new String[]{"", "Own expenses", "Periodic Expenses",
-//                "Other Expenses", "Out-of-budget expenses", "Debts", "Transfers from savings"});
-//        writeTableRow(writer, new String[] {
-//                "TOTAL",
-//                Currency.toString(MonthData.balanceEntries(data.ownExpenses)),
-//                Currency.toString(MonthData.balanceEntries(data.periodicExpenses)),
-//                Currency.toString(MonthData.balanceEntries(data.otherExpenses)),
-//                Currency.toString(MonthData.balanceEntries(data.outOfBudgetExpenses)),
-//                Currency.toString(MonthData.balanceEntries(data.debts)),
-//                Currency.toString(MonthData.balanceEntries(data.transfersFromSavings))
-//        });
-//        writer.println("</table></p>");
+        });
+        writer.println("</table></p>");
     }
 
     public static void forOneMonth(final Database db, final PrintWriter writer,
