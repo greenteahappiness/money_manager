@@ -98,7 +98,7 @@ public class WishlistHandler {
     }
     public void deleteAllWishesFromDatabase(Database db) {
         if (db == null) {
-            throw new NullPointerException("One of provided arguments is null");
+            throw new IllegalArgumentException("Database is null");
         }
         db.executeSqlDelete("DELETE FROM WISHES", new SqlQueryClient() {
             @Override

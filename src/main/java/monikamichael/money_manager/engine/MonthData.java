@@ -1,13 +1,5 @@
 package monikamichael.money_manager.engine;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 
 // All currency values in gr (grosze)
@@ -29,6 +21,11 @@ public class MonthData {
     public List<Entry> outOfBudgetExpenses;
     public List<Entry> debts;
     public List<Entry> transfersFromSavings;
+
+
+    public boolean isClosed() {
+        return isClosed;
+    }
 
     public int totalBegin() {
         return accountBegin + walletBegin + payPalBegin;

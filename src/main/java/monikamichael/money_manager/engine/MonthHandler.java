@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -129,5 +130,45 @@ public class MonthHandler {
                     }
                 });
         logger.info(Month.fromInt(month) + " " + year + " closed successfully");
+    }
+
+    public static void reopenMonth(Database db, final int year, final int month) {
+        db.executeSqlInsert(
+                "UPDATE MONTHS SET CLOSED = ? WHERE YEAR = ? AND MONTH = ?",
+                new SqlQueryClient() {
+                    @Override
+                    public void onStatementReady(PreparedStatement statement) throws SQLException {
+                        statement.setBoolean(1, false);
+                        statement.setInt(2, year);
+                        statement.setInt(3, month);
+                    }
+
+                    @Override
+                    public void onResult(ResultSet resultSet) throws SQLException {
+                    }
+                });
+        logger.info(Month.fromInt(month) + " " + year + " reopened successfully");
+    }
+
+    public static List<String> retrieveOpenMonthsFromDatabase(Database db, int year) {
+        List<String> openMonths = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            MonthData monthData = MonthHandler.retrieveForMonth(db, year, i);
+            if (monthData.isClosed() == false) {
+                openMonths.add(Month.fromInt(i));
+            }
+        }
+        return openMonths;
+    }
+
+    public static List<String> retrieveClosedMonthsFromDatabase(Database db, int year) {
+        List<String> closedMonths = new ArrayList<>();
+        for (int i = 1; i <= 12; i++) {
+            MonthData monthData = MonthHandler.retrieveForMonth(db, year, i);
+            if (monthData.isClosed() == true) {
+                closedMonths.add(Month.fromInt(i));
+            }
+        }
+        return closedMonths;
     }
 }

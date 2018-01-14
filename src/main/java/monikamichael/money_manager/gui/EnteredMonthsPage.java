@@ -4,10 +4,7 @@ import monikamichael.money_manager.engine.Database;
 import monikamichael.money_manager.engine.Month;
 import monikamichael.money_manager.engine.MonthData;
 import monikamichael.money_manager.engine.MonthHandler;
-import org.gnome.gtk.Box;
-import org.gnome.gtk.Button;
-import org.gnome.gtk.ComboBoxText;
-import org.gnome.gtk.Window;
+import org.gnome.gtk.*;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
@@ -20,12 +17,16 @@ public class EnteredMonthsPage extends AbstractPage {
 
     private Button closeMonth;
     private Button reopenMonth;
+    private Button confirmYear;
     private Button quit;
 
     private ComboBoxText openMonthsComboBox;
     private ComboBoxText closedMonthsComboBox;
 
+    private Entry yearEntry;
+
     MonthData monthData;
+    int defaultYear = 2017;
 
     public EnteredMonthsPage(Database db) {
         this.db = db;
@@ -36,7 +37,9 @@ public class EnteredMonthsPage extends AbstractPage {
         this.currentWindow = (Window) builder.getObject("entered_months_page");
         closeMonth = (Button) builder.getObject("close_month");
         reopenMonth = (Button) builder.getObject("reopen_month");
+        confirmYear = (Button) builder.getObject("confirm_year");
         quit = (Button) builder.getObject("quit_button");
+        yearEntry = (Entry) builder.getObject("year_entry_close");
 
         openMonthsComboBox = new ComboBoxText();
         ((Box) builder.getObject("box10")).add(openMonthsComboBox);
@@ -44,13 +47,33 @@ public class EnteredMonthsPage extends AbstractPage {
         ((Box) builder.getObject("box11")).add(closedMonthsComboBox);
     }
 
+    public void process() {
+        fillMonthsComboBoxes(defaultYear);
+    }
+
     @Override
     protected void connectButtons() {
+        reopenMonth.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button arg0) {
+                int month = Month.toInt(closedMonthsComboBox.getActiveText());
+                int year = Integer.parseInt(yearEntry.getText());
+                MonthHandler.reopenMonth(db, year, month);
+            }
+        });
         closeMonth.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button arg0) {
                 int month = Month.toInt(openMonthsComboBox.getActiveText());
-                MonthHandler.closeMonth(db, 2017, month);
+                int year = Integer.parseInt(yearEntry.getText());
+                MonthHandler.closeMonth(db, year, month);
+            }
+        });
+        confirmYear.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button arg0) {
+                int year = Integer.parseInt(yearEntry.getText());
+                fillMonthsComboBoxes(year);
             }
         });
 
@@ -62,35 +85,20 @@ public class EnteredMonthsPage extends AbstractPage {
         });
     }
 
-    public void process() {
-        fillOpenMonthsComboBox();
-        fillClosedMonthsComboBox();
+    private void fillMonthsComboBoxes(int year) {
+        fillOpenMonthsComboBox(year);
+        fillClosedMonthsComboBox(year);
     }
-    private void fillOpenMonthsComboBox() {
-        //TODO: this method does too much - extract to engine package
-        List<String> openMonths = new ArrayList<>();
-        int year = 2017;
-        for (int i=1; i<=12; i++) {
-            monthData = MonthHandler.retrieveForMonth(db, year, i);
-            if (monthData != null && monthData.isClosed == false) {
-                openMonths.add(Month.fromInt(i));
-            }
-        }
+
+    private void fillOpenMonthsComboBox(int year) {
+        List<String> openMonths = MonthHandler.retrieveOpenMonthsFromDatabase(db, year);
         for (String m : openMonths)
             openMonthsComboBox.appendText(m);
     }
 
-    private void fillClosedMonthsComboBox() {
-        List<String> closedMonths = new ArrayList<>();
-        int year = 2017;
-        for (int i=1; i<=1; i++) {
-            monthData = MonthHandler.retrieveForMonth(db, year, i);
-            if (monthData != null && monthData.isClosed == true) {
-                closedMonths.add(Month.fromInt(i));
-            }
-        }
+    private void fillClosedMonthsComboBox(int year) {
+        List<String> closedMonths = MonthHandler.retrieveClosedMonthsFromDatabase(db, year);
         for (String m : closedMonths)
             closedMonthsComboBox.appendText(m);
     }
-
 }

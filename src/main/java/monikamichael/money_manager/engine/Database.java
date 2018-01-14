@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.sql.*;
 
 public class Database {
+
     protected Logger logger = LoggerFactory.getLogger(Database.class);
     public String filename;
     private Connection connection = null;
