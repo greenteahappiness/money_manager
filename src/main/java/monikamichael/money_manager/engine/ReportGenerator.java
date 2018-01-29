@@ -103,7 +103,8 @@ public class ReportGenerator {
         writeHelp(writer);
 
         writer.println("  </body>");
-        writer.println("<h2>Created with love by <a href=\"http://pablogarciafernandez.com\" target=\"_blank\">Pablo García Fernández</a></h2>");
+        writer.println("<h2>Application by <b>Monika Gruszka &amp; Michał Szymański</b></h2>");
+        writer.println("<h2>Theme created with love by <a href=\"http://pablogarciafernandez.com\" target=\"_blank\">Pablo García Fernández</a></h2>");
         writer.println("</html>");
     }
 
@@ -155,7 +156,8 @@ public class ReportGenerator {
         writeHelp(writer);
 
         writer.println("  </body>");
-        writer.println("<h2>Created with love by <a href=\"http://pablogarciafernandez.com\" target=\"_blank\">Pablo García Fernández</a></h2>");
+        writer.println("<h2>Application by <b>Monika Gruszka &amp; Michał Szymański</b></h2>");
+        writer.println("<h2>Theme created with love by <a href=\"http://pablogarciafernandez.com\" target=\"_blank\">Pablo García Fernández</a></h2>");
         writer.println("</html>");
     }
 
