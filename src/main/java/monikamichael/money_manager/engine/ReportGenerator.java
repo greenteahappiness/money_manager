@@ -100,6 +100,8 @@ public class ReportGenerator {
         MonthData data = MonthHandler.retrieveForMonth(db, year, month);
         writeMonthData(writer, year, month, data);
 
+        writeHelp(writer);
+
         writer.println("  </body>");
         writer.println("<h2>Created with love by <a href=\"http://pablogarciafernandez.com\" target=\"_blank\">Pablo García Fernández</a></h2>");
         writer.println("</html>");
@@ -149,6 +151,9 @@ public class ReportGenerator {
                 }
             }
         });
+
+        writeHelp(writer);
+
         writer.println("  </body>");
         writer.println("<h2>Created with love by <a href=\"http://pablogarciafernandez.com\" target=\"_blank\">Pablo García Fernández</a></h2>");
         writer.println("</html>");
@@ -191,4 +196,39 @@ public class ReportGenerator {
         writer.println("</td></tr></p>");
     }
 
+    private static void writeHelp(PrintWriter writer) {
+        writer.println("<div id=\"help\">");
+        writer.println("<h4>Help</h4>" +
+                "<img src=\"accounts.png\" style=\"width: 14cm; display: block; margin: 0 auto;\"/>" +
+                "<p>Every month, you enter <b>salary</b> you earned that month and amount that " +
+                "you wish to be your <b>in-budget income</b>. The rest of your salary is " +
+                "<i>out-of-budget</i> income (don't enter it in out-of-budget events yourself).</p>" +
+                "<p>You can also have other out-of-budget events, labeled <i>gifts</i> " +
+                "and <i>out-of-budget expenses</i>. Put them into <b>out-of-budget events</b> " +
+                "table. Gifts go with a positive sign into that table and expenses with negative sign.</p>" +
+                "<p>If you transferred some money from savings account into the main account, " +
+                "report it in <b>transfers from savings</b>. But also return the money " +
+                "as soon as possible, trying to keep transfers zero. Report returned money " +
+                "in the same table with negative sign.</p>" +
+                "<p>If you lend some money, enter it in <b>money lent</b> table. " +
+                "The rules for signs are as follows:" +
+                "<ul>" +
+                "<li>+ when you lend money to someone</li>" +
+                "<li>- when that someone gives the money back</li>" +
+                "<li>- when you borrow money from someone</li>" +
+                "<li>+ when you give the money back to them</li>" +
+                "</ul></p>" +
+                "<p><b>In-budget expense</b> can be reported in either of the following categories:" +
+                "<ol>" +
+                "  <li>own expenses</li>" +
+                "  <li>periodic expenses</li>" +
+                "  <li>other expenses</li>" +
+                "</ol>" +
+                "You are free to choose whichever category, but periodic expenses have an additional feature: " +
+                "they can be copied from the previous month when entering a new month data." +
+                "</p>" +
+                "<p>You don't enter <i>food expenses</i> manually. Instead, it is calculated automatically " +
+                "based on Main Account balance and the rest of the data entered.</p>");
+        writer.println("</div>");
+    }
 }
