@@ -8,4 +8,14 @@
     <!-- Name the application -->
     <display-name>Money manager</display-name>
     <description>App to help you manage your money</description>
+
+    <servlet>
+        <servlet-name>Index</servlet-name>
+        <jsp-file>/jsp/index.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Index</servlet-name>
+        <url-pattern>/index</url-pattern>
+    </servlet-mapping>
+
 </web-app>
