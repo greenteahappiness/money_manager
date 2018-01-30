@@ -12,7 +12,7 @@ public class MonthData {
     public int accountEnd;
     public int payPalBegin;
     public int payPalEnd;
-    public int afterPreviousMonth;
+    public int afterPreviousMonth; // currently has no meaning in calculations
     public int salary;
     public int budgetIncome;
     public boolean isClosed;
@@ -39,22 +39,28 @@ public class MonthData {
         return isClosed;
     }
 
-    public int totalBegin() {
+    public int mainBegin() {
         return accountBegin + walletBegin + payPalBegin;
     }
 
-    public int totalEnd() {
+    public int mainEnd() {
         return accountEnd + walletEnd + payPalEnd;
     }
 
-    public int balance() {
-        int result = 0;
-        result += totalEnd() - totalBegin();
-        result -= Entry.sum(transfersFromSavings);
-        result += Entry.sum(outOfBudgetExpenses);
-        result += afterPreviousMonth;
-        result += Entry.sum(debts);
-        return result;
+    public int mainBalance() {
+        return mainEnd() - mainBegin();
+    }
+
+    public int foodExpenses() {
+        int balanceWithoutFood = 0;
+        balanceWithoutFood += budgetIncome;
+        balanceWithoutFood += Entry.sum(transfersFromSavings);
+        balanceWithoutFood -= Entry.sum(debts);
+        balanceWithoutFood -= Entry.sum(ownExpenses);
+        balanceWithoutFood -= Entry.sum(periodicExpenses);
+        balanceWithoutFood -= Entry.sum(otherExpenses);
+
+        return balanceWithoutFood - mainBalance();
     }
 
     public static int balanceEntries(List<Entry> entries) {
@@ -72,15 +78,6 @@ public class MonthData {
                 result += entry.value;
             }
         }
-        return result;
-    }
-
-    public int foodExpenses() {
-        int result = salary;
-        result -= Entry.sum(ownExpenses);
-        result -= Entry.sum(periodicExpenses);
-        result -= Entry.sum(otherExpenses);
-        result -= balance();
         return result;
     }
 

@@ -36,9 +36,9 @@ public class ReportGenerator {
 
         writeTableRow(writer, new String[] {
                 "TOTAL",
-                Currency.toString(data.totalBegin()),
-                Currency.toString(data.totalEnd()),
-                Currency.toString(data.totalEnd() - data.totalBegin())
+                Currency.toString(data.mainBegin()),
+                Currency.toString(data.mainEnd()),
+                Currency.toString(data.mainEnd() - data.mainBegin())
         });
 
         writer.println("</table></p>");
@@ -53,9 +53,6 @@ public class ReportGenerator {
         });
         writeTableRow(writer, new String[] {
                 "<b>Food expenses</b>", Currency.toString(data.foodExpenses())
-        });
-        writeTableRow(writer, new String[] {
-                "<b>Balance</b>", Currency.toString(data.balance())
         });
 
 
