@@ -14,6 +14,7 @@ public class MonthData {
     public int payPalEnd;
     public int afterPreviousMonth;
     public int salary;
+    public int budgetIncome;
     public boolean isClosed;
 
     public List<Entry> ownExpenses;

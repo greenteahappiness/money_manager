@@ -56,6 +56,7 @@ public class MonthHandler {
                     result.payPalEnd = resultSet.getInt("PAYPAL_END");
                     result.afterPreviousMonth = resultSet.getInt("AFTER_PREV");
                     result.salary = resultSet.getInt("SALARY");
+                    result.budgetIncome = resultSet.getInt("BUDGET_INCOME");
                     result.isClosed = resultSet.getBoolean("CLOSED");
                 }
             }
@@ -95,7 +96,7 @@ public class MonthHandler {
 
     public static void insertToDatabase(Database db, final MonthData md, final int year, final int month) {
         db.executeSqlInsert("INSERT INTO MONTHS " +
-                "(YEAR, MONTH, WALLET_END, ACCOUNT_END, PAYPAL_END, AFTER_PREV, SALARY) " +
+                "(YEAR, MONTH, WALLET_END, ACCOUNT_END, PAYPAL_END, AFTER_PREV, SALARY, BUDGET_INCOME, CLOSED) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?)", new SqlQueryClient() {
             @Override
             public void onStatementReady(PreparedStatement statement) throws SQLException {
@@ -106,6 +107,8 @@ public class MonthHandler {
                 statement.setInt(5, md.payPalEnd);
                 statement.setInt(6, md.afterPreviousMonth);
                 statement.setInt(7, md.salary);
+                statement.setInt(8, md.budgetIncome);
+                statement.setBoolean(9, md.isClosed);
             }
 
             @Override
