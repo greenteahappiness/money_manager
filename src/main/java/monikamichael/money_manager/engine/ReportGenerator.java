@@ -44,25 +44,47 @@ public class ReportGenerator {
         writer.println("</table></p>");
 
         writer.println("<p><table class=\"container\">");
-
         writeTableRow(writer, new String[] {
-                "<b>After previous month</b>", Currency.toString(data.afterPreviousMonth)
+                "<b>Full salary in this month</b>", Currency.toString(data.salary)
         });
         writeTableRow(writer, new String[] {
-                "<b>Salary</b>", Currency.toString(data.salary)
+                "<b>Budget income</b>", Currency.toString(data.budgetIncome)
         });
         writeTableRow(writer, new String[] {
-                "<b>Food expenses</b>", Currency.toString(data.foodExpenses())
+                "<b>Saved part of salary</b>", Currency.toString(data.salaryToSavings())
         });
+        writer.println("</table></p>");
 
-
+        writer.println("<p><table class=\"container\">");
+        writeTableRow(writer, new String[] {
+                "<b>Budget income</b>", Currency.toString(data.budgetIncome)
+        });
+        writeTableRow(writer, new String[] {
+                "<b>Budget expenses</b>", Currency.toString(data.budgetExpenses())
+        });
+        writeTableRow(writer, new String[] {
+                "<b>Budget balance</b>", Currency.toString(data.budgetBalance())
+        });
         writeExpandingList(writer, month, data.ownExpenses, "Own Expenses");
         writeExpandingList(writer, month, data.periodicExpenses, "Periodic Expenses");
         writeExpandingList(writer, month, data.otherExpenses, "Other Expenses");
-        writeExpandingList(writer, month, data.outOfBudgetExpenses, "Out-of-budget expense");
-        writeExpandingList(writer, month, data.debts, "Debts");
-        writeExpandingList(writer, month, data.transfersFromSavings, "Transfers from savings");
+        writeTableRow(writer, new String[] {
+                "<b>Food expenses</b>", Currency.toString(data.foodExpenses())
+        });
+        writer.println("</table></p>");
 
+        writer.println("<p><table class=\"container\">");
+        writeTableRow(writer, new String[] {
+                "<b>Saved salary</b>", Currency.toString(data.salaryToSavings())
+        });
+        writeExpandingList(writer, month, data.outOfBudgetExpenses, "Out-of-budget expenses");
+        writeExpandingList(writer, month, data.transfersFromSavings, "Transfers from savings");
+        writeTableRow(writer, new String[] {
+                "<b>Savings balance</b>", Currency.toString(data.savingsBalance())
+        });
+        writer.println("</table></p>");
+        writer.println("<p><table class=\"container\">");
+        writeExpandingList(writer, month, data.debts, "Money lent + Borrowed money gave back");
         writer.println("</table></p>");
         
         writer.println("<p><table class=\"container\">");

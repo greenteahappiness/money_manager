@@ -51,6 +51,27 @@ public class MonthData {
         return mainEnd() - mainBegin();
     }
 
+    public int salaryToSavings() {
+        return salary - budgetIncome;
+    }
+
+    public int savingsBalance() {
+        return salaryToSavings() - Entry.sum(outOfBudgetExpenses) - Entry.sum(transfersFromSavings);
+    }
+
+    public int budgetExpenses() {
+        int result = 0;
+        result += Entry.sum(ownExpenses);
+        result += Entry.sum(periodicExpenses);
+        result += Entry.sum(otherExpenses);
+        result += foodExpenses();
+        return result;
+    }
+
+    public int budgetBalance() {
+        return budgetIncome - budgetExpenses();
+    }
+
     public int foodExpenses() {
         int balanceWithoutFood = 0;
         balanceWithoutFood += budgetIncome;
