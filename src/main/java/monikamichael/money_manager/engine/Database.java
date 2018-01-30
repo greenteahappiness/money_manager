@@ -92,14 +92,15 @@ public class Database {
 
     public void createTables() {
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS MONTHS " +
-                "(YEAR        INTEGER NOT NULL," +
-                " MONTH       INTEGER NOT NULL," +
-                " WALLET_END  INTEGER NOT NULL," +
-                " ACCOUNT_END INTEGER NOT NULL," +
-                " PAYPAL_END  INTEGER NOT NULL," +
-                " AFTER_PREV  INTEGER NOT NULL," +
-                " SALARY      INTEGER NOT NULL," +
-                " CLOSED      BOOLEAN DEFAULT FALSE," +
+                "(YEAR          INTEGER NOT NULL," +
+                " MONTH         INTEGER NOT NULL," +
+                " WALLET_END    INTEGER NOT NULL," +
+                " ACCOUNT_END   INTEGER NOT NULL," +
+                " PAYPAL_END    INTEGER NOT NULL," +
+                " AFTER_PREV    INTEGER NOT NULL," +
+                " SALARY        INTEGER NOT NULL," +
+                " BUDGET_INCOME INTEGER NOT NULL," +
+                " CLOSED        BOOLEAN DEFAULT FALSE," +
                 " PRIMARY KEY (YEAR, MONTH))");
 
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS OWN_EXPENSES " +
