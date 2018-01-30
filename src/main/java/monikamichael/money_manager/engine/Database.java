@@ -100,7 +100,7 @@ public class Database {
                 " AFTER_PREV    INTEGER NOT NULL," +
                 " SALARY        INTEGER NOT NULL," +
                 " BUDGET_INCOME INTEGER NOT NULL," +
-                " CLOSED        BOOLEAN DEFAULT FALSE," +
+                " CLOSED        BOOLEAN NOT NULL DEFAULT FALSE," +
                 " PRIMARY KEY (YEAR, MONTH))");
 
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS OWN_EXPENSES " +
