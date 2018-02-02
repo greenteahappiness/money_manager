@@ -231,6 +231,8 @@ public class ReportGenerator {
                 "report it in <b>transfers from savings</b>. But also return the money " +
                 "as soon as possible, trying to keep transfers zero. Report returned money " +
                 "in the same table with negative sign.</p>" +
+                "<p>If the money transferred from savings was spent on an out-of-budget expense, " +
+                "report <u>only</u> the out-of-budget expense and <u>don't</u> report the transfer.</p>" +
                 "<p>If you lend some money, enter it in <b>money lent</b> table. " +
                 "The rules for signs are as follows:" +
                 "<ul>" +
