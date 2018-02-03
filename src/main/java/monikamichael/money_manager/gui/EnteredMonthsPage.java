@@ -73,6 +73,7 @@ public class EnteredMonthsPage extends AbstractPage {
             @Override
             public void onClicked(Button arg0) {
                 int year = Integer.parseInt(yearEntry.getText());
+                clearMonthsComboBoxes();
                 fillMonthsComboBoxes(year);
             }
         });
@@ -92,13 +93,23 @@ public class EnteredMonthsPage extends AbstractPage {
 
     private void fillOpenMonthsComboBox(int year) {
         List<String> openMonths = MonthHandler.retrieveOpenMonthsFromDatabase(db, year);
-        for (String m : openMonths)
+        for (String m : openMonths) {
             openMonthsComboBox.appendText(m);
+        }
     }
 
     private void fillClosedMonthsComboBox(int year) {
         List<String> closedMonths = MonthHandler.retrieveClosedMonthsFromDatabase(db, year);
         for (String m : closedMonths)
             closedMonthsComboBox.appendText(m);
+    }
+    private void clearMonthsComboBoxes() {
+        for (int i=0; i <=12; i++) {
+            openMonthsComboBox.removeText(0);
+        }
+
+        for (int i=0; i <=12; i++) {
+            closedMonthsComboBox.removeText(0);
+        }
     }
 }

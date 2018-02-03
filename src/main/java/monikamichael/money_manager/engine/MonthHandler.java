@@ -13,6 +13,24 @@ import java.util.List;
 public class MonthHandler {
     protected static Logger logger = LoggerFactory.getLogger(MonthHandler.class);
 
+
+    public static List<String> retrieveListOfEnteredMonths(Database db, final int year) {
+        final List<String> enteredMonths = new ArrayList<>();
+        db.executeSqlQuery("SELECT * FROM MONTHS WHERE YEAR = ?", new SqlQueryClient() {
+            @Override
+            public void onStatementReady(PreparedStatement statement) throws SQLException {
+                statement.setInt(1, year);
+            }
+
+            @Override
+            public void onResult(ResultSet resultSet) throws SQLException {
+                while (resultSet.next()) {
+                    enteredMonths.add(Month.fromInt(resultSet.getInt("MONTH")));
+                }
+            }
+        });
+        return enteredMonths;
+    }
     public static List<Entry> retrieveListOfEntries(Database db,
                                                     final int year, final int month,
                                                     final String tableName) {
@@ -155,10 +173,11 @@ public class MonthHandler {
 
     public static List<String> retrieveOpenMonthsFromDatabase(Database db, int year) {
         List<String> openMonths = new ArrayList<>();
-        for (int i = 1; i <= 12; i++) {
-            MonthData monthData = MonthHandler.retrieveForMonth(db, year, i);
+
+        for (String month : MonthHandler.retrieveListOfEnteredMonths(db, year)) {
+            MonthData monthData = MonthHandler.retrieveForMonth(db, year, Month.toInt(month));
             if (monthData.isClosed() == false) {
-                openMonths.add(Month.fromInt(i));
+                openMonths.add(month);
             }
         }
         return openMonths;
