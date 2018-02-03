@@ -7,9 +7,9 @@ import monikamichael.money_manager.engine.MonthHandler;
 import org.gnome.gtk.*;
 
 import java.io.FileNotFoundException;
-import java.text.ParseException;
-import java.util.ArrayList;
+import java.text.ParseException;;
 import java.util.List;
+import java.util.Calendar;
 
 public class EnteredMonthsPage extends AbstractPage {
 
@@ -25,8 +25,8 @@ public class EnteredMonthsPage extends AbstractPage {
 
     private Entry yearEntry;
 
-    MonthData monthData;
-    int defaultYear = 2017;
+    private MonthData monthData;
+    private int defaultYear;
 
     public EnteredMonthsPage(Database db) {
         this.db = db;
@@ -39,7 +39,10 @@ public class EnteredMonthsPage extends AbstractPage {
         reopenMonth = (Button) builder.getObject("reopen_month");
         confirmYear = (Button) builder.getObject("confirm_year");
         quit = (Button) builder.getObject("quit_button");
+
+        defaultYear = Calendar.getInstance().get(Calendar.YEAR);
         yearEntry = (Entry) builder.getObject("year_entry_close");
+        yearEntry.setText(Integer.toString(defaultYear));
 
         openMonthsComboBox = new ComboBoxText();
         ((Box) builder.getObject("box10")).add(openMonthsComboBox);
