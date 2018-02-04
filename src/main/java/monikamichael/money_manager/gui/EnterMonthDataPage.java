@@ -7,10 +7,12 @@ import org.gnome.gtk.*;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
+import java.util.Calendar;
 
 public class EnterMonthDataPage extends AbstractPage {
     private EnterMonthDataCallback callback;
 
+    private int defaultYear;
     private Entry yearEntry;
     private ComboBoxText monthComboBox;
 
@@ -33,6 +35,9 @@ public class EnterMonthDataPage extends AbstractPage {
         this.currentWindow = (Window) builder.getObject("enter_month_data_page");
 
         yearEntry = (Entry) builder.getObject("year_entry");
+        defaultYear = java.util.Calendar.getInstance().get(Calendar.YEAR);
+        yearEntry.setText(Integer.toString(defaultYear));
+
 
         // There is a bug in Java Gtk, which disallows me to just put ComboBoxText widget in Glade and load it with
         // monthComboBox = (ComboBoxText) builder.getObject("month_combobox");

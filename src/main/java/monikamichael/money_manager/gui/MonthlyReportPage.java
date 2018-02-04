@@ -8,6 +8,7 @@ import org.gnome.gtk.*;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 
 public class MonthlyReportPage extends AbstractPage {
     private Button allMonthsReport;
@@ -17,6 +18,7 @@ public class MonthlyReportPage extends AbstractPage {
 
     private ComboBoxText monthChooser;
     private Entry yearEntry;
+    private int defaultYear;
 
     private Database db;
 
@@ -79,7 +81,10 @@ public class MonthlyReportPage extends AbstractPage {
         previous = (Button) builder.getObject("previous_monthly_report");
         exit = (Button) builder.getObject("exit_monthly_report");
 
+        defaultYear = java.util.Calendar.getInstance().get(Calendar.YEAR);
         yearEntry = (Entry) builder.getObject("year_entry_report");
+        yearEntry.setText(Integer.toString(defaultYear));
+
         monthChooser = new ComboBoxText();
         for (int i = 1; i <= 12; ++i)
             monthChooser.appendText(Month.fromInt(i));

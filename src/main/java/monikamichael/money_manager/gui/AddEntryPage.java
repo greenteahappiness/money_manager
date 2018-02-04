@@ -8,6 +8,7 @@ import org.gnome.gtk.*;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
+import java.util.Calendar;
 
 public class AddEntryPage extends AbstractPage {
     private AddEntryCallback callback;
@@ -22,6 +23,7 @@ public class AddEntryPage extends AbstractPage {
 
     private org.gnome.gtk.Entry descriptionEntry;
     private org.gnome.gtk.Entry valueEntry;
+    private int defaultYear;
 
     public AddEntryPage(AddEntryCallback callback, String title) {
         this.callback = callback;
@@ -32,6 +34,8 @@ public class AddEntryPage extends AbstractPage {
         this.currentWindow = (Window) builder.getObject("add_entry_page");
 
         yearEntry = (org.gnome.gtk.Entry) builder.getObject("add_entry_year_entry");
+        defaultYear = java.util.Calendar.getInstance().get(Calendar.YEAR);
+        yearEntry.setText(Integer.toString(defaultYear));
 
         createMonthComboBox();
         createCategoryComboBox();
