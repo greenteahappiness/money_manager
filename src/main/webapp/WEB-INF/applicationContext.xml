@@ -9,14 +9,11 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-4.0.xsd">
     <context:component-scan base-package="monikamichael.money_manager" />
-    <!-- Chcemy automatycznie obsługiwać wszystkie klasy z adnotacjami w tym pakiecie -->
     <context:annotation-config />
-    <!-- To na przyszłość, pozwoli nam korzystać z adnotacji także
-     w klasach, które byśmy skonfigurowali ręcznie -->
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
-            <value>/WEB-INF/jsp/</value>
+            <value>/jsp/</value>
         </property>
         <property name="suffix">
             <value>.jsp</value>
