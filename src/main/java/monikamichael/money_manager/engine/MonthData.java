@@ -14,6 +14,7 @@ public class MonthData {
     public int payPalEnd;
     public int afterPreviousMonth; // currently has no meaning in calculations
     public int salary;
+    //What this variable is for?
     public int budgetIncome;
     public boolean isClosed;
 
@@ -24,6 +25,18 @@ public class MonthData {
     public List<Entry> debts;
     public List<Entry> transfersFromSavings;
 
+    public MonthData() {
+
+    }
+    public MonthData(int walletEnd, int accountEnd, int paypalEnd,
+                     int afterPreviousMonth, int salary) {
+        this.walletEnd = walletEnd;
+        this.accountEnd = accountEnd;
+        this.payPalEnd = paypalEnd;
+        this.afterPreviousMonth = afterPreviousMonth;
+        this.salary = salary;
+
+    }
     public List<Entry> getAllEntries() {
         List<Entry> result = new ArrayList<>();
         result.addAll(ownExpenses);
