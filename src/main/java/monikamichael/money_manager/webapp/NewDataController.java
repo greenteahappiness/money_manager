@@ -1,12 +1,10 @@
 package monikamichael.money_manager.webapp;
 
+import monikamichael.money_manager.engine.Database;
 import monikamichael.money_manager.engine.MonthData;
-import monikamichael.money_manager.gui.EnterMonthDataCallback;
-import org.gnome.gtk.Entry;
+import monikamichael.money_manager.engine.MonthHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -19,11 +17,10 @@ public class NewDataController {
     private Map<String, String> allRequestParams;
     //year=2018&portfel_koniec=0&konto_koniec=0&paypal_koniec=0&nadwyzka=0&pensja=100
     @Autowired
-    RecordEnterMonthData recordEnterMonthData;
+    DatabaseConnector databaseConnector;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String doGet(ModelMap model) {
-        model.addAttribute("message", "NEW DATA");
+    public String doGet() {
         return "new_data";
     }
 
@@ -35,10 +32,12 @@ public class NewDataController {
                          @RequestParam("paypal_koniec") int paypalEnd,
                          @RequestParam("nadwyzka") int afterPreviousMonth,
                          @RequestParam("pensja") int salary) {
-        recordEnterMonthData.connect();
-        recordEnterMonthData.save(
+        Database db = databaseConnector.connect();
+        MonthHandler.insertToDatabase(db,
                 new MonthData(walletEnd, accountEnd, paypalEnd, afterPreviousMonth, salary),
-                year, month);
+                year,
+                month);
+
         return "new_data";
     }
 
