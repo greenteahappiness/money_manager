@@ -21,25 +21,24 @@ public class NewDataController {
     @Autowired
     RecordEnterMonthData recordEnterMonthData;
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    public String doGet(ModelMap model) {
-//        model.addAttribute("message", "NEW DATA");
-//        return "new_data";
-//    }
+    @RequestMapping(method = RequestMethod.GET)
+    public String doGet(ModelMap model) {
+        model.addAttribute("message", "NEW DATA");
+        return "new_data";
+    }
 
-    @RequestMapping
-    public String handleEnteringMonthData(@RequestParam("year") int year,
-                                          @RequestParam("portfel_koniec") int walletEnd,
-                                          @RequestParam("konto_koniec") int accountEnd,
-                                          @RequestParam("paypal_koniec") int paypalEnd,
-                                          @RequestParam("nadwyzka") int afterPreviousMonth,
-                                          @RequestParam("pensja") int salary,
-                                          ModelMap model) {
-        model.addAttribute("message", year);
+    @RequestMapping(method = RequestMethod.POST)
+    public String doPost(@RequestParam("year") int year,
+                         @RequestParam("month") int month,
+                         @RequestParam("portfel_koniec") int walletEnd,
+                         @RequestParam("konto_koniec") int accountEnd,
+                         @RequestParam("paypal_koniec") int paypalEnd,
+                         @RequestParam("nadwyzka") int afterPreviousMonth,
+                         @RequestParam("pensja") int salary) {
         recordEnterMonthData.connect();
         recordEnterMonthData.save(
                 new MonthData(walletEnd, accountEnd, paypalEnd, afterPreviousMonth, salary),
-                year);
+                year, month);
         return "new_data";
     }
 

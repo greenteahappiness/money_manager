@@ -21,8 +21,8 @@ public class RecordEnterMonthData {
         }
     }
 
-    public void save(MonthData monthData, int year) {
-        MonthHandler.insertToDatabase(db, monthData, year, 2);
+    public void save(MonthData monthData, int year, int month) {
+        MonthHandler.insertToDatabase(db, monthData, year, month);
         logger.info("Month data for " + year + "saved.");
     }
 
