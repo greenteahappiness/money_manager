@@ -97,7 +97,7 @@ public class MonthHandler {
     public static void insertToDatabase(Database db, final MonthData md, final int year, final int month) {
         db.executeSqlInsert("INSERT INTO MONTHS " +
                 "(YEAR, MONTH, WALLET_END, ACCOUNT_END, PAYPAL_END, AFTER_PREV, SALARY, BUDGET_INCOME, CLOSED) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)", new SqlQueryClient() {
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", new SqlQueryClient() {
             @Override
             public void onStatementReady(PreparedStatement statement) throws SQLException {
                 statement.setInt(1, year);
