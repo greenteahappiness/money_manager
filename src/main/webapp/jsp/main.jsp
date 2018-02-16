@@ -27,7 +27,7 @@
                 </tr>
                 <tr>
                   <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/entered_months">Entered months</h2></td>
-                  <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/monthly_report">Monthly report</h2></td>
+                  <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/monthly_reports">Monthly report</h2></td>
                   <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/exit">Exit</h2></td>
                 </tr>
       </table>
