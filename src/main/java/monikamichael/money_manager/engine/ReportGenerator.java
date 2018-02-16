@@ -251,7 +251,20 @@ public class ReportGenerator {
                 "they can be copied from the previous month when entering a new month data." +
                 "</p>" +
                 "<p>You don't enter <i>food expenses</i> manually. Instead, it is calculated automatically " +
-                "based on Main Account balance and the rest of the data entered.</p>");
+                "based on Main Account balance and the rest of the data entered.</p>" +
+                "<p>If you wish to pay for some in-budget expense <b>in instalments</b>, here's an example " +
+                "of how to do that: suppose you wish to pay for 300 zł expense in three instalments, " +
+                "from January to March." +
+                "<ol>" +
+                "  <li>in January, you actually pay, so you enter 300 zł in <i>expenses</i>. But to have money " +
+                "you also take 200 zł from savings and report that in <i>transfers from savings</i></li>" +
+                "  <li>in February, you don't report anything in <i>expenses</i>, but transfer the borrowed " +
+                "money back to savings account (100 zł) and report that in <i>transfers from savings</i> " +
+                "with negative sign</li>" +
+                "  <li>March is the same as February</li>" +
+                "</ol>" +
+                "You need to keep the record of borrows from future months. Sum of transfers from savings " +
+                "in the past months should be kept as close to zero as possible.</p>");
         writer.println("</div>");
     }
 }
