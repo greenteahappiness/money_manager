@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 
 @Controller
 @RequestMapping("/monthly_reports")
@@ -22,7 +23,10 @@ public class MonthlyReportsController {
     DatabaseConnector databaseConnector;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String doGet() {
+    public String doGet(ModelMap model) {
+        model.addAttribute("current_year",
+                java.util.Calendar.getInstance().get(Calendar.YEAR));
+
         return "monthly_reports";
     }
 

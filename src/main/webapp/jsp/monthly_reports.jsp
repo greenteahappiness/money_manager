@@ -8,12 +8,12 @@
    <body>
       <h1><b>Monthly reports</b></h1>
       <h2><b>Specify year and month for your report</b></h2>
-   <p3>
+  <p3>
    <form method="post">
    <ul>
      <li>Year:
-     <input type="text" name="year"> </li> <br>
-       <li> <select name="month">
+     <input type="text" name="year" value=${current_year}> </li> <br>
+       <li>Month: <br> <select name="month">
          <option value="1">January</option>
          <option value="2">February</option>
          <option value="3">March</option>
@@ -28,12 +28,13 @@
          <option value="12">December</option>
        </select> </li>
        <br>
-    <li>
-        <input name="one_or_all" type="submit" value="One month report" >
-    </li>
-    <li>
-        <input name="one_or_all" type="submit" value="All months report" >
-    </li>
+       <li>
+           <table>
+           <tr>
+           <td><h2><input name="one_or_all" type="submit" value="One month report" > </td></h2>
+           <td><h2><input name="one_or_all" type="submit" value="All months report" > </td></h2>
+           </table>
+       </li>
     </ul>
     </form>
     </p3>
