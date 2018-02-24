@@ -83,7 +83,12 @@
             <artifactId>sqlite-jdbc</artifactId>
             <version>3.15.1</version>
         </dependency>
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        
         <!--Spring dependecies-->
         <dependency>
             <groupId>org.springframework</groupId>
