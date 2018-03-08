@@ -7,9 +7,11 @@
 
    <body>
       <h1><b>Enter month data</b></h1>
-      <h2><b>Wybierz miesiąc i wprowadź dane dla tego miesiąca.
+      <h2><b><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/">Back to Money Manager</a></b></h2>
+
+      <h4><b>Wybierz miesiąc i wprowadź dane dla tego miesiąca.
        Możesz wprowadzić dane tylko jednego miesiąca
-      naraz. <br> Dane zostaną zapisane dopiero po kliknięciu przycisku akceptacji.</b></h2>
+      naraz. <br> Dane zostaną zapisane dopiero po kliknięciu przycisku akceptacji.</b></h4>
    <p3>
    <form method="post">
    <ul>
