@@ -18,7 +18,7 @@
       </li>
         <li>Open months: <br> <select name="open_month">
              <c:forEach items="${open_months_list}" var="val">
-                 <option value="own_expenses"><c:out value = "${val}"/></option>
+                 <option value="${val}"><c:out value = "${val}"/></option>
              </c:forEach>
        </select> </li> <br>
        <li>
@@ -27,7 +27,7 @@
 
         <li>Closed months: <br> <select name="closed_month">
           <c:forEach items="${closed_months_list}" var="val">
-            <option value="own_expenses"><c:out value = "${val}"/></option>
+            <option value="${val}"><c:out value = "${val}"/></option>
           </c:forEach>
        </select> </li> <br>
        <li>
