@@ -140,10 +140,18 @@ h2 a {
 .container td:nth-child(4),
 .container th:nth-child(4) { display: none; }
 }
-input {
+input:not([type="text"]):not([type="submit"]) {
   display: none;
   visibility: hidden;
 }
+button {
+	  font-weight: normal;
+	  font-size: 1em;
+  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+	   -moz-box-shadow: 0 2px 2px -2px #0E1119;
+	        box-shadow: 0 2px 2px -2px #0E1119;
+}
+
 label {
   display: block;
   padding: 0.5em;

@@ -15,7 +15,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   line-height: 1.42em;
-  color:#A7A1AE;
+  color: #A7A1AE;
   background-color:#1F2739;
 }
 
@@ -69,14 +69,14 @@ h2 a {
 .blue { color: #185875; }
 .yellow { color: #FFF842; }
 
-.container th h1 {
+.container input[type=submit] h1 {
 	  font-weight: bold;
 	  font-size: 1em;
   text-align: left;
   color: #185875;
 }
 
-.container td {
+.container input[type=submit] {
 	  font-weight: normal;
 	  font-size: 1em;
   -webkit-box-shadow: 0 2px 2px -2px #0E1119;
@@ -93,36 +93,36 @@ h2 a {
   padding: 0 0 0 0;
 }
 
-.container td, .container th {
+/*.container input[type=submit] {
 	  padding-bottom: 2%;
 	  padding-top: 2%;
   padding-left:2%;
-}
+}*/
 
 /* Background-color of the odd rows */
-.container tr:nth-child(odd) {
+.container input[type=submit]:nth-child(odd) {
 	  background-color: #323C50;
 }
 
 /* Background-color of the even rows */
-.container tr:nth-child(even) {
+.container input[type=submit]:nth-child(even) {
 	  background-color: #2C3446;
 }
 
-.container th {
+.container input[type=submit] {
 	  background-color: #1F2739;
 }
 
-.container td:first-child { color: #FB667A; }
+.container input[type=submit] { color: #FB667A; }
 
-.container tr:hover {
+.container input[type=submit]:hover {
    background-color: #464A52;
 -webkit-box-shadow: 0 6px 6px -6px #0E1119;
 	   -moz-box-shadow: 0 6px 6px -6px #0E1119;
 	        box-shadow: 0 6px 6px -6px #0E1119;
 }
 
-.container td:hover {
+.container input[type=submit]:hover {
   background-color: #FFF842;
   color: #403E10;
   font-weight: bold;
@@ -137,8 +137,8 @@ h2 a {
 }
 
 @media (max-width: 800px) {
-.container td:nth-child(4),
-.container th:nth-child(4) { display: none; }
+.container input[type=submit]:nth-child(4),
+.container input[type=submit]:nth-child(4) { display: none; }
 }
 
 p3 {
@@ -198,6 +198,6 @@ select
     font-size: 16px;
     padding: 0;
     background-color: #2d374e;
-    font-color: azure
+    color: #FB667A;
     font-family: Georgia, "Times New Roman", Times, serif;
 }

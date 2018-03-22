@@ -9,11 +9,11 @@
       <h1><b>Add new expense</b></h1>
       <h2><b><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/">Back to Money Manager</a></b></h2>
   <p3>
-   <form method="post">
+   <form class="container" method="post">
    <ul>
-     <li>Year:
+     <li><b>Year:</b>
      <input type="text" name="year" value=${current_year}> </li> <br>
-       <li>Month: <br> <select name="month">
+       <li><b>Month:</b> <br> <select name="month">
          <option value="1">January</option>
          <option value="2">February</option>
          <option value="3">March</option>
@@ -27,11 +27,11 @@
          <option value="11">November</option>
          <option value="12">December</option>
        </select> </li> <br>
-        <li>Description:
+        <li><b>Description:</b>
         <input type="text" name="description"> </li> <br>
-        <li>Value:
+        <li><b>Value:</b>
         <input type="text" name="value"> </li> <br>
-        <li>Expense type: <br> <select name="expense_type">
+        <li><b>Expense type:</b> <br> <select name="expense_type">
              <option value="own_expenses">Own expense</option>
              <option value="periodic_expenses">Periodic expense</option>
              <option value="other_expenses">Other expense</option>
@@ -39,7 +39,7 @@
              <option value="debts">Debt</option>
              <option value="transfers">Transfer from savings</option>
            </select> </li> <br>
-       <li>Category: <br> <select name="category">
+       <li><b>Category:</b> <br> <select name="category">
             <option value="clothes">Clothes</option>
             <option value="cosmetics">Cosmetics</option>
             <option value="hobby_books">Hobby and books</option>
