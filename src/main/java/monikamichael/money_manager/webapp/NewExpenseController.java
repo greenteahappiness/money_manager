@@ -1,9 +1,6 @@
 package monikamichael.money_manager.webapp;
 
-import monikamichael.money_manager.engine.Currency;
-import monikamichael.money_manager.engine.Database;
-import monikamichael.money_manager.engine.Entry;
-import monikamichael.money_manager.engine.EntryBuilder;
+import monikamichael.money_manager.engine.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -46,7 +43,7 @@ public class NewExpenseController {
                 .withValue(Currency.parseString(value))
                 .build();
 
-        entry.insertToTable(db, entry.entryType.toUpperCase(), year, month);
+        EntryHandler.insertToTable(db, entry.entryType.toUpperCase(), year, month, entry);
         return "new_expense";
     }
 

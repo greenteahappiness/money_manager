@@ -1,9 +1,6 @@
 package monikamichael.money_manager.gui;
 
-import monikamichael.money_manager.engine.Database;
-import monikamichael.money_manager.engine.Entry;
-import monikamichael.money_manager.engine.MonthData;
-import monikamichael.money_manager.engine.MonthHandler;
+import monikamichael.money_manager.engine.*;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.Window;
 
@@ -67,7 +64,7 @@ public class HomePage extends AbstractPage {
                 AddEntryPage addEntryPage = new AddEntryPage(new AddEntryCallback() {
                     @Override
                     public void onDataAvailable(int year, int month, Entry entry) {
-                        entry.insertToTable(db, entry.entryType.toUpperCase(), year, month);
+                        EntryHandler.insertToTable(db, entry.entryType.toUpperCase(), year, month, entry);
                     }
                 }, "New expense");
                 addEntryPage.show();
@@ -105,7 +102,7 @@ public class HomePage extends AbstractPage {
                 db, year, lastMonth, "PERIODIC_EXPENSES");
 
         for (Entry entry : periodicExpensesLastMonth) {
-            entry.insertToTable(db, "PERIODIC_EXPENSES", year, month);
+            EntryHandler.insertToTable(db, "PERIODIC_EXPENSES", year, month, entry);
         }
     }
 }
