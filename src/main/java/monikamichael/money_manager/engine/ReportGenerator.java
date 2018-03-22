@@ -213,7 +213,9 @@ public class ReportGenerator {
                     "<td>" + Currency.toString(entry.value) + "</td>" +
                     "<td>" + entry.category + "</td>" +
                     "<td>" +
-                    "<input name=\"delete\" type=\"submit\" value=\"Delete\" style=\"width:100%\"/></td>" +
+                    "<input onclick=\"return confirm('Do you want to delete this expense?');\"" +
+                            " name=\"delete\" type=\"submit\" value=\"Delete\" style=\"width:100%\"/>" +
+                            "</td>" +
                     "</tr>");
             writer.println("</form>");
         }
