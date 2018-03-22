@@ -206,12 +206,18 @@ public class ReportGenerator {
                 "    <section>" +
                 "<p><table class=\"container\">");
         for (Entry entry : data) {
-            writer.println("<tr>" +
-                    "<td>" + entry.description + "</td>" +
+            writer.println("<form method=\"post\">");
+            writer.println(
+                    "<tr>" +
+                    "<td> <input type=\"text\" name=\"entryId\" value=\"" + entry.description + "\"/></td>" +
                     "<td>" + Currency.toString(entry.value) + "</td>" +
                     "<td>" + entry.category + "</td>" +
+                    "<td>" +
+                    "<input name=\"delete\" type=\"submit\" value=\"Delete\" style=\"width:100%\"/></td>" +
                     "</tr>");
+            writer.println("</form>");
         }
+        writer.println("</form>");
         writer.println("</table></p> </section></div></td><td>");
         writer.println(Currency.toString(MonthData.balanceEntries(data)));
         writer.println("</td></tr></p>");
