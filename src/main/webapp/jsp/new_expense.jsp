@@ -47,7 +47,10 @@
             <option value="other">Other</option>
           </select> </li> <br>
        <li>
-           <h2><input type="submit" value="Apply" ></h2>
+           <h2>
+           <input type="submit" value="Apply"
+           onclick="return alert('New expense added!');">
+           </h2>
        </li>
     </ul>
     </form>

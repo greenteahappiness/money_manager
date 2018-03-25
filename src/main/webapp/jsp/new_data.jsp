@@ -16,7 +16,7 @@
    <form method="post">
    <ul>
      <li>Year:
-     <input type="text" name="year"> </li> <br>
+     <input type="text" name="year" value=${current_year}> </li> <br>
        <li> <select name="month">
          <option value="1">January</option>
          <option value="2">February</option>
@@ -39,7 +39,7 @@
      <li><label for="pensja">Pensja: </label><input type="text" name="pensja"></li> <br>
     <li><label><input type="checkbox" checked>Copy periodic expenses from last month</label></li>
     <li>
-        <input type="submit" value="Apply" >
+        <input type="submit" value="Apply" onclick="return alert('New month data added!');">
     </li>
     </ul>
     </form>

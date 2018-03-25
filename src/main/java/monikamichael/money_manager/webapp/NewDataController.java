@@ -5,9 +5,11 @@ import monikamichael.money_manager.engine.MonthData;
 import monikamichael.money_manager.engine.MonthHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.Calendar;
 import java.util.Map;
 
 @Controller
@@ -20,7 +22,9 @@ public class NewDataController {
     DatabaseConnector databaseConnector;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String doGet() {
+    public String doGet(ModelMap model) {
+        model.addAttribute("current_year",
+                java.util.Calendar.getInstance().get(Calendar.YEAR));
         return "new_data";
     }
 

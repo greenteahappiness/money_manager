@@ -2,7 +2,7 @@
 <html>
    <head>
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
-      <title>Hello World</title>
+      <title>Money Manager Home</title>
    </head>
 
    <body>

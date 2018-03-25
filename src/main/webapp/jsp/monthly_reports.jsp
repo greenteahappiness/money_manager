@@ -2,7 +2,7 @@
 <html>
    <head>
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/new_data.css">
-      <title>Enter Month Data</title>
+      <title>Monthly reports</title>
    </head>
 
    <body>
