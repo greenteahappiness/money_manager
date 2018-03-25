@@ -228,7 +228,7 @@ public class ReportGenerator {
     private static void writeHelp(PrintWriter writer) {
         writer.println("<div id=\"help\">");
         writer.println("<h4>Help</h4>" +
-                "<img src=\"accounts.png\" style=\"width: 14cm; display: block; margin: 0 auto;\"/>" +
+                "<img src=\"attachments/accounts.png\" style=\"width: 14cm; display: block; margin: 0 auto;\"/>" +
                 "<p>Every month, you enter <b>salary</b> you earned that month and amount that " +
                 "you wish to be your <b>in-budget income</b>. The rest of your salary is " +
                 "<i>out-of-budget</i> income (don't enter it in out-of-budget events yourself).</p>" +

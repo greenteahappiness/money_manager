@@ -47,6 +47,11 @@
         <url-pattern>/css/*</url-pattern>
     </servlet-mapping>
 
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/attachments/*</url-pattern>
+    </servlet-mapping>
+
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
