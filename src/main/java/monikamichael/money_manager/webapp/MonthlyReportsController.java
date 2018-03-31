@@ -60,10 +60,11 @@ public class MonthlyReportsController {
 
     @RequestMapping(params="delete", method = RequestMethod.POST)
     public String doDelete(@RequestParam("entryId") String entryId,
+                           @RequestParam("expenseType") String expenseType,
                          ModelMap model) {
 
         Database db = databaseConnector.connect();
-        EntryHandler.deleteFromTable(db, "OWN_EXPENSES", year, month, entryId);
+        EntryHandler.deleteFromTable(db, TableName.toTableName(expenseType), year, month, entryId);
         String report = getReportCode(year, month, "One month report");
         model.addAttribute("report_code", report);
 

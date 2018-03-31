@@ -208,6 +208,7 @@ public class ReportGenerator {
         for (Entry entry : data) {
             writer.println("<form method=\"post\">");
             writer.println(
+                    "<input type=\"hidden\" name=\"expenseType\" value=\"" + uniqueId + "\">\n" +
                     "<tr>" +
                     "<td> <input type=\"text\" name=\"entryId\" value=\"" + entry.description + "\"/></td>" +
                     "<td>" + Currency.toString(entry.value) + "</td>" +
