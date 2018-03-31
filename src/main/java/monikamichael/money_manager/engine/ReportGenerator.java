@@ -8,7 +8,8 @@ import java.util.List;
 
 public class ReportGenerator {
     private static void writeMonthData(final PrintWriter writer,
-                                       final int year, final int month, final MonthData data) {
+                                       final int year, final int month, final MonthData data,
+                                       String one_month_or_all) {
         writer.println("<h3 class=\"month-header\">" + Month.fromInt(month) + " " + year + "</h3>");
         writer.println("<p><table class=\"container\">");
 
@@ -65,9 +66,9 @@ public class ReportGenerator {
         writeTableRow(writer, new String[] {
                 "<b>Budget balance</b>", Currency.toString(data.budgetBalance())
         });
-        writeExpandingList(writer, month, data.ownExpenses, "Own Expenses");
-        writeExpandingList(writer, month, data.periodicExpenses, "Periodic Expenses");
-        writeExpandingList(writer, month, data.otherExpenses, "Other Expenses");
+        writeExpandingList(writer, month, data.ownExpenses, "Own Expenses", one_month_or_all);
+        writeExpandingList(writer, month, data.periodicExpenses, "Periodic Expenses", one_month_or_all);
+        writeExpandingList(writer, month, data.otherExpenses, "Other Expenses", one_month_or_all);
         writeTableRow(writer, new String[] {
                 "<b>Food expenses</b>", Currency.toString(data.foodExpenses())
         });
@@ -77,14 +78,14 @@ public class ReportGenerator {
         writeTableRow(writer, new String[] {
                 "<b>Saved salary</b>", Currency.toString(data.salaryToSavings())
         });
-        writeExpandingList(writer, month, data.outOfBudgetExpenses, "Out-of-budget expenses");
-        writeExpandingList(writer, month, data.transfersFromSavings, "Transfers from savings");
+        writeExpandingList(writer, month, data.outOfBudgetExpenses, "Out-of-budget expenses", one_month_or_all);
+        writeExpandingList(writer, month, data.transfersFromSavings, "Transfers from savings", one_month_or_all);
         writeTableRow(writer, new String[] {
                 "<b>Savings balance</b>", Currency.toString(data.savingsBalance())
         });
         writer.println("</table></p>");
         writer.println("<p><table class=\"container\">");
-        writeExpandingList(writer, month, data.debts, "Money lent + Borrowed money gave back");
+        writeExpandingList(writer, month, data.debts, "Money lent + Borrowed money gave back", one_month_or_all);
         writer.println("</table></p>");
         
         writer.println("<p><table class=\"container\">");
@@ -117,7 +118,7 @@ public class ReportGenerator {
         writer.println("    </h4>");
 
         MonthData data = MonthHandler.retrieveForMonth(db, year, month);
-        writeMonthData(writer, year, month, data);
+        writeMonthData(writer, year, month, data, "One month report");
 
         writeHelp(writer);
 
@@ -161,13 +162,13 @@ public class ReportGenerator {
                             ++nextMonthYear;
                         }
                         MonthData data = MonthHandler.retrieveForMonth(db, nextMonthYear, nextMonthMonth);
-                        writeMonthData(writer, nextMonthYear, nextMonthMonth, data);
+                        writeMonthData(writer, nextMonthYear, nextMonthMonth, data, "All months report");
 
                         first = false;
                     }
 
                     MonthData data = MonthHandler.retrieveForMonth(db, year, month);
-                    writeMonthData(writer, year, month, data);
+                    writeMonthData(writer, year, month, data, "All months report");
                 }
             }
         });
@@ -198,7 +199,8 @@ public class ReportGenerator {
         writer.println("  </tr>");
     }
 
-    private static  void writeExpandingList(PrintWriter writer, int month, List<Entry> data, String uniqueId) {
+    private static  void writeExpandingList(PrintWriter writer, int month, List<Entry> data,
+                                            String uniqueId, String one_month_or_all) {
         writer.println("<tr><p><td>" +
                 "<input class=\"toggle\" id=\"toggle" + uniqueId + Month.fromInt(month)  +  "\" type=\"checkbox\">" +
                 "<label for=\"toggle" + uniqueId + Month.fromInt(month) + "\"><b>"+uniqueId +"</b></label>" +
@@ -208,6 +210,7 @@ public class ReportGenerator {
         for (Entry entry : data) {
             writer.println("<form method=\"post\">");
             writer.println(
+                    "<input type=\"hidden\" name=\"one_month_or_all\" value=\"" + one_month_or_all + "\">\n" +
                     "<input type=\"hidden\" name=\"expenseType\" value=\"" + uniqueId + "\">\n" +
                     "<tr>" +
                     "<td> <input type=\"text\" name=\"entryId\" value=\"" + entry.description + "\"/></td>" +
