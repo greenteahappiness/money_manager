@@ -46,10 +46,12 @@ public class MonthHandler {
             @Override
             public void onResult(ResultSet resultSet) throws SQLException {
                 while (resultSet.next()) {
-                    Entry entry = new Entry();
-                    entry.description = resultSet.getString("DESCRIPTION");
-                    entry.value = resultSet.getInt("VALUE");
-                    entry.category = resultSet.getString("CATEGORY");
+                    Entry entry = EntryBuilder.entry()
+                            .withDescription(resultSet.getString("DESCRIPTION"))
+                            .withCategory(resultSet.getString("CATEGORY"))
+                            .withValue(resultSet.getInt("VALUE"))
+                            .build();
+
                     result.add(entry);
                 }
             }
