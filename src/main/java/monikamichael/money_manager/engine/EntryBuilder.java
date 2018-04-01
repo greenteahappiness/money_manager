@@ -5,6 +5,7 @@ public class EntryBuilder {
     public String entryType;
     public String description;
     public String category;
+    public String queueName;
     public int value;
 
     public static EntryBuilder entry() {
@@ -28,6 +29,10 @@ public class EntryBuilder {
 
     public EntryBuilder withValue(int value) {
         this.value = value;
+        return this;
+    }
+    public EntryBuilder withQueueName(String queueName) {
+        this.queueName = queueName;
         return this;
     }
 

@@ -145,12 +145,18 @@ public class Database {
                 " DESCRIPTION TEXT," +
                 " CATEGORY    TEXT)");
 
+
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS WISHES " +
                 "(NAME              TEXT," +
                 " PRICE             INTEGER NOT NULL," +
                 " DUE_DATE          DATE," +
                 " COLLECTED_MONEY   INTEGER NOT NULL," +
                 " PRIMARY KEY (NAME))");
+        executeSqlUpdate("CREATE TABLE IF NOT EXISTS UPCOMING_EXPENSES " +
+                "(DESCRIPTION       TEXT," +
+                " CATEGORY          TEXT," +
+                " VALUE             INTEGER NOT NULL," +
+                " QUEUE_NAME        TEXT)");
     }
 
     // Test program

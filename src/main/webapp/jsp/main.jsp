@@ -23,7 +23,7 @@
                 <tr>
                   <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/new_data">New Data</a></h2></td>
                   <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/new_expense">New expense</a></h2></td>
-                  <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/wishes">Wishes</h2></td>
+                  <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/upcoming_expenses">Upcoming expenses</h2></td>
                 </tr>
                 <tr>
                   <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/entered_months">Entered months</h2></td>
