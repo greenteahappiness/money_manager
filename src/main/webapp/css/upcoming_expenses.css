@@ -6,6 +6,7 @@
 
   body {
     min-width: 520px;
+    padding: 20px;
   }
 
   .column {
@@ -31,3 +32,15 @@
     margin: 0 1em 1em 0;
     height: 50px;
   }
+  .card {
+    background-color: #2d374e;
+  }
+
+  .btn {
+    margin: 0 0.5em 0.5em 0;
+    padding: 0.3em;
+    position: relative;
+    width: 153px;
+  }
+
+

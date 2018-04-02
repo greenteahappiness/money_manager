@@ -3,7 +3,8 @@
 
 <html>
    <head>
-     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+     <!--<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">-->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/upcoming_expenses.css">
      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
      <title>Upcoming expenses</title>
@@ -17,19 +18,26 @@
       <div class="column">
         <h2><b>Backlog</b></h2>
         <c:forEach items="${backlog_entries}" var="entry">
-            <div class="portlet">
-                <div class="portlet-header">${entry.description}</div>
-                <div class="portlet-content">${entry.category}</div>
+            <div class="card portlet">
+            <div class="card-header portlet-header"><strong>${entry.description}</strong></div>
+            <div class="card-body">
+              <div class="card-text portlet-content"><b>Category:</b> ${entry.category}</div>
+              <div class="card-text portlet-content"><b>Price:</b> ${entry.value}</div>
+            </div>
             </div>
         </c:forEach>
+        <button type="button" class="btn btn-primary">+</button>
       </div>
 
       <div class="column">
         <h2><b>March</b></h2>
         <c:forEach items="${march_entries}" var="entry">
-              <div class="portlet">
-                  <div class="portlet-header">${entry.description}</div>
-                  <div class="portlet-content">${entry.category}</div>
+              <div class="card portlet">
+                <div class="card-header portlet-header"><strong>${entry.description}</strong></div>
+                <div class="card-body">
+                  <div class="card-text portlet-content"><b>Category:</b> ${entry.category}</div>
+                  <div class="card-text portlet-content"><b>Price:</b> ${entry.value}</div>
+                </div>
               </div>
         </c:forEach>
       </div>
@@ -49,5 +57,6 @@
    </footer>
    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="${pageContext.request.contextPath}/js/upcoming_expenses.js"></script>
 </html>
