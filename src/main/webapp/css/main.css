@@ -88,7 +88,7 @@ h2 a {
 	  text-align: left;
 	  overflow: hidden;
 	  width: 80%;
-	  margin: 0 auto;
+	  /*margin: 0 auto;*/
   display: table;
   padding: 0 0 0 0;
 }
@@ -189,4 +189,14 @@ label::before {
 
 .toggle:checked ~ label::before {
   content: "-";
+}
+
+@media (min-width: 576px)
+.jumbotron {
+    padding: 2rem 1rem;
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+    background-color: #1F2739;
 }
