@@ -4,6 +4,8 @@ import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ReportGenerator {
@@ -120,6 +122,7 @@ public class ReportGenerator {
         MonthData data = MonthHandler.retrieveForMonth(db, year, month);
         writeMonthData(writer, year, month, data, "One month report");
 
+        writeGenerationDate(writer);
         writeHelp(writer);
 
         writer.println("  </body>");
@@ -173,6 +176,7 @@ public class ReportGenerator {
             }
         });
 
+        writeGenerationDate(writer);
         writeHelp(writer);
 
         writer.println("  </body>");
@@ -227,6 +231,12 @@ public class ReportGenerator {
         writer.println("</table></p> </section></div></td><td>");
         writer.println(Currency.toString(MonthData.balanceEntries(data)));
         writer.println("</td></tr></p>");
+    }
+
+    private static void writeGenerationDate(PrintWriter writer) {
+        writer.println("<div id=\"generation-date\">Generated on");
+        writer.println(new SimpleDateFormat("d.MM.yyyy, HH:mm").format(new Date()));
+        writer.println("</div>");
     }
 
     private static void writeHelp(PrintWriter writer) {
