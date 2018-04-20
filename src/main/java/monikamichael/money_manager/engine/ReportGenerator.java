@@ -285,8 +285,20 @@ public class ReportGenerator {
                 "with negative sign</li>" +
                 "  <li>March is the same as February</li>" +
                 "</ol>" +
-                "You need to keep the record of borrows from future months. Sum of transfers from savings " +
-                "in the past months should be kept as close to zero as possible.</p>");
+                "<p>If you wish to <b>borrow money</b> for some in-budget expense <b>from another month</b>, " +
+                "here's an example of how to do that: suppose you wish to pay for 100 zł August expense, " +
+                "using October budget." +
+                "<ol>" +
+                "  <li>in August, you actually pay, so you enter 100 zł in <i>expenses</i>. But to have money " +
+                "you also take 100 zł from savings and report that in <i>transfers from savings</i></li>" +
+                "  <li>in September no event happens, so you don't have to record anything</li>" +
+                "  <li>in October, you don't report anything in <i>expenses</i>, but transfer the borrowed " +
+                "100 zł back to savings account and report that in <i>transfers from savings</i> " +
+                "with negative sign</li>" +
+                "</ol>" +
+                "You need to keep the record of borrows from future months (both for instalments and for simple " +
+                "borrows). Sum of transfers from savings in the past months should be kept as close to zero " +
+                "as possible.</p>");
         writer.println("</div>");
     }
 }
