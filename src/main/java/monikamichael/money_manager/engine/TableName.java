@@ -11,8 +11,8 @@ public class TableName {
             return "PERIODIC_EXPENSES";
         } else if (name.toLowerCase().equals("other expenses")) {
             return "OTHER_EXPENSES";
-        } else if (name.toLowerCase().equals("out-of-budget expenses")) {
-            return "OOB_EXPENSES";
+        } else if (name.toLowerCase().equals("out-of-budget events")) {
+            return "OOB_EVENTS";
         } else if (name.toLowerCase().equals("debts")) {
             return "DEBTS";
         } else if (name.toLowerCase().equals("transfers")) {

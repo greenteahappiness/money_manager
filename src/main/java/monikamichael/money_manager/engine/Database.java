@@ -124,7 +124,7 @@ public class Database {
                 " DESCRIPTION TEXT," +
                 " CATEGORY    TEXT)");
 
-        executeSqlUpdate("CREATE TABLE IF NOT EXISTS OOB_EXPENSES " +
+        executeSqlUpdate("CREATE TABLE IF NOT EXISTS OOB_EVENTS " +
                 "(YEAR        INTEGER NOT NULL," +
                 " MONTH       INTEGER NOT NULL," +
                 " VALUE       INTEGER NOT NULL," +

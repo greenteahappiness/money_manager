@@ -21,7 +21,7 @@ public class MonthData {
     public List<Entry> ownExpenses;
     public List<Entry> periodicExpenses;
     public List<Entry> otherExpenses;
-    public List<Entry> outOfBudgetExpenses;
+    public List<Entry> outOfBudgetEvents;
     public List<Entry> debts;
     public List<Entry> transfersFromSavings;
 
@@ -42,7 +42,7 @@ public class MonthData {
         result.addAll(ownExpenses);
         result.addAll(periodicExpenses);
         result.addAll(otherExpenses);
-        result.addAll(outOfBudgetExpenses);
+        result.addAll(outOfBudgetEvents);
         result.addAll(debts);
         result.addAll(transfersFromSavings);
         return result;
@@ -69,7 +69,7 @@ public class MonthData {
     }
 
     public int savingsBalance() {
-        return salaryToSavings() - Entry.sum(outOfBudgetExpenses) - Entry.sum(transfersFromSavings);
+        return salaryToSavings() + Entry.sum(outOfBudgetEvents) - Entry.sum(transfersFromSavings);
     }
 
     public int budgetExpenses() {
@@ -146,8 +146,8 @@ public class MonthData {
         builder.append("Other expenses:\n");
         printListOfEntries(builder, otherExpenses);
 
-        builder.append("Out of budget expenses:\n");
-        printListOfEntries(builder, outOfBudgetExpenses);
+        builder.append("Out of budget events:\n");
+        printListOfEntries(builder, outOfBudgetEvents);
 
         builder.append("Debts:\n");
         printListOfEntries(builder, debts);

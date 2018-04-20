@@ -88,7 +88,7 @@ public class AddEntryPage extends AbstractPage {
 
     private void createEntryTypeComboBox() {
         String[] entriesTypes = {"Own_Expenses", "Periodic_Expenses", "Other_Expenses",
-                "OOB_Expenses", "Debts", "Transfers"};
+                "OOB_Events", "Debts", "Transfers"};
         expenseTypeComboBox = new ComboBoxText();
         for (String t : entriesTypes)
             expenseTypeComboBox.appendText(t);

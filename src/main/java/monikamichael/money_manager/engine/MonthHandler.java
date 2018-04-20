@@ -107,7 +107,7 @@ public class MonthHandler {
         result.ownExpenses = retrieveListOfEntries(db, year, month, "OWN_EXPENSES");
         result.periodicExpenses = retrieveListOfEntries(db, year, month, "PERIODIC_EXPENSES");
         result.otherExpenses = retrieveListOfEntries(db, year, month, "OTHER_EXPENSES");
-        result.outOfBudgetExpenses = retrieveListOfEntries(db, year, month, "OOB_EXPENSES");
+        result.outOfBudgetEvents = retrieveListOfEntries(db, year, month, "OOB_EVENTS");
         result.debts = retrieveListOfEntries(db, year, month, "DEBTS");
         result.transfersFromSavings = retrieveListOfEntries(db, year, month, "TRANSFERS");
 

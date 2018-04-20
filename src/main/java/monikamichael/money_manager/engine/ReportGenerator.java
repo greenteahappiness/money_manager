@@ -80,7 +80,7 @@ public class ReportGenerator {
         writeTableRow(writer, new String[] {
                 "<b>Saved salary</b>", Currency.toString(data.salaryToSavings())
         });
-        writeExpandingList(writer, month, data.outOfBudgetExpenses, "Out-of-budget expenses", one_month_or_all);
+        writeExpandingList(writer, month, data.outOfBudgetEvents, "Out-of-budget events", one_month_or_all);
         writeExpandingList(writer, month, data.transfersFromSavings, "Transfers from savings", one_month_or_all);
         writeTableRow(writer, new String[] {
                 "<b>Savings balance</b>", Currency.toString(data.savingsBalance())

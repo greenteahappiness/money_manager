@@ -35,7 +35,7 @@
              <option value="own_expenses">Own expense</option>
              <option value="periodic_expenses">Periodic expense</option>
              <option value="other_expenses">Other expense</option>
-             <option value="oob_expenses">Out of budget expense</option>
+             <option value="oob_events">Out of budget event</option>
              <option value="debts">Debt</option>
              <option value="transfers">Transfer from savings</option>
            </select> </li> <br>
