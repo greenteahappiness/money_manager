@@ -1,5 +1,5 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Dosis', sans-serif;
   font-weight: 300;
   line-height: 1.42em;
 }
@@ -42,7 +42,7 @@ h4 {
   font-weight: 300;
   line-height:1em;
   text-align: center;
-  color: #4DC3FA;
+  color: #8b575c;
 }
 
 .card {
@@ -135,3 +135,8 @@ a:hover, a:visited, a:link, a:active
 .container td:nth-child(4),
 .container th:nth-child(4) { display: none; }
 }*/
+
+.data-form {
+    margin: 0 auto;
+    width: 50%;
+}

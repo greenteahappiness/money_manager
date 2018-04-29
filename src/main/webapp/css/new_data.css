@@ -180,7 +180,7 @@ li:last-child {
     margin-bottom: 0px;
     text-align: center;
 }
-input[name="year"],
+/*input[name="year"],
 input[name="portfel_koniec"],
 input[name="konto_koniec"],
 input[name="paypal_koniec"],
@@ -203,4 +203,4 @@ select
     background-color: #2d374e;
     font-color: azure
     font-family: Georgia, "Times New Roman", Times, serif;
-}
+}*/
