@@ -17,8 +17,8 @@
       <h1 class="jumbotron-heading"><b>${message}</b></h1>
       <h3 class="month-header">App to help you manage your money every day</h3>
       <select class="form-control" onchange="changeTheme(value);">
-            <option value="${pageContext.request.contextPath}/css/main.css"">Default</option>
-            <option value="${pageContext.request.contextPath}/css/pastel_pink/main.css">Pastel pink</option>
+            <option value="default-dark">Default</option>
+            <option value="pastel-pink">Pastel pink</option>
      </select>
      </section>
       <p><table class="container">
@@ -39,7 +39,7 @@
    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-   <script src="${pageContext.request.contextPath}/js/upcoming_expenses.js"></script>
+   <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
    <h2>Application by <b>Monika Gruszka & Michał Szymański</b></h2>
    <h2>Theme created with love by <a href=\"http://pablogarciafernandez.com\" target="_blank">Pablo García Fernández</a></h2>

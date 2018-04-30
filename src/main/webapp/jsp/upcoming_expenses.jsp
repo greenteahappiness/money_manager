@@ -17,8 +17,8 @@
       <h3 class="month-header">Better way of planning upcoming expenses</h3>
       <h2><b><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/">Back to Money Manager</a></b></h2>
       <select class="form-control" onchange="changeTheme(value);">
-        <option value="${pageContext.request.contextPath}/css/main.css"">Default</option>
-        <option value="${pageContext.request.contextPath}/css/pastel_pink/main.css">Pastel pink</option>
+        <option value="default-dark">Default</option>
+        <option value="pastel-pink">Pastel pink</option>
       </select>
       </div>
       </section>
@@ -79,5 +79,5 @@
    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-   <script src="${pageContext.request.contextPath}/js/upcoming_expenses.js"></script>
+   <script src="${pageContext.request.contextPath}/js/main.js"></script>
 </html>
