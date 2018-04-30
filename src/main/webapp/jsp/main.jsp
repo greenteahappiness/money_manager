@@ -1,6 +1,7 @@
 <%@ page contentType = "text/html; charset = UTF-8" %>
 <html>
    <head>
+      <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/homepage.css">
       <link id="theme" rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">

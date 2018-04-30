@@ -12,7 +12,7 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Dosis', sans-serif;
   font-weight: 300;
   line-height: 1.42em;
   color:#A7A1AE;
@@ -199,4 +199,15 @@ label::before {
 .jumbotron {
     padding: 2rem 1rem;
     background-color: #1F2739;
+}
+
+.data-form {
+    display: table;
+    margin: 0 25%;
+    width: 80%;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
 }
