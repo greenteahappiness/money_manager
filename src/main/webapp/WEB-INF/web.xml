@@ -31,17 +31,7 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
-    <servlet>
-        <servlet-name>Index</servlet-name>
-        <jsp-file>/jsp/index.jsp</jsp-file>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Index</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
-
+    
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/css/*</url-pattern>
