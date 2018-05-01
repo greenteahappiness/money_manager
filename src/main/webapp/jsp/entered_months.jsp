@@ -1,5 +1,6 @@
 <%@ page contentType = "text/html; charset = UTF-8" %>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <html>
    <head>
       <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
@@ -9,6 +10,18 @@
    </head>
 
    <body>
+      <c:if test="${not empty msg_successful}">
+             <div class="alert alert-success alert-dismissible fade show" role="alert">
+             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+             ${msg_successful}
+             </div>
+      </c:if>
+      <c:if test="${not empty msg}">
+              <div class="alert alert-danger alert-dismissible" role="alert">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              ${msg}
+              </div>
+      </c:if>
       <h1><b>Entered months</b></h1>
       <h2><b><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/">Back to Money Manager</a></b></h2>
   <p3>

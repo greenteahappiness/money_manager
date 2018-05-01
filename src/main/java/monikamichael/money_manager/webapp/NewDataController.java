@@ -29,21 +29,24 @@ public class NewDataController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String doPost(@RequestParam("year") int year,
-                         @RequestParam("month") int month,
+    public String doPost(@RequestParam("year") String year,
+                         @RequestParam("month") String month,
                          @RequestParam("portfel_koniec") int walletEnd,
                          @RequestParam("konto_koniec") int accountEnd,
                          @RequestParam("paypal_koniec") int paypalEnd,
                          @RequestParam("nadwyzka") int afterPreviousMonth,
-                         @RequestParam("pensja") int salary) {
+                         @RequestParam("pensja") int salary,
+                         ModelMap model) {
         Database db = databaseConnector.connect();
-        MonthHandler.insertToDatabase(db,
-                new MonthData(walletEnd, accountEnd, paypalEnd, afterPreviousMonth, salary),
-                year,
-                month);
-
+        try {
+            MonthHandler.insertToDatabase(db,
+                    new MonthData(walletEnd, accountEnd, paypalEnd, afterPreviousMonth, salary),
+                    Integer.parseInt(year),
+                    Integer.parseInt(month));
+            model.addAttribute("msg_successful", "Month data successfully added!");
+        } catch (Exception e) {
+            model.addAttribute("msg", "Incorrect input!");
+        }
         return "new_data";
     }
-
-
 }
