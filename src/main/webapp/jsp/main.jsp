@@ -22,18 +22,31 @@
             <option value="pastel-pink">Pastel pink</option>
      </select>
      </section>
-      <p><table class="container">
-            <tr>
-              <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/new_data">New Data</a></h2></td>
-              <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/new_expense">New expense</a></h2></td>
-              <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/upcoming_expenses">Upcoming expenses</h2></td>
-            </tr>
-            <tr>
-              <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/entered_months">Entered months</h2></td>
-              <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/monthly_reports">Monthly report</h2></td>
-              <td><h2><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/exit">Exit</h2></td>
-            </tr>
-      </table>
+      <p>
+      <div class="col-lg-12 text-center">
+          <div class="row">
+              <div class="col-sm-4">
+                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/new_data" class="btn btn-primary btn-block" role="button">New Data</a>
+              </div>
+              <div class="col-sm-4">
+                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/new_expense" class="btn btn-primary btn-block" role="button">New Expense</a>
+              </div>
+              <div class="col-sm-4">
+                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/upcoming_expenses" class="btn btn-primary btn-block" role="button">Upcoming expenses</a>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-sm-4">
+                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/entered_months" class="btn btn-primary btn-block" role="button">Entered months</a>
+              </div>
+              <div class="col-sm-4">
+                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/monthly_reports" class="btn btn-primary btn-block" role="button">Monthly reports</a>
+              </div>
+              <div class="col-sm-4">
+                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/#" class="btn btn-primary btn-block" role="button">Graphs</a>
+              </div>
+          </div>
+      </div>
       </p>
    </body>
 
@@ -42,7 +55,5 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
-   <h2>Application by <b>Monika Gruszka & Michał Szymański</b></h2>
-   <h2>Theme created with love by <a href=\"http://pablogarciafernandez.com\" target="_blank">Pablo García Fernández</a></h2>
-
+   <h2>Application by <a>Monika Gruszka & Michał Szymański</a></h2>
 </html>

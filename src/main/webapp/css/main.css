@@ -16,7 +16,7 @@ body {
   font-weight: 300;
   line-height: 1.42em;
   color:#A7A1AE;
-  background-color:#1F2739;
+/*  background-color:#1F2739;*/
 }
 
 p2 {
@@ -29,7 +29,7 @@ h1 {
   font-weight: 300;
   line-height:1em;
   text-align: center;
-  color: #4DC3FA;
+  color: #70a9a1;
 }
 
 
@@ -38,7 +38,7 @@ h3 {
   font-weight: 300;
   line-height:1em;
   text-align: center;
-  color: #FB667A;
+  color: #1f363d;
 }
 
 h4 {
@@ -46,7 +46,7 @@ h4 {
   font-weight: 300;
   line-height:1em;
   text-align: center;
-  color: #4DC3FA;
+  color: #9ec1a3;
 }
 
 h2 {
@@ -56,13 +56,13 @@ h2 {
   display: block;
   line-height:1em;
   padding-bottom: 2em;
-  color: #FB667A;
+  color: #1f363d;
 }
 
 h2 a {
   font-weight: 700;
   text-transform: uppercase;
-  color: #FB667A;
+  color: #1f363d;
   text-decoration: none;
 }
 
@@ -198,7 +198,7 @@ label::before {
 
 .jumbotron {
     padding: 2rem 1rem;
-    background-color: #1F2739;
+    background-color: #cfe0c3;
 }
 
 .data-form {
@@ -210,4 +210,20 @@ label::before {
 a:hover, a:visited, a:link, a:active
 {
     text-decoration: none;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #40798c;
+    border-color: #40798c;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #1F363D;
+    border-color: #40798c;
+}
+
+btn-group-justified {
+    margin: 0 25%;
 }

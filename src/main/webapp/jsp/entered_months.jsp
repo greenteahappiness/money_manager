@@ -75,7 +75,6 @@
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="${pageContext.request.contextPath}/js/main.js"></script>
 
-   <h2>Application by <b>Monika Gruszka & Michał Szymański</b></h2>
-   <h2>Theme created with love by <a href=\"http://pablogarciafernandez.com\" target="_blank">Pablo García Fernández</a></h2>
+   <h2>Application by <a>Monika Gruszka & Michał Szymański</a></h2>
 
 </html>
