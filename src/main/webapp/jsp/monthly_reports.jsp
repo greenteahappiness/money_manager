@@ -1,4 +1,6 @@
 <%@ page contentType = "text/html; charset = UTF-8" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <html>
    <head>
       <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
@@ -8,11 +10,17 @@
    </head>
 
    <body>
+     <c:if test="${not empty msg}">
+         <div class="alert alert-danger alert-dismissible" role="alert">
+         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+         ${msg}
+         </div>
+     </c:if>
       <h1><b>Monthly reports</b></h1>
       <h2><b><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/">Back to Money Manager</a></b></h2>
 
       <h4><b>Specify year and month for your report</b></h4>
-  <p3>
+    <p3>
     <form class="data-form col-md-offset-3" method="post">
             <div class="form-row">
             <div class="form-group col-md-4">
