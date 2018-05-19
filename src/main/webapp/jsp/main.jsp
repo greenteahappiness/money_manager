@@ -43,7 +43,7 @@
                   <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/monthly_reports" class="btn btn-primary btn-block" role="button">Monthly reports</a>
               </div>
               <div class="col-sm-4">
-                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/#" class="btn btn-primary btn-block" role="button">Graphs</a>
+                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/graphs" class="btn btn-primary btn-block" role="button">Graphs</a>
               </div>
           </div>
       </div>
