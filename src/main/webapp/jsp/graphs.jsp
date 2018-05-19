@@ -43,9 +43,6 @@
                      <option value="12">December</option>
                   </select>
             </div>
-            <div class="form-group col-md-5">
-            <button type="submit" class="btn btn-primary">Confirm</button>
-            </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
