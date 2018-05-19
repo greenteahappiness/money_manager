@@ -47,11 +47,10 @@
         req.send(null);
         console.log(req.responseText);
         var expenses_json = JSON.parse(req.responseText);
-        var keys = [];
-        for(var k in expenses_json) keys.unshift(k);
-        showGraph(keys, "Monthly expenses categorized", [
-                                    parseInt(expenses_json.cosmetics),
+        var labels = ['Clothes', 'Cosmetics', 'Hobby and books', 'Other'];
+        showGraph(labels, "Monthly expenses categorized", [
                                     parseInt(expenses_json.clothes),
+                                    parseInt(expenses_json.cosmetics),
                                     parseInt(expenses_json.books),
                                     parseInt(expenses_json.other)]);
     }
