@@ -43,10 +43,9 @@
 
     window.addEventListener("load", checkCookieSettings);
 
-    function onMonthChange(msg, graph_type) {
-        console.log(msg);
+    function onMonthChange(month, year, graph_type) {
         var req = new XMLHttpRequest();
-        req.open('GET', 'graph_data?year=2018&month=' + msg, false);
+        req.open('GET', 'graph_data?year=' + year + '&month=' + month, false);
         req.send(null);
         console.log(req.responseText);
         var expenses_json = JSON.parse(req.responseText);

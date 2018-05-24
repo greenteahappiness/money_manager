@@ -27,7 +27,7 @@
             </div>
             <div class="form-group col-md-5">
                   <label for="month">Month</label>
-                  <select name="month" id="month" class="form-control" onchange="onMonthChange(this.value)">
+                  <select name="month" id="month" class="form-control" onchange="onMonthChange(this.value,  document.getElementById('year').value)">
                     <option selected>Choose month</option>
                      <option value="1">January</option>
                      <option value="2">February</option>
