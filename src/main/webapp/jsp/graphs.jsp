@@ -43,6 +43,15 @@
                      <option value="12">December</option>
                   </select>
             </div>
+            <div class="form-group col-md-5">
+                  <label for="graph_type">Graph type</label>
+                  <select name="graph_type" id="graph_type" class="form-control" onchange="onGraphTypeChange(this.value)">
+                    <option value = "pie" selected>Pie</option>
+                    <option value="bar">Bar</option>
+                    <option value="doughnut">Doughnut</option>
+                    <option value="scatter">Scatter</option>
+                  </select>
+            </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
