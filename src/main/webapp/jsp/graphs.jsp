@@ -23,7 +23,7 @@
         <div class="form-row">
             <div class="form-group col-md-5">
             <label for="year">Year</label>
-            <input type="text" name="year" class="form-control" id="year" value=${current_year}>
+            <input type="text" name="year" class="form-control" id="year">
             </div>
             <div class="form-group col-md-5">
                   <label for="month">Month</label>

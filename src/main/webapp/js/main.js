@@ -42,6 +42,11 @@
     }
 
     window.addEventListener("load", checkCookieSettings);
+    window.addEventListener('load', setCurrentYear);
+
+    function setCurrentYear() {
+        document.getElementById("year").value = new Date().getFullYear();
+    }
 
     function onMonthChange(month, year, graph_type) {
         var req = new XMLHttpRequest();
