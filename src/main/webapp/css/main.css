@@ -148,3 +148,7 @@ btn-group-justified {
 footer {
     background-color: #cfe0c3;
 }
+
+#help {
+    text-align: left!important;
+}

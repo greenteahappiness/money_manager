@@ -253,7 +253,11 @@ public class ReportGenerator {
     }
 
     private static void writeHelp(PrintWriter writer) {
-        writer.println("<div id=\"help\">");
+        writer.println("<div class=\"container-fluid text-center\">    \n" +
+                "  <div class=\"row content\">\n" +
+                "    <div class=\"col-sm-2 sidenav\">\n" +
+                "</div>");
+        writer.println("<div id=\"help\" class=\"col-sm-8\">>");
         writer.println("<h4>Help</h4>" +
                 "<img src=\"attachments/accounts.png\" style=\"width: 14cm; display: block; margin: 0 auto;\"/>" +
                 "<p>Every month, you enter <b>salary</b> you earned that month and amount that " +
@@ -300,6 +304,8 @@ public class ReportGenerator {
                 "</ol>" +
                 "You need to keep the record of borrows from future months. Sum of transfers from savings " +
                 "in the past months should be kept as close to zero as possible.</p>");
+        writer.println("</div>");
+        writer.println("</div>");
         writer.println("</div>");
     }
 }
