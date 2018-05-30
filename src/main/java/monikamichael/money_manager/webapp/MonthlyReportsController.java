@@ -34,8 +34,9 @@ public class MonthlyReportsController {
                          ModelMap model) {
         try {
             this.year = Integer.parseInt(year);
-            this.month = Integer.parseInt(month);
-
+            if (one_or_all.equals("One month report")) {
+                this.month = Integer.parseInt(month);
+            }
             String report = getReportCode(this.year, this.month, one_or_all);
             model.addAttribute("report_code", report);
             return "report";
