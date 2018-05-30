@@ -10,8 +10,14 @@ public class ReportGenerator {
     private static void writeMonthData(final PrintWriter writer,
                                        final int year, final int month, final MonthData data,
                                        String one_month_or_all) {
+
+        writer.println("<div class=\"container-fluid text-center\">    \n" +
+                "  <div class=\"row content\">\n" +
+                "    <div class=\"col-sm-2 sidenav\">\n" +
+                "</div>");
+        writer.println("<div class=\"col-sm-8\">");
         writer.println("<h3 class=\"month-header\">" + Month.fromInt(month) + " " + year + "</h3>");
-        writer.println("<p><table class=\"container\">");
+        writer.println("<p><table class=\"container table table-hover text-left\">");
 
         writeTableHeader(writer, new String[]{"account", " beginning", "end", "balance"});
         writeTableRow(writer, new String[] {
@@ -44,7 +50,7 @@ public class ReportGenerator {
 
         writer.println("</table></p>");
 
-        writer.println("<p><table class=\"container\">");
+        writer.println("<p><table class=\"container table table-hover text-left\">");
         writeTableRow(writer, new String[] {
                 "<b>Full salary in this month</b>", Currency.toString(data.salary)
         });
@@ -56,7 +62,7 @@ public class ReportGenerator {
         });
         writer.println("</table></p>");
 
-        writer.println("<p><table class=\"container\">");
+        writer.println("<p><table class=\"container table table-hover text-left\">");
         writeTableRow(writer, new String[] {
                 "<b>Budget income</b>", Currency.toString(data.budgetIncome)
         });
@@ -74,7 +80,7 @@ public class ReportGenerator {
         });
         writer.println("</table></p>");
 
-        writer.println("<p><table class=\"container\">");
+        writer.println("<p><table class=\"container table table-hover text-left\">");
         writeTableRow(writer, new String[] {
                 "<b>Saved salary</b>", Currency.toString(data.salaryToSavings())
         });
@@ -84,11 +90,11 @@ public class ReportGenerator {
                 "<b>Savings balance</b>", Currency.toString(data.savingsBalance())
         });
         writer.println("</table></p>");
-        writer.println("<p><table class=\"container\">");
+        writer.println("<p><table class=\"container table table-hover text-left\">");
         writeExpandingList(writer, month, data.debts, "Money lent + Borrowed money gave back", one_month_or_all);
         writer.println("</table></p>");
         
-        writer.println("<p><table class=\"container\">");
+        writer.println("<p><table class=\"container table table-hover text-left\">");
         writeTableHeader(writer, new String[]{"", "Clothes", "Cosmetics",
                 "Hobby and books", "Dates and meetings", "Other"});
         writeTableRow(writer, new String[] {
@@ -101,6 +107,9 @@ public class ReportGenerator {
 
         });
         writer.println("</table></p>");
+        writer.println("</div>");
+        writer.println("</div>");
+        writer.println("</div>");
     }
 
     public static void forOneMonth(final Database db, final PrintWriter writer,
@@ -122,9 +131,15 @@ public class ReportGenerator {
 
         writeHelp(writer);
 
+        writer.println("<footer class=\"container-fluid text-center\">\n" +
+                "  <h2>Application by <b>Monika Gruszka &amp; Michał Szymański</b></h2>\n" +
+                "</footer>");
         writer.println("  </body>");
-        writer.println("<h2>Application by <b>Monika Gruszka &amp; Michał Szymański</b></h2>");
-        writer.println("<h2>Theme created with love by <a href=\"http://pablogarciafernandez.com\" target=\"_blank\">Pablo García Fernández</a></h2>");
+        //writer.println("<h2>Application by <b>Monika Gruszka &amp; Michał Szymański</b></h2>");
+        writer.println("\n" +
+                "<script src=\"http://code.jquery.com/jquery-1.9.1.js\"></script>\n" +
+                "<script src=\"http://code.jquery.com/ui/1.9.2/jquery-ui.js\"></script>\n" +
+                "<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"></script>\n");
         writer.println("</html>");
     }
 
@@ -176,8 +191,15 @@ public class ReportGenerator {
         writeHelp(writer);
 
         writer.println("  </body>");
-        writer.println("<h2>Application by <b>Monika Gruszka &amp; Michał Szymański</b></h2>");
-        writer.println("<h2>Theme created with love by <a href=\"http://pablogarciafernandez.com\" target=\"_blank\">Pablo García Fernández</a></h2>");
+        writer.println("\n" +
+                "<script src=\"http://code.jquery.com/jquery-1.9.1.js\"></script>\n" +
+                "<script src=\"http://code.jquery.com/ui/1.9.2/jquery-ui.js\"></script>\n" +
+                "<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js\"></script>\n" +
+                "<script src=\"${pageContext.request.contextPath}/js/main.js\"></script>\n");
+        writer.println("<footer class=\"container-fluid text-center\">\n" +
+                "  <h2>Application by <b>Monika Gruszka &amp; Michał Szymański</b></h2>\n" +
+                "</footer>");
+        //writer.println("<h2>Application by <b>Monika Gruszka &amp; Michał Szymański</b></h2>");
         writer.println("</html>");
     }
 
@@ -206,19 +228,20 @@ public class ReportGenerator {
                 "<label for=\"toggle" + uniqueId + Month.fromInt(month) + "\"><b>"+uniqueId +"</b></label>" +
                 "<div class=\"expand\">" +
                 "    <section>" +
-                "<p><table class=\"container\">");
+                "<p><table class=\"container table table-hover\">");
         for (Entry entry : data) {
-            writer.println("<form method=\"post\">");
+            writer.println("<form class=\"data-form\" method=\"post\">");
             writer.println(
                     "<input type=\"hidden\" name=\"one_month_or_all\" value=\"" + one_month_or_all + "\">\n" +
                     "<input type=\"hidden\" name=\"expenseType\" value=\"" + uniqueId + "\">\n" +
                     "<tr>" +
-                    "<td> <input type=\"text\" name=\"entryId\" value=\"" + entry.description + "\"/></td>" +
+                    "<td> <input class=\"form-control\" type=\"text\" name=\"entryId\" value=\"" + entry.description + "\"/></td>" +
                     "<td>" + Currency.toString(entry.value) + "</td>" +
                     "<td>" + entry.category + "</td>" +
                     "<td>" +
-                    "<input onclick=\"return confirm('Do you want to delete this expense?');\"" +
-                            " name=\"delete\" type=\"submit\" value=\"Delete\" style=\"width:100%\"/>" +
+                    "<button style=\"width:100%\" value=\"Delete\" name=\"delete\" type=\"submit\" class=\"btn btn-primary form-control\" onclick=\"return confirm('Do you want to delete this expense?');\">" +
+                    //"<input onclick=\"return confirm('Do you want to delete this expense?');\"" +
+                    //        " name=\"delete\" type=\"submit\" value=\"Delete\" style=\"width:100%\"/>" +
                             "</td>" +
                     "</tr>");
             writer.println("</form>");

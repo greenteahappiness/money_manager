@@ -173,7 +173,6 @@ label::before {
   display: none;
   overflow: hidden;
   transition:max-height 0.5s;
-  color: #FFF;
 }
 
 .toggle:checked ~ .expand {
@@ -226,4 +225,8 @@ a:hover, a:visited, a:link, a:active
 
 btn-group-justified {
     margin: 0 25%;
+}
+
+footer {
+    background-color: #cfe0c3;
 }
