@@ -1,5 +1,6 @@
 package monikamichael.money_manager.webapp;
 
+import monikamichael.money_manager.engine.Currency;
 import monikamichael.money_manager.engine.Database;
 import monikamichael.money_manager.engine.MonthData;
 import monikamichael.money_manager.engine.MonthHandler;
@@ -31,16 +32,21 @@ public class NewDataController {
     @RequestMapping(method = RequestMethod.POST)
     public String doPost(@RequestParam("year") String year,
                          @RequestParam("month") String month,
-                         @RequestParam("portfel_koniec") int walletEnd,
-                         @RequestParam("konto_koniec") int accountEnd,
-                         @RequestParam("paypal_koniec") int paypalEnd,
-                         @RequestParam("nadwyzka") int afterPreviousMonth,
-                         @RequestParam("pensja") int salary,
+                         @RequestParam("portfel_koniec") String walletEnd,
+                         @RequestParam("konto_koniec") String accountEnd,
+                         @RequestParam("paypal_koniec") String paypalEnd,
+                         @RequestParam("nadwyzka") String afterPreviousMonth,
+                         @RequestParam("pensja") String salary,
                          ModelMap model) {
         Database db = databaseConnector.connect();
         try {
             MonthHandler.insertToDatabase(db,
-                    new MonthData(walletEnd, accountEnd, paypalEnd, afterPreviousMonth, salary),
+                    new MonthData(
+                            Currency.parseString(walletEnd),
+                            Currency.parseString(accountEnd),
+                            Currency.parseString(paypalEnd),
+                            Currency.parseString(afterPreviousMonth),
+                            Currency.parseString(salary)),
                     Integer.parseInt(year),
                     Integer.parseInt(month));
             model.addAttribute("msg_successful", "Month data successfully added!");
