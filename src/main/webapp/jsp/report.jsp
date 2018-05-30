@@ -8,3 +8,4 @@
 ${report_code}
 
 <script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/js/report.js"></script>
