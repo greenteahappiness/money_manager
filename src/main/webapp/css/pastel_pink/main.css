@@ -110,3 +110,7 @@ input:not([type="text"]):not([type="submit"]) {
 footer {
  background-color: #f2ebd3;
 }
+
+#help {
+    text-align: left!important;
+}
