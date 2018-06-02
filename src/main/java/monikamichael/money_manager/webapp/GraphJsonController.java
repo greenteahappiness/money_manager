@@ -41,13 +41,20 @@ public class GraphJsonController {
             expense_type = "OWN_EXPENSES";
         }
         Database db = databaseConnector.connect();
-        List<Entry> entryList = MonthHandler.retrieveListOfEntries(db, year, month, ExpenseType.toTableName(expense_type));
+        List<Entry> entryList;
+        if (expense_type.equals("all")) {
+            entryList = MonthHandler.retrieveListOfEntriesFromAllExpenses(db, year, month);
+        } else {
+            entryList = MonthHandler.retrieveListOfEntries(db, year, month, ExpenseType.toTableName(expense_type));
+        }
+
         int clothesExpenses = MonthData.balanceCategory(entryList, "clothes");
         int cosmeticsExpenses = MonthData.balanceCategory(entryList, "cosmetics");
         int booksExpenses = MonthData.balanceCategory(entryList, "hobby_books");
         int otherExpenses = MonthData.balanceCategory(entryList, "other");
 
         Map<String, String> expenses = new HashMap<>();
+        
         expenses.put("clothes", Currency.toStringWithoutCurrency(clothesExpenses));
         expenses.put("cosmetics", Currency.toStringWithoutCurrency(cosmeticsExpenses));
         expenses.put("books", Currency.toStringWithoutCurrency(booksExpenses));

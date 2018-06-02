@@ -59,6 +59,17 @@ public class MonthHandler {
         return result;
     }
 
+    public static List<Entry> retrieveListOfEntriesFromAllExpenses(Database db,
+                                                    final int year, final int month) {
+        final List<Entry> result = new LinkedList<Entry>();
+        result.addAll(MonthHandler.retrieveListOfEntries(db, year, month, "OWN_EXPENSES"));
+        result.addAll(MonthHandler.retrieveListOfEntries(db, year, month, "PERIODIC_EXPENSES"));
+        result.addAll(MonthHandler.retrieveListOfEntries(db, year, month, "OOB_EXPENSES"));
+        result.addAll(MonthHandler.retrieveListOfEntries(db, year, month, "OTHER_EXPENSES"));
+
+        return result;
+    }
+
     public static MonthData retrieveForMonth(Database db, final int year, final int month) {
         final MonthData result = new MonthData();
         db.executeSqlQuery("SELECT * FROM MONTHS WHERE YEAR = ? AND MONTH = ?", new SqlQueryClient() {
