@@ -120,8 +120,7 @@ label::before {
 
 .data-form {
     display: table;
-    margin: 0 25%;
-    width: 80%;
+    width: 100%;
 }
 
 a:hover, a:visited, a:link, a:active

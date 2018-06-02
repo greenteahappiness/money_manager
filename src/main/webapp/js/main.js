@@ -65,11 +65,11 @@
 
     function showGraph(graph_labels, graph_title, graph_data) {
           $('#myChart').remove();
-          $('#graph-container').append('<canvas id="myChart" width="200" height="200"></canvas>');
+          $('#graph-container').append('<canvas id="myChart" width="500" height="350"></canvas>');
 
           var ctx = document.getElementById("myChart").getContext('2d');
-          ctx.canvas.width = 300;
-          ctx.canvas.height = 300;
+          ctx.canvas.width = 500;
+          ctx.canvas.height = 350;
           config = {
                  type: 'bar',
                  data: {
@@ -112,7 +112,7 @@
 
     function onGraphTypeChange(graph_type) {
         $('#myChart').remove();
-        $('#graph-container').append('<canvas id="myChart" width="300" height="300"></canvas>');
+        $('#graph-container').append('<canvas id="myChart" width="500" height="350"></canvas>');
 
         var ctx = document.getElementById("myChart").getContext('2d');
         var temp = jQuery.extend(true, {}, config);
