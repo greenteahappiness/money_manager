@@ -25,13 +25,15 @@
       <h1><b>Add new expense</b></h1>
       <h2><b><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/">Back to Money Manager</a></b></h2>
     <p3>
-    <form class="data-form col-md-offset-3" method="post">
+    <form class="data-form" method="post">
         <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
+        </div>
+        <div class="form-group col-md-3">
           <label for="year">Year</label>
           <input type="text" name="year" class="form-control" id="year">
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
           <label for="month">Month</label>
           <select name="month" id="month" class="form-control">
             <option selected>Choose month</option>
@@ -49,19 +51,27 @@
              <option value="12">December</option>
           </select>
         </div>
+        <div class="form-group col-md-3">
+        </div>
         </div>
           <div class="form-row">
-            <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
+          </div>
+            <div class="form-group col-md-3">
               <label for="description">Description</label>
               <input type="text" class="form-control" name="description" id="description" placeholder="Shoes">
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-3">
               <label for="value">Value</label>
               <input type="text" class="form-control" name="value" id="value" placeholder="0">
             </div>
+            <div class="form-group col-md-3">
+            </div>
           </div>
           <div class="form-row">
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
+          </div>
+          <div class="form-group col-md-3">
             <label for="expense_type">Expense type</label>
             <select name="expense_type" class="form-control">
                 <option selected>Choose expense type</option>
@@ -73,7 +83,7 @@
                 <option value="transfers">Transfer from savings</option>
             </select>
           </div>
-          <div class="form-group col-md-4">
+          <div class="form-group col-md-3">
               <label for="category">Category</label>
               <select name="category" class="form-control">
                   <option selected>Choose expense category</option>
@@ -83,9 +93,19 @@
                   <option value="meetings">Dates and meetings</option>
                   <option value="other">Other</option>
               </select>
+          </div>
+          <div class="form-group col-md-3">
+          </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-3">
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary">Add expense</button>
+            </div>
+            <div class="form-group col-md-3">
             </div>
           </div>
-          <button type="submit" class="btn btn-primary">Add expense</button>
         </form>
     </p3>
    </body>
