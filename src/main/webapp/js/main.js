@@ -109,6 +109,7 @@
              };
           myChart = new Chart(ctx, config);
           }
+
     function onGraphTypeChange(graph_type) {
         $('#myChart').remove();
         $('#graph-container').append('<canvas id="myChart" width="300" height="300"></canvas>');
@@ -117,4 +118,19 @@
         var temp = jQuery.extend(true, {}, config);
         temp.type = graph_type;
         myChart = new Chart(ctx, temp);
+    }
+
+    function onExpenseTypeChange(expense_type, month, year) {
+        var req = new XMLHttpRequest();
+        req.open('GET', 'graph_data?year=' + year + '&month=' + month + '&expense_type=' + expense_type, false);
+        req.send(null);
+        console.log(req.responseText);
+        var expenses_json = JSON.parse(req.responseText);
+        var labels = ['Clothes', 'Cosmetics', 'Hobby and books', 'Other'];
+        showGraph(labels,
+                  "Monthly expenses categorized", [
+                  parseInt(expenses_json.clothes),
+                  parseInt(expenses_json.cosmetics),
+                  parseInt(expenses_json.books),
+                  parseInt(expenses_json.other)]);
     }

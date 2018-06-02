@@ -27,17 +27,21 @@ public class GraphJsonController {
     @RequestMapping(method = RequestMethod.GET)
     public String doGet(ModelMap map,
                         @RequestParam(value="year", required=false) int year,
-                        @RequestParam(value="month", required=false) int month) {
-        Map<String, String> expenses = getInfoAboutPastExpenses(year, month);
+                        @RequestParam(value="month", required=false) int month,
+                        @RequestParam(value="expense_type", required=false) String expense_type) {
+        Map<String, String> expenses = getInfoAboutPastExpenses(year, month, expense_type);
         JSONObject jsonExpenses = new JSONObject(expenses);
         map.addAttribute("json", jsonExpenses);
 
         return "graph_data";
     }
 
-    public Map<String, String> getInfoAboutPastExpenses(int year, int month) {
+    public Map<String, String> getInfoAboutPastExpenses(int year, int month, String expense_type) {
+        if (expense_type == null) {
+            expense_type = "OWN_EXPENSES";
+        }
         Database db = databaseConnector.connect();
-        List<Entry> entryList = MonthHandler.retrieveListOfEntries(db, year, month, "OWN_EXPENSES");
+        List<Entry> entryList = MonthHandler.retrieveListOfEntries(db, year, month, ExpenseType.toTableName(expense_type));
         int clothesExpenses = MonthData.balanceCategory(entryList, "clothes");
         int cosmeticsExpenses = MonthData.balanceCategory(entryList, "cosmetics");
         int booksExpenses = MonthData.balanceCategory(entryList, "hobby_books");
