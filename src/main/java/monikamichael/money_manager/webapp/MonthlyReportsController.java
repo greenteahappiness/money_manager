@@ -28,17 +28,23 @@ public class MonthlyReportsController {
     }
 
     @RequestMapping(params ="one_or_all", method = RequestMethod.POST)
-    public String doPost(@RequestParam("year") int year,
-                         @RequestParam("month") int month,
+    public String doPost(@RequestParam("year") String year,
+                         @RequestParam("month") String month,
                          @RequestParam("one_or_all") String one_or_all,
                          ModelMap model) {
+        try {
+            this.year = Integer.parseInt(year);
+            if (one_or_all.equals("One month report")) {
+                this.month = Integer.parseInt(month);
+            }
+            String report = getReportCode(this.year, this.month, one_or_all);
+            model.addAttribute("report_code", report);
+            return "report";
+        } catch (Exception e) {
+            model.addAttribute("msg", "Choose year and month!");
+        }
 
-        this.year = year;
-        this.month = month;
-
-        String report = getReportCode(year, month, one_or_all);
-        model.addAttribute("report_code", report);
-        return "report";
+        return "monthly_reports";
     }
 
     private String getReportCode(int year, int month, String reportType) {

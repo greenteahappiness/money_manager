@@ -26,8 +26,8 @@ public class NewExpenseController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String doPost(@RequestParam("year") int year,
-                         @RequestParam("month") int month,
+    public String doPost(@RequestParam("year") String year,
+                         @RequestParam("month") String month,
                          @RequestParam("description") String description,
                          @RequestParam("value") String value,
                          @RequestParam("expense_type") String expense_type,
@@ -35,15 +35,20 @@ public class NewExpenseController {
                          ModelMap model) {
 
         Database db = databaseConnector.connect();
+        try {
+            Entry entry = EntryBuilder.entry()
+                    .withDescription(description)
+                    .withCategory(category)
+                    .withEntryType(expense_type)
+                    .withValue(Currency.parseString(value))
+                    .build();
 
-        Entry entry = EntryBuilder.entry()
-                .withDescription(description)
-                .withCategory(category)
-                .withEntryType(expense_type)
-                .withValue(Currency.parseString(value))
-                .build();
-
-        EntryHandler.insertToTable(db, entry.entryType.toUpperCase(), year, month, entry);
+            EntryHandler.insertToTable(
+                    db, entry.entryType.toUpperCase(), Integer.parseInt(year), Integer.parseInt(month), entry);
+            model.addAttribute("msg_successful", "Expense successfully added!");
+        } catch (Exception e) {
+            model.addAttribute("msg", "Incorrect input!");
+        }
         return "new_expense";
     }
 

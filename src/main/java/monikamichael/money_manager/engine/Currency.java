@@ -31,6 +31,20 @@ public class Currency {
         return String.format("%s%d,%02d zł", sign, zl, gr);
     }
 
+    public static String toStringWithoutCurrency(int value) {
+
+        String sign = "";
+
+        if (value < 0) {
+            value = -value;
+            sign = "-";
+        }
+
+        int zl = value / 100;
+        int gr = value % 100;
+        return String.format("%s%d,%02d", sign, zl, gr);
+    }
+
     private static boolean hasCurrencyZloty(String value) {
         if (!contains(value, "[a-zA-Z]+") || contains(value, "zł|zl")) {
             return true;

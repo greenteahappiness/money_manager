@@ -1,0 +1,116 @@
+body {
+  font-family: 'Dosis', sans-serif;
+  font-weight: 300;
+  line-height: 1.42em;
+}
+
+h1 {
+  font-size:3em;
+  font-weight: 300;
+  line-height:1em;
+  text-align: center;
+  color: #c98986;
+}
+
+h2 {
+  font-size:1em;
+  font-weight: 300;
+  text-align: center;
+  display: block;
+  line-height:1em;
+  padding-bottom: 2em;
+  color: #8b575c;
+}
+
+h2 a {
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8b575c;
+  text-decoration: none;
+}
+
+h3 {
+  font-size:2em;
+  font-weight: 300;
+  line-height:1em;
+  text-align: center;
+  color: #8b575c;
+}
+
+h4 {
+  font-size:1em;
+  font-weight: 300;
+  line-height:1em;
+  text-align: center;
+  color: #8b575c;
+}
+
+.card {
+    background-color: #ccb7ae;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:visited {
+    background-color: #8b575c;
+    border-color: #8b575c;
+}
+.btn-primary:hover {
+    background-color: #7a4e52;
+}
+
+@media (min-width: 576px)
+.jumbotron {
+    padding: 2rem 1rem;
+}
+
+.jumbotron {
+    background-color: #f2ebd3;
+    padding: 2rem 1rem;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    color: #f2ebd3;
+    text-decoration: none;
+}
+
+.data-form {
+    display: table;
+    margin: 0 25%;
+    width: 80%;
+}
+
+.expand {
+  /*height: 0px;*/
+  /*max-height: 200px;*/
+  display: none;
+  overflow: hidden;
+  transition:max-height 0.5s;
+}
+
+.toggle:checked ~ .expand {
+  /*height: 200px;*/
+  /*max-height: 200px;*/
+  display:block;
+  overflow:auto;
+}
+
+.toggle ~ label::before {
+  content: "+";
+}
+
+.toggle:checked ~ label::before {
+  content: "-";
+}
+
+input:not([type="text"]):not([type="submit"]) {
+  display: none;
+  visibility: hidden;
+}
+
+footer {
+ background-color: #f2ebd3;
+}
+
+#help {
+    text-align: left!important;
+}
