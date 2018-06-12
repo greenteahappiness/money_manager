@@ -23,7 +23,7 @@
       </div>
       </section>
 
-      <div class="column">
+      <div class="column" id="backlog">
         <h2><b>Backlog</b></h2>
         <c:forEach items="${backlog_entries}" var="entry">
             <div class="card portlet">
@@ -36,7 +36,7 @@
             </div>
             </div>
         </c:forEach>
-        <button type="button" class="btn btn-primary">+</button>
+        <button type="button" class="btn btn-primary" id="add-card">+</button>
       </div>
 
       <div class="column">
@@ -80,4 +80,5 @@
    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+   <script src="${pageContext.request.contextPath}/js/upcoming_expenses.js"></script>
 </html>
