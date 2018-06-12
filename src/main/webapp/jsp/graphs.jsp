@@ -15,7 +15,7 @@
    </ul>
       <section class="jumbotron text-center">
       <h1 class="jumbotron-heading"><b>Graphs</b></h1>
-      <h2><b><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/">Back to Money Manager</a></b></h2>
+      <h2><b><a href=".">Back to Money Manager</a></b></h2>
       <h3 class="month-header">App to help you manage your money every day</h3>
      </section>
       <p>

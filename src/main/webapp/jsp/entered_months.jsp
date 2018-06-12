@@ -23,7 +23,7 @@
               </div>
       </c:if>
       <h1><b>Entered months</b></h1>
-      <h2><b><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/">Back to Money Manager</a></b></h2>
+      <h2><b><a href=".">Back to Money Manager</a></b></h2>
   <p3>
     <form class="data-form col-md-offset-3" method="post" style="margin: 0 35%;">
         <div class="form-row">

@@ -26,24 +26,24 @@
       <div class="col-lg-12 text-center">
           <div class="row">
               <div class="col-sm-4">
-                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/new_data" class="btn btn-primary btn-block" role="button">New Data</a>
+                  <a href="new_data" class="btn btn-primary btn-block" role="button">New Data</a>
               </div>
               <div class="col-sm-4">
-                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/new_expense" class="btn btn-primary btn-block" role="button">New Expense</a>
+                  <a href="new_expense" class="btn btn-primary btn-block" role="button">New Expense</a>
               </div>
               <div class="col-sm-4">
-                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/upcoming_expenses" class="btn btn-primary btn-block" role="button">Upcoming expenses</a>
+                  <a href="upcoming_expenses" class="btn btn-primary btn-block" role="button">Upcoming expenses</a>
               </div>
           </div>
           <div class="row">
               <div class="col-sm-4">
-                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/entered_months" class="btn btn-primary btn-block" role="button">Entered months</a>
+                  <a href="entered_months" class="btn btn-primary btn-block" role="button">Entered months</a>
               </div>
               <div class="col-sm-4">
-                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/monthly_reports" class="btn btn-primary btn-block" role="button">Monthly reports</a>
+                  <a href="monthly_reports" class="btn btn-primary btn-block" role="button">Monthly reports</a>
               </div>
               <div class="col-sm-4">
-                  <a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/graphs" class="btn btn-primary btn-block" role="button">Graphs</a>
+                  <a href="graphs" class="btn btn-primary btn-block" role="button">Graphs</a>
               </div>
           </div>
       </div>
