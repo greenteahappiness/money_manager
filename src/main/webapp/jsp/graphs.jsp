@@ -93,6 +93,7 @@
    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+   <script src="${pageContext.request.contextPath}/js/graphs.js"></script>
 
    <h2>Application by <a>Monika Gruszka & Michał Szymański</a></h2>
 </html>
