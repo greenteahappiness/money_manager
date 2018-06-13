@@ -17,7 +17,7 @@
          </div>
      </c:if>
       <h1><b>Monthly reports</b></h1>
-      <h2><b><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/">Back to Money Manager</a></b></h2>
+      <h2><b><a href=".">Back to Money Manager</a></b></h2>
 
       <h4><b>Specify year and month for your report</b></h4>
     <p3>

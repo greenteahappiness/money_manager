@@ -15,7 +15,7 @@
       <div class="container">
       <h1 class="jumbotron-heading"><b>Upcoming expenses</b></h1>
       <h3 class="month-header">Better way of planning upcoming expenses</h3>
-      <h2><b><a href="http://localhost:8080/money_manager-1.0-SNAPSHOT/">Back to Money Manager</a></b></h2>
+      <h2><b><a href=".">Back to Money Manager</a></b></h2>
       <select class="form-control" onchange="changeTheme(value);">
         <option value="default-dark">Default</option>
         <option value="pastel-pink">Pastel pink</option>
