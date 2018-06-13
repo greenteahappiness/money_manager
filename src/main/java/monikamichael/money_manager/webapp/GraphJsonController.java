@@ -51,6 +51,7 @@ public class GraphJsonController {
         int clothesExpenses = MonthData.balanceCategory(entryList, "clothes");
         int cosmeticsExpenses = MonthData.balanceCategory(entryList, "cosmetics");
         int booksExpenses = MonthData.balanceCategory(entryList, "hobby_books");
+        int meetingsExpenses = MonthData.balanceCategory(entryList, "meetings");
         int otherExpenses = MonthData.balanceCategory(entryList, "other");
 
         Map<String, String> expenses = new HashMap<>();
@@ -58,6 +59,7 @@ public class GraphJsonController {
         expenses.put("clothes", Currency.toStringWithoutCurrency(clothesExpenses));
         expenses.put("cosmetics", Currency.toStringWithoutCurrency(cosmeticsExpenses));
         expenses.put("books", Currency.toStringWithoutCurrency(booksExpenses));
+        expenses.put("meetings",  Currency.toStringWithoutCurrency(meetingsExpenses));
         expenses.put("other",  Currency.toStringWithoutCurrency(otherExpenses));
 
         return expenses;
