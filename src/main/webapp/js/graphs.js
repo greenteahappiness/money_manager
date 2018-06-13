@@ -1,9 +1,13 @@
-function onMonthChange(month, year, graph_type) {
+function getGraphData(statement) {
     var req = new XMLHttpRequest();
-    req.open('GET', 'graph_data?year=' + year + '&month=' + month, false);
+    req.open('GET', statement, false);
     req.send(null);
     console.log(req.responseText);
-    var expenses_json = JSON.parse(req.responseText);
+    return req.responseText;
+}
+function onMonthChange(month, year, graph_type) {
+    response = getGraphData('graph_data?year=' + year + '&month=' + month);
+    var expenses_json = JSON.parse(response);
     var labels = ['Clothes', 'Cosmetics', 'Hobby and books',
      'Dates and meetings', 'Other'];
     showGraph(labels,
@@ -15,7 +19,7 @@ function onMonthChange(month, year, graph_type) {
               parseInt(expenses_json.other)]);
 }
 
-function showGraph(graph_labels, graph_title, graph_data) {
+function showGraph(graph_labels, graph_title, graph_data, graph_type = "pie") {
       $('#myChart').remove();
       $('#graph-container').append('<canvas id="myChart" width="500" height="350"></canvas>');
 
@@ -23,7 +27,7 @@ function showGraph(graph_labels, graph_title, graph_data) {
       ctx.canvas.width = 500;
       ctx.canvas.height = 350;
       config = {
-             type: 'bar',
+             type: graph_type,
              data: {
                  labels: graph_labels,
                  datasets: [{
