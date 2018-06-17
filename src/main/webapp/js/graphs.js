@@ -1,3 +1,7 @@
+var myChart;
+var config;
+var current_graph_type = "pie";
+
 function getGraphData(statement) {
     var req = new XMLHttpRequest();
     req.open('GET', statement, false);
@@ -5,6 +9,7 @@ function getGraphData(statement) {
     console.log(req.responseText);
     return req.responseText;
 }
+
 function onMonthChange(month, year, graph_type) {
     response = getGraphData('graph_data?year=' + year + '&month=' + month);
     var expenses_json = JSON.parse(response);
@@ -19,7 +24,7 @@ function onMonthChange(month, year, graph_type) {
               parseInt(expenses_json.other)]);
 }
 
-function showGraph(graph_labels, graph_title, graph_data, graph_type = "pie") {
+function showGraph(graph_labels, graph_title, graph_data, graph_type = current_graph_type) {
       $('#myChart').remove();
       $('#graph-container').append('<canvas id="myChart" width="500" height="350"></canvas>');
 
@@ -71,17 +76,14 @@ function onGraphTypeChange(graph_type) {
     $('#graph-container').append('<canvas id="myChart" width="500" height="350"></canvas>');
 
     var ctx = document.getElementById("myChart").getContext('2d');
-    var temp = jQuery.extend(true, {}, config);
-    temp.type = graph_type;
-    myChart = new Chart(ctx, temp);
+    config.type = graph_type;
+    myChart = new Chart(ctx, config);
+    current_graph_type = graph_type;
 }
 
 function onExpenseTypeChange(expense_type, month, year) {
-    var req = new XMLHttpRequest();
-    req.open('GET', 'graph_data?year=' + year + '&month=' + month + '&expense_type=' + expense_type, false);
-    req.send(null);
-    console.log(req.responseText);
-    var expenses_json = JSON.parse(req.responseText);
+    response = getGraphData('graph_data?year=' + year + '&month=' + month + '&expense_type=' + expense_type);
+    var expenses_json = JSON.parse(response);
     var labels = ['Clothes', 'Cosmetics', 'Hobby and books',
      'Dates and meetings', 'Other'];
     showGraph(labels,
