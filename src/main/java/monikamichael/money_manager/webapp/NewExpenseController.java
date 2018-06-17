@@ -38,7 +38,7 @@ public class NewExpenseController {
         try {
             Entry entry = EntryBuilder.entry()
                     .withDescription(description)
-                    .withCategory(category)
+                    .withCategory(Category.parseCategory(category))
                     .withEntryType(expense_type)
                     .withValue(Currency.parseString(value))
                     .build();
