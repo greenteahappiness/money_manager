@@ -86,11 +86,26 @@ function onExpenseTypeChange(expense_type, month, year) {
     var expenses_json = JSON.parse(response);
     var labels = ['Clothes', 'Cosmetics', 'Hobby and books',
      'Dates and meetings', 'Other'];
-    showGraph(labels,
-              "Monthly expenses categorized", [
-              parseInt(expenses_json.clothes),
-              parseInt(expenses_json.cosmetics),
-              parseInt(expenses_json.books),
-              parseInt(expenses_json.meetings),
-              parseInt(expenses_json.other)]);
+
+    var labelsWithFood = ['Clothes', 'Cosmetics', 'Hobby and books',
+        'Dates and meetings', 'Other', 'Food'];
+
+    if (expenses_json.food != 0) {
+        showGraph(labelsWithFood,
+            "Monthly expenses categorized", [
+                parseInt(expenses_json.clothes),
+                parseInt(expenses_json.cosmetics),
+                parseInt(expenses_json.books),
+                parseInt(expenses_json.meetings),
+                parseInt(expenses_json.other),
+                parseInt(expenses_json.food)]);
+    } else {
+        showGraph(labels,
+            "Monthly expenses categorized", [
+                parseInt(expenses_json.clothes),
+                parseInt(expenses_json.cosmetics),
+                parseInt(expenses_json.books),
+                parseInt(expenses_json.meetings),
+                parseInt(expenses_json.other)]);
+    }
 }

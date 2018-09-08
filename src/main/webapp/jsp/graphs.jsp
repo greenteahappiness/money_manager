@@ -61,11 +61,12 @@
             <div class="form-group col-md-3">
                   <label for="expense_type">Expense type</label>
                   <select name="expense_type" id="expense_type" class="form-control" onchange="onExpenseTypeChange(this.value, document.getElementById('month').value, document.getElementById('year').value)">
-                    <option value="all" selected>All expenses</option>
-                    <option value="own-expenses">Own expenses</option>
-                    <option value="periodic-expenses">Periodic expenses</option>
-                    <option value="other-expenses">Other expenses</option>
-                    <option value="oob-expenses">Out-of-budget expenses</option>
+                      <option value="all" selected>All expenses</option>
+                      <option value="all-and-food">All expenses (with food)</option>
+                      <option value="own-expenses">Own expenses</option>
+                      <option value="periodic-expenses">Periodic expenses</option>
+                      <option value="other-expenses">Other expenses</option>
+                      <option value="oob-expenses">Out-of-budget expenses</option>
                   </select>
             </div>
             <div class="form-group col-md-3">

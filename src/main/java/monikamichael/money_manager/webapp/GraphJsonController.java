@@ -42,7 +42,10 @@ public class GraphJsonController {
         }
         Database db = databaseConnector.connect();
         List<Entry> entryList;
-        if (expense_type.equals("all")) {
+        MonthData md = MonthHandler.retrieveForMonth(db, year, month);
+        Map<String, String> expenses = new HashMap<>();
+
+        if (expense_type.contains("all")) {
             entryList = MonthHandler.retrieveListOfEntriesFromAllExpenses(db, year, month);
         } else {
             entryList = MonthHandler.retrieveListOfEntries(db, year, month, ExpenseType.toTableName(expense_type));
@@ -54,13 +57,16 @@ public class GraphJsonController {
         int meetingsExpenses = MonthData.balanceCategory(entryList, "meetings");
         int otherExpenses = MonthData.balanceCategory(entryList, "other");
 
-        Map<String, String> expenses = new HashMap<>();
-        
+
         expenses.put("clothes", Currency.toStringWithoutCurrency(clothesExpenses));
         expenses.put("cosmetics", Currency.toStringWithoutCurrency(cosmeticsExpenses));
         expenses.put("books", Currency.toStringWithoutCurrency(booksExpenses));
         expenses.put("meetings",  Currency.toStringWithoutCurrency(meetingsExpenses));
         expenses.put("other",  Currency.toStringWithoutCurrency(otherExpenses));
+
+        if (expense_type.equals("all-and-food")) {
+            expenses.put("food", Currency.toStringWithoutCurrency((-1)*md.foodExpenses()));
+        }
 
         return expenses;
     }
