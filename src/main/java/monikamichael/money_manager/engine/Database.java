@@ -153,8 +153,8 @@ public class Database {
                 " COLLECTED_MONEY   INTEGER NOT NULL," +
                 " PRIMARY KEY (NAME))");
         executeSqlUpdate("CREATE TABLE IF NOT EXISTS UPCOMING_EXPENSES " +
-                "(DESCRIPTION       TEXT," +
-                " CATEGORY          TEXT," +
+                "(NAME              TEXT, " +
+                " DESCRIPTION       TEXT," +
                 " VALUE             INTEGER NOT NULL," +
                 " QUEUE_NAME        TEXT)");
     }
